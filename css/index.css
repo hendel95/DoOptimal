@@ -434,7 +434,6 @@ a.on
 }
 <<<<<<< HEAD
 */
-=======
 
 
 .tiles_left {
@@ -446,7 +445,7 @@ a.on
 }
 .text{
 	position: absolute;
-	top:20%;
+	top:-20%;
 	left: 30%;
 	color:white;
 	font-size: 1rem;
@@ -465,4 +464,3 @@ a.on
 	margin-top: -50px;
 	margin-left:-50px;
 }
->>>>>>> 219c37f251a3f18166327ba5c3c831e9d12f0b21
