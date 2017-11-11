@@ -166,7 +166,7 @@ img{
 
 #board
 {
-	background-color: black;
+
 	margin: 10px;
 
 }
@@ -176,13 +176,13 @@ img{
 	margin: 0;
 	padding: 0;
 }
-
+/*
 #board td .empty
 {
 	background-color: yellow;
-	background-size: cover;
+	background-size: ;
 }
-/*
+
 #board td a.empty:hover
 {
 	border-color: #FFFFFF;
