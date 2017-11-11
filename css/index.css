@@ -93,27 +93,32 @@ body
 	float: left;
 	width: 45%;
 	margin-left: 30px;
+	margin-bottom: 5px
 }
 #userBox2{
 	float: left;
 	width: 45%;
 	margin-left: 10px;
+	margin-bottom: 5px;
 }
 #userBox3{
 	float: left;
 	width: 45%;
 	margin-left: 30px;
+		margin-bottom: 5px;
 }
 #userBox4{
 	float: left;
 	width: 45%;
 	margin-left: 10px;
+		margin-bottom: 5px;
 }
 
 #show_up{
 	float: left;
 	width: 17%;
 	margin: 0 0 0 50px;
+	margin-bottom: 5px;
 }
 
 #tiles_left{
@@ -424,4 +429,28 @@ a.on
 .tile .blank
 {
 	color: #999999;
+}
+
+
+.tiles_left {
+	position: relative;
+}
+.tiles_left .text{
+	position: absolute;
+	top:20%;
+	left: 30%;
+	color:white;
+	font-size: 1rem;
+}
+
+
+.hint_empty {
+	position: relative;
+}
+.hint_empty .text{
+	position: absolute;
+	top:20%;
+	left: 30%;
+	color:white;
+	font-size: 1rem;
 }
