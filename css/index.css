@@ -435,22 +435,28 @@ a.on
 .tiles_left {
 	position: relative;
 }
-.tiles_left .text{
-	position: absolute;
-	top:20%;
-	left: 30%;
-	color:white;
-	font-size: 1rem;
-}
-
 
 .hint_empty {
 	position: relative;
 }
-.hint_empty .text{
+.text{
 	position: absolute;
 	top:20%;
 	left: 30%;
 	color:white;
 	font-size: 1rem;
+}
+
+.userBox1 .user_icon{
+	position: relative;
+	width:50px;
+	max-width: 50px;
+	margin-top: -60px;
+	margin-left: 10px;
+}
+
+.userBox1 .user_id_1 {
+	position: relative;
+	margin-top: -50px;
+	margin-left:-50px;
 }
