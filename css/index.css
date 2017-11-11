@@ -94,27 +94,32 @@ img{
 	float: left;
 	width: 45%;
 	margin-left: 30px;
+	margin-bottom: 5px
 }
 #userBox2{
 	float: left;
 	width: 45%;
 	margin-left: 10px;
+	margin-bottom: 5px;
 }
 #userBox3{
 	float: left;
 	width: 45%;
 	margin-left: 30px;
+		margin-bottom: 5px;
 }
 #userBox4{
 	float: left;
 	width: 45%;
 	margin-left: 10px;
+		margin-bottom: 5px;
 }
 
 #show_up{
 	float: left;
 	width: 17%;
 	margin: 0 0 0 50px;
+	margin-bottom: 5px;
 }
 
 #tiles_left{
@@ -427,4 +432,37 @@ a.on
 {
 	color: #999999;
 }
+<<<<<<< HEAD
 */
+=======
+
+
+.tiles_left {
+	position: relative;
+}
+
+.hint_empty {
+	position: relative;
+}
+.text{
+	position: absolute;
+	top:20%;
+	left: 30%;
+	color:white;
+	font-size: 1rem;
+}
+
+.userBox1 .user_icon{
+	position: relative;
+	width:50px;
+	max-width: 50px;
+	margin-top: -60px;
+	margin-left: 10px;
+}
+
+.userBox1 .user_id_1 {
+	position: relative;
+	margin-top: -50px;
+	margin-left:-50px;
+}
+>>>>>>> 219c37f251a3f18166327ba5c3c831e9d12f0b21
