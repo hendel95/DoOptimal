@@ -94,25 +94,25 @@ img{
 	float: left;
 	width: 45%;
 	margin-left: 30px;
-	margin-bottom: 5px
+	margin-bottom: 20px
 }
 #userBox2{
 	float: left;
 	width: 45%;
 	margin-left: 10px;
-	margin-bottom: 5px;
+	margin-bottom: 20px;
 }
 #userBox3{
 	float: left;
 	width: 45%;
 	margin-left: 30px;
-		margin-bottom: 5px;
+	margin-bottom: 25px;
 }
 #userBox4{
 	float: left;
 	width: 45%;
 	margin-left: 10px;
-		margin-bottom: 5px;
+	margin-bottom: 25px;
 }
 
 #show_up{
@@ -451,16 +451,28 @@ a.on
 	font-size: 1rem;
 }
 
-.userBox1 .user_icon{
+.user_icon{
 	position: relative;
 	width:50px;
 	max-width: 50px;
-	margin-top: -60px;
+	margin-top: -65px;
 	margin-left: 10px;
 }
 
-.userBox1 .user_id_1 {
+.user_id {
 	position: relative;
 	margin-top: -50px;
 	margin-left:-50px;
+}
+
+.score_box{
+	position: relative;
+	margin-top: -40px;
+	margin-left:120px;
+}
+
+.score_text{
+	position: relative;
+	margin-top: -30px;
+	margin-left:0px;
 }
