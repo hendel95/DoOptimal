@@ -266,13 +266,13 @@ function tileHtml(tileLabel)
 {
 	if (tileLabel == ' ') return "";
 	var theScore = tileScore[tileLabel];
-	//if (theScore == 0) return '<span class="blank">' + tileLabel.toUpperCase() + '<span class="score">0</span></span>';
-	if (theScore == 0) return '<p class="text">' + tileLabel.toUpperCase() + '</p>';
+	if (theScore == 0) return '<span class="blank">' + tileLabel.toUpperCase() + '<span class="score">0</span></span>';
+	//if (theScore == 0) return '<p class="text">' + tileLabel.toUpperCase() + '</p>';
 	return tileLabel + '<span class="score">' + theScore + '</span>';
 	//return '<p class="text">' + tileLabel + '</p>';
 }
 
-function drawTileStorage()
+function drawTileStorage()	
 {
 	for (i = 0; i < rackArray[0].length; i++) // 1명이 플레이할때
 	{
@@ -344,3 +344,22 @@ function returnTile(rackPos)
 	}
 }
 
+function encodePos(column, row)
+{
+	return "c" + toHex[column] + "r" + toHex[row];
+}
+
+function arrayRemoveItem(itemID, theArray)
+{
+	if (itemID < theArray.length)
+	{
+		for (i = itemID; i + 1 < theArray.length; ++i)
+		{
+			theArray[i] = theArray[i + 1];
+		}
+
+		theArray.length -= 1;
+	}
+	
+	return true;
+}
