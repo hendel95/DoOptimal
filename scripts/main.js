@@ -7,6 +7,7 @@ rackArray.push(tmp);
 rackArray.push(tmp);
 rackArray.push(tmp); // 또는 그냥 젤 위에서 다 때려 박으면 됨
 
+var placedArray = new Array();
 //var rackArray = new Array("", "", "", "", "", "", "");
 
 var tileScore = new Array();	// Array of scores for letters
@@ -101,6 +102,27 @@ multiplierArray["cFr4"] = "2L";
 multiplierArray["cFrC"] = "2L";
 
 
+var fromHex = new Array();
+fromHex[""] = "";
+fromHex["0"] = 0;
+fromHex["1"] = 1;
+fromHex["2"] = 2;
+fromHex["3"] = 3;
+fromHex["4"] = 4;
+fromHex["5"] = 5;
+fromHex["6"] = 6;
+fromHex["7"] = 7;
+fromHex["8"] = 8;
+fromHex["9"] = 9;
+fromHex["A"] = 10;
+fromHex["B"] = 11;
+fromHex["C"] = 12;
+fromHex["D"] = 13;
+fromHex["E"] = 14;
+fromHex["F"] = 15;
+var toHex = new Array("0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F");
+
+
 var tileBank = new Array("A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I", "I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L", "M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O", "O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S", "S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W", "W", "X", "Y", "Y", "Z", " ", " ");	// The tiles which may be given to the player
 var tilesRemaining = tileBank.length;	// Number of tiles remaining that may be given to a player
 
@@ -132,22 +154,6 @@ function initTileStorage(){
 	return true;
 }
 */
-
-function arrayRemoveItem(itemID, theArray)
-{
-	if (itemID < theArray.length)
-	{
-		for (i = itemID; i + 1 < theArray.length; ++i)
-		{
-			theArray[i] = theArray[i + 1];
-		}
-
-		theArray.length -= 1;
-	}
-	
-	return true;
-}
-
 
 function initTileStorage()
 {
@@ -191,7 +197,80 @@ function getTilePosition(tileID)
 	return rackArray[0][tileID].replace(/.*,/, ""); //임시로 [0]
 }
 
+function selectTile(tileID)
+{
+	// Clicking a selected tile returns it to the rack.
+	if (tileID == selectedTile)
+	{
+		returnTile(-1);
+		return;
+	}
+	drawTileStorage();
+	
+	selectedTile = tileID;
+	
+	var theTile = document.getElementById("tile" + selectedTile);
+	theTile.className = "tile on";
+	
+	return true;
+}
 
+function emptyCell(theLocation) {
+	var theCell = document.getElementById(theLocation);
+	var multiplyLabel = "";
+	if (multiplierArray[theLocation] && theLocation != "c8r8")
+	{
+		multiplyLabel = multiplierArray[theLocation];
+	}
+	if (multiplyLabel == "") {
+		theCell.innerHTML = '<a class="empty" href="#" onclick="placeTile(\'' + theLocation + '\')\; return false\;"><img src="./img/BoardTile.png" class="image"><span>' + multiplyLabel + '</span></a>';
+	}
+	
+	else {
+		theCell.innerHTML = '<a class="empty" href="#" onclick="placeTile(\'' + theLocation + '\')\; return false\;"><img src="./img/' + multiplyLabel +  '.png" class="image">';
+	}
+	
+}
+
+
+function placeTile(boardCell)
+{
+	if (selectedTile != -1)
+	{
+		var tileLabel = getTileLabel(selectedTile);
+		var tilePosition = getTilePosition(selectedTile);
+
+		if (tilePosition)
+		{
+			emptyCell(tilePosition);
+		}
+		
+		rackArray[0][selectedTile] = tileLabel + "," + boardCell;
+		
+		var theCell = document.getElementById(boardCell);
+	
+		theCell.innerHTML = '<a id="tile' + selectedTile + '" class="tile placed" href="#" onclick="selectTile(' + selectedTile + ')\; return false\;"><img src="./img/BoardTile.png" class="image">' + tileHtml(tileLabel) + '</a>';
+		
+		selectedTile = -1;
+		
+		if (!tilePosition)
+		{
+			drawTileStorage();
+		}
+	}
+	
+	return true;
+}
+
+function tileHtml(tileLabel)
+{
+	if (tileLabel == ' ') return "";
+	var theScore = tileScore[tileLabel];
+	//if (theScore == 0) return '<span class="blank">' + tileLabel.toUpperCase() + '<span class="score">0</span></span>';
+	if (theScore == 0) return '<p class="text">' + tileLabel.toUpperCase() + '</p>';
+	return tileLabel + '<span class="score">' + theScore + '</span>';
+	//return '<p class="text">' + tileLabel + '</p>';
+}
 
 function drawTileStorage()
 {
@@ -218,12 +297,13 @@ function drawTileStorage()
 		{
 			var theCell = document.getElementById(tilePosition);
 
+			//theCell.innerHTML = '<a href="#" onclick="returnTile(' + i + ')\;>dd</a>';
 			theCell.innerHTML = '<a id="tile' + i + '" class="tile placed" href="#" onclick="selectTile(' + i + ')\; return false\;">' + tileHtml(tileLabel) + '</a>';
 			theStore.innerHTML = '<a class="empty" href="#" onclick="returnTile(' + i + ')\; return false\;"></a>';
 		}
 	}
 	
-	//var theStats = document.getElementById("stats");
+	var theStats = document.getElementById("stats");
 	
 	//var stats = "Tiles remaining: " + tilesRemaining + " | Current score: " + score;
 	//if (highscore > 0) stats += " | High score: " + highscore;
@@ -233,4 +313,34 @@ function drawTileStorage()
 	return true;
 }
 
+function returnTile(rackPos)
+{
+	if (selectedTile != -1)
+	{
+		var tileLabel = getTileLabel(selectedTile);
+		var tilePosition = getTilePosition(selectedTile);
+	
+		if (rackPos == -1) {
+			rackPos = selectedTile;
+			for (var i = 0; i < rackArray[0].length; ++i)
+			{
+				if (getTilePosition(i) != "") {
+					rackPos = i;
+					break;
+				}
+			}
+		}
+
+		if (tilePosition) emptyCell(tilePosition);
+
+		if (rackPos != selectedTile) {
+			rackArray[0][selectedTile] = rackArray[0][rackPos];
+		}
+		rackArray[0][rackPos] = tileLabel + ",";
+
+		drawTileStorage();
+
+		selectedTile = -1;
+	}
+}
 
