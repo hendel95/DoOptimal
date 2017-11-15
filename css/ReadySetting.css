@@ -1,0 +1,42 @@
+/* HTML TAGS */
+
+body
+{
+
+	padding: 0;
+	text-align: center;
+}
+.container {
+  width: auto;
+  height: auto;
+  margin: 40px auto;
+}
+
+html, body { width: 100%; height: 100%; }
+
+.outer {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+
+.inner {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.centered {
+  position: relative;
+  display: inline-block;
+ 
+  width: 50%;
+  padding: 1em;
+}
+
+#start{
+	float: left;
+	width: 17%;
+	margin: 50px;
+	margin-bottom: 5px;
+}
