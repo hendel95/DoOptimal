@@ -158,12 +158,12 @@ function initTileStorage(){
 function initTileStorage()
 {
 	var tiles = 0;
-	for (var i = 0; i < rackArray[0].length && tiles < 6 && tilesRemaining > 0; i++)
+	for (var i = 0; i < rackArray[0].length && tiles < 7 && tilesRemaining > 0; i++)
 	{
 		if (rackArray[0][i] != "") ++tiles;
 	}
 
-	for (var i = 0; i < rackArray[0].length && tiles < 6 && tilesRemaining > 0; i++)
+	for (var i = 0; i < rackArray[0].length && tiles < 7 && tilesRemaining > 0; i++)
 	{
 		if (rackArray[0][i] == "")
 		{
@@ -182,8 +182,8 @@ function initTileStorage()
 
 function randomInt(N){
 	return (N * (Math.random() % 1)) | 0;
-	
-	
+
+
 }
 
 
@@ -206,12 +206,12 @@ function selectTile(tileID)
 		return;
 	}
 	drawTileStorage();
-	
+
 	selectedTile = tileID;
-	
+
 	var theTile = document.getElementById("tile" + selectedTile);
 	theTile.className = "tile on";
-	
+
 	return true;
 }
 
@@ -225,11 +225,11 @@ function emptyCell(theLocation) {
 	if (multiplyLabel == "") {
 		theCell.innerHTML = '<a class="empty" href="#" onclick="placeTile(\'' + theLocation + '\')\; return false\;"><img src="./img/BoardTile.png" class="image"><span>' + multiplyLabel + '</span></a>';
 	}
-	
+
 	else {
 		theCell.innerHTML = '<a class="empty" href="#" onclick="placeTile(\'' + theLocation + '\')\; return false\;"><img src="./img/' + multiplyLabel +  '.png" class="image">';
 	}
-	
+
 }
 
 
@@ -244,21 +244,21 @@ function placeTile(boardCell)
 		{
 			emptyCell(tilePosition);
 		}
-		
+
 		rackArray[0][selectedTile] = tileLabel + "," + boardCell;
-		
+
 		var theCell = document.getElementById(boardCell);
-	
+
 		theCell.innerHTML = '<a id="tile' + selectedTile + '" class="tile placed" href="#" onclick="selectTile(' + selectedTile + ')\; return false\;"><img src="./img/BoardTile.png" class="image">' + tileHtml(tileLabel) + '</a>';
-		
+
 		selectedTile = -1;
-		
+
 		if (!tilePosition)
 		{
 			drawTileStorage();
 		}
 	}
-	
+
 	return true;
 }
 
@@ -272,14 +272,14 @@ function tileHtml(tileLabel)
 	//return '<p class="text">' + tileLabel + '</p>';
 }
 
-function drawTileStorage()	
+function drawTileStorage()
 {
 	for (i = 0; i < rackArray[0].length; i++) // 1명이 플레이할때
 	{
 		var theStore = document.getElementById("tileStorage" + i);
 		var tileLabel = getTileLabel(i);
 		var tilePosition = getTilePosition(i);
-		
+
 		if (!tilePosition)
 		{
 			if (tileLabel == "")
@@ -302,14 +302,14 @@ function drawTileStorage()
 			theStore.innerHTML = '<a class="empty" href="#" onclick="returnTile(' + i + ')\; return false\;"></a>';
 		}
 	}
-	
+
 	var theStats = document.getElementById("stats");
-	
+
 	//var stats = "Tiles remaining: " + tilesRemaining + " | Current score: " + score;
 	//if (highscore > 0) stats += " | High score: " + highscore;
 	//if (bestplay > 0) stats += " | Best play: " + bestplay;
 	//theStats.innerHTML = stats;
-	
+
 	return true;
 }
 
@@ -319,7 +319,7 @@ function returnTile(rackPos)
 	{
 		var tileLabel = getTileLabel(selectedTile);
 		var tilePosition = getTilePosition(selectedTile);
-	
+
 		if (rackPos == -1) {
 			rackPos = selectedTile;
 			for (var i = 0; i < rackArray[0].length; ++i)
@@ -360,6 +360,6 @@ function arrayRemoveItem(itemID, theArray)
 
 		theArray.length -= 1;
 	}
-	
+
 	return true;
 }

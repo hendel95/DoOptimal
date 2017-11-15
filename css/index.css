@@ -56,12 +56,6 @@ img{
 
 
 
-.helper{
-	background-color: blue
-	color: blue;
-}
-
-
 #footer{
 	clear: both;
 	margin-top: 20px;
@@ -80,6 +74,7 @@ img{
 	display: block;
 	clear:both;
 }
+
 
 #setting{
 	float: left;
@@ -266,13 +261,11 @@ a.on
 
 #board td
 {
-	margin: 0;
-	padding: 0;
+
 }
 
 #board td .empty
 {
-	border: #99CCCC;
 }
 
 
@@ -286,6 +279,11 @@ a.on
 	color: #FFFFFF;
 }
 
+.image{
+	height: 30px;
+	width: 30px;
+	margin-bottom: -4px;
+}
 /*
 #board td .empty
 {
