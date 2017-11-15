@@ -2,13 +2,12 @@
 
 body
 {
-
 	padding: 0;
 	text-align: center;
 }
 .container {
   width: auto;
-  height: auto;
+  height: 10%;
   margin: 40px auto;
 }
 
