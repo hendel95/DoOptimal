@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+
+<head>
+<style>
+	body{
+		background-image:url('./img/body.png');
+	}
+	.modal{
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		z-index: 1; /* Sit on top */
+		padding-top: 0px; /* Location of the box */
+		left: 0;
+		top: 0;
+		width: 100%;/* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		background-color: rgb(0,0,0); /* Fallback color */
+		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		text-align: center;
+		padding: 0!important;
+	}
+
+	.modal-dialog.modal-center {
+		display: inline-block;
+		text-align: left;
+		vertical-align: middle;
+	}
+
+	/* Modal Content */
+	.modal-content {
+		background-color: #fefefe;
+		background:url("img/Mode.png") no-repeat;
+		background-size: 100% 100%;
+/*		padding: 100px;
+		margin : 200px;*/
+		border: 1px solid #888;
+		width: 848px;
+		height: 734px;
+	}
+
+	/* The Close Button */
+	.close {
+		color: #aaaaaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+
+	.close:hover,
+	.close:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+
+	table{
+		margin:120px;
+		margin-left:150px;
+	}
+</style>
+
+<meta charset="utf-8"/>
+<title>Scrabble Game</title>
+<link rel="stylesheet" type="text/css" href="./css/ReadySetting.css">
+
+</head>
+
+<body>
+
+
+<div class="container">
+<div class="centered">	  
+<img src="./img/TeamLogo.png" width="115">
+</div>
+</div>
+
+<div class="container">
+<div class="centered">	  
+<img src="./img/Logo.png" width="341">
+</div>
+</div>
+
+
+<div class="container">
+<div class="centered">	  
+<img src="./img/Ranking.png" width="190">
+</div>
+</div>
+
+<div class="container">
+<div class="centered">	  
+<!--ranking-->
+</div>
+</div>
+
+<div class="container">
+<div class="centered">	  
+<!--<a href="./index.html"><img src="./img/GameStart.png" width="250"></a> -->
+
+<input id="myBtn" type="image" src="./img/GameStart.png" width="250"> 
+
+</div>
+</div>
+	<div class="modal" id="myModal">
+
+		<!-- <div class="modal-dialog modal-sm"> -->
+			<div class="modal-dialog modal-center" role="document">
+				<div class="modal-content">
+					<span class="close">&times;</span>
+
+					<script language="javascript">
+						var img1 = new Array("img/2people.png","img/2P.png");
+
+						var i;
+						i=0;
+						function chgP2(){
+							if(i==0){
+								i=1;
+								document.button_player3.src = img2[0];
+								document.button_player4.src = img3[0];
+							}
+							else{
+								i=0;
+							}
+							document.button_player2.src = img1[i];
+						}
+
+					</script>
+
+					<script language="javascript">
+						var img2 = new Array("img/3people.png","img/3P.png");
+
+						var i;
+						i=0;
+						function chgP3(){
+							if(i==0){
+								i=1;
+								document.button_player2.src = img1[0];
+								document.button_player4.src = img3[0];
+								}
+							else{
+								i=0;
+							}
+							document.button_player3.src = img2[i];
+						}
+
+					</script>
+
+					<script language="javascript">
+						var img3 = new Array("img/4people.png","img/4P.png");
+
+						var i;
+						i=0;
+						function chgP4(){
+							if(i==0){
+								i=1;
+								document.button_player2.src = img1[0];
+								document.button_player3.src = img2[0];
+							}
+							else{
+								i=0;
+							}
+							document.button_player4.src = img3[i];
+						}
+
+					</script>
+					<script language="javascript">
+						var img4 = new Array("img/level1.png","img/L1.png");
+
+						var i;
+						i=0;
+						function chgL1(){
+							if(i==0){
+								i=1;
+								document.button_level2.src = img5[0];
+								document.button_level3.src = img6[0];
+							}
+							else{
+								i=0;
+							}
+							document.button_level1.src = img4[i];
+						}
+
+					</script>
+					<script language="javascript">
+						var img5 = new Array("img/level2.png","img/L2.png");
+
+						var i;
+						i=0;
+						function chgL2(){
+							if(i==0){
+								i=1;
+								document.button_level1.src = img4[0];
+								document.button_level3.src = img6[0];
+							}
+							else{
+								i=0;
+							}
+							document.button_level2.src = img5[i];
+						}
+					</script>
+					<script language="javascript">
+						var img6 = new Array("img/level3.png","img/L3.png");
+
+						var i;
+						i=0;
+						function chgL3(){
+							if(i==0){
+								i=1;
+								document.button_level1.src = img4[0];
+								document.button_level2.src = img5[0];
+							}
+							else{
+								i=0;
+							}
+							document.button_level3.src = img6[i];
+						}
+
+					</script>
+					<script language="javascript">
+						var img7 = new Array("img/on.png","img/off.png");
+
+						var i;
+						i=0;
+						function chgM(){
+							if(i==0){
+								i=1;
+							}
+							else{
+								i=0;
+							}
+							document.button_bgm.src = img7[i];
+						}
+
+					</script>										
+					<div class="modal-body">
+						<table>
+							<tr>
+								<td>
+									<b>
+										<div style="text-align:center"><strong><font size="5">PLAYER</font></strong><br/>
+										<img name="button_player2" src='img/2people.png' align="left" onclick="chgP2()">
+										<img name="button_player3" src='img/3people.png' align="left" onclick="chgP3()">
+										<img name="button_player4" src='img/4people.png' align="left" onclick="chgP4()">
+									</b>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>
+										<div style="text-align:center"><strong><font size="5">LEVEL</font></strong><br/>
+										<img name="button_level1" src="img/level1.png" align="left" onClick="chgL1();">
+										<img name="button_level2" src="img/level2.png" align="left" onClick="chgL2();">
+										<img name="button_level3" src="img/level3.png" align="left" onClick="chgL3();">
+									</b>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>
+										<div style="text-align:center"><strong><font size="5">BGM</font></strong><br/>
+										<img name="button_bgm" src='img/on.png' align="middle" onclick="chgM()">
+									</b>
+								</td>
+							</tr>
+
+
+						</table>
+
+
+
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<script>
+	// Get the modal
+	var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+	modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+	modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+	if (event.target == modal) {
+		modal.style.display = "none";
+	}
+}
+</script>
+
+<!--
+<form id="email-form" name="email-form" data-name="Email Form" method="get" class="form">
+<input type="text" class="inputname w-input" maxlength="256" name="name" data-name="Name" placeholder="Enter your name" id="name"/>-->
+
+<!--
+</form>-->
+</body>
+</html>
