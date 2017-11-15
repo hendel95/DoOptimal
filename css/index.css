@@ -32,7 +32,7 @@ img{
 .left_screen{
 	float: left;
 	width: 38%;
-	margin: 10px;
+	margin: 10px 20px 10px 20px;
 	background-size: 100%;
 }
 
@@ -40,6 +40,7 @@ img{
 .center_screen{
 	float: left;
 	width: 37%;
+	margin-left: 10px;
 }
 
 .empty:hover .image {
@@ -183,7 +184,7 @@ img{
 .tile
 {
 	background-image: url(./img/Tile.png);
-	background-position: center; 
+	background-position: center;
 	background-size: cover;
 	width: 1.5em;
 	height: 1.5em;
@@ -203,7 +204,7 @@ img{
  background:url('./img/Tile.png') no-repeat;
  height:220px;
  width:220px;
- } 
+ }
 
 #tileStorage
 {
