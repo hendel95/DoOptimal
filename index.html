@@ -1,6 +1,65 @@
 <!DOCTYPE html>
 
 <head>
+	<style>
+	b{
+		font-size:40px;
+	}
+
+	.modal2{
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		z-index: 1; /* Sit on top */
+		padding-top: 0px; /* Location of the box */
+		left: 0;
+		top: 0;
+		width: 100%;/* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		background-color: rgb(0,0,0); /* Fallback color */
+		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+		text-align: center;
+		padding: 0!important;
+	}
+
+	.modal2-dialog.modal-center {
+		display: inline-block;
+		text-align: left;
+		vertical-align: middle;
+	}
+
+	/* Modal Content */
+	.modal2-content {
+		background-color: #fefefe;
+		background:url("img/SettingBox.png") no-repeat;
+		background-size: 100% 100%;
+		border: 1px solid #888;
+		width: 848px;
+		height: 734px;
+	}
+
+	/* The Close Button */
+	.close2 {
+		color: #aaaaaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+
+	.close2:hover,
+	.close2:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+
+	.modal2-body{
+		margin:120px;
+		margin-left:150px;
+	}
+</style>
+
 <title>Main Board</title>
 <link rel="stylesheet" type="text/css" href="./css/index.css">
 
@@ -9,138 +68,226 @@
 
 
 <body>
+
+	<div class="modal2" id="myModal2">
+
+		<!-- 		<div class="modal-dialog modal-sm"> -->
+			<div class="modal2-dialog modal-center" role="document">
+				<div class="modal2-content">
+					<span class="close2">&times;</span>
+
+					<script language="javascript">
+						var img = new Array("img/on.png","img/off.png");
+
+						var i;
+						i=0;
+						function chgImg1(){
+							if(i==0){
+								i=1;
+							}
+							else{
+								i=0;
+							}
+							document.button_bgm.src = img[i];
+						}
+
+					</script>
+
+					<script language="javascript">
+						var img = new Array("img/on.png","img/off.png");
+
+						var i;
+						i=0;
+						function chgImg2(){
+							if(i==0){
+								i=1;
+							}
+							else{
+								i=0;
+							}
+							document.button_fx.src = img[i];
+						}
+
+					</script>
+
+					<div class="modal2-body">
+						<table id="modal2-body">
+							<tr>
+								<td>
+									<b>&nbsp;&nbsp;&nbsp;
+										BGM
+										<img name="button_bgm" src='img/on.png' align="right" onclick="chgImg1()">
+									</b>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<b>&nbsp;&nbsp;&nbsp;
+										FX
+										<img name="button_fx" src="img/on.png" align="right" onClick="chgImg2();">
+									</b>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/Tutorial.png" align="center" width="500">
+
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<img src="img/Version.png" align="center" width="500">
+								</td>
+							</tr>
+
+
+						</table>
+					</div>
+
+
+				</div>
+			</div>
+
+		</div>
+
+
+
+
+
+</div>
+
 <div class="left_screen">
 
 	<div class="scrabble_main">
-		<div id="setting"><a href="./Setting.html"><img src="./img/setting.png"></a></div>
+		<div id="setting"><img src="./img/setting.png"></a></div>
 		<div id="scrabble_title"><img src="./img/Logo.png"></div>
 		<div id="team_name"><img src="./img/TeamLogo.png"></div>
 
 	</div>
-<div>
-	<div id="userBox1" class="userBox1">
-		<img src="./img/UserBox.png">
-		<div class="user_icon">
-			<img src="./img/Setting.png">
+	<div>
+		<div id="userBox1" class="userBox1">
+			<img src="./img/UserBox.png">
+			<div class="user_icon">
+				<img src="./img/Setting.png">
+			</div>
+			<div>
+				<p class="user_id">User1</p>
+			</div>
+			<div class="score_box">
+				<img src="./img/ScoreBox.png">
+				<p class="score_text">Score</p>
+			</div>
 		</div>
-		<div>
-			<p class="user_id">User1</p>
+		<div id="userBox2">
+			<img src="./img/UserBox.png">
+			<div class="user_icon">
+				<img src="./img/Setting.png">
+			</div>
+			<div>
+				<p class="user_id">User2</p>
+			</div>
+			<div class="score_box">
+				<img src="./img/ScoreBox.png">
+				<p class="score_text">Score</p>
+			</div>
 		</div>
-		<div class="score_box">
-			<img src="./img/ScoreBox.png">
-			<p class="score_text">Score</p>
+		<div id="userBox3">
+			<img src="./img/UserBox.png">
+			<div class="user_icon">
+				<img src="./img/Setting.png">
+			</div>
+			<div>
+				<p class="user_id">User3</p>
+			</div>
+			<div class="score_box">
+				<img src="./img/ScoreBox.png">
+				<p class="score_text">Score</p>
+			</div>
 		</div>
-	</div>
-	<div id="userBox2">
-		<img src="./img/UserBox.png">
-		<div class="user_icon">
-			<img src="./img/Setting.png">
+		<div id="userBox4">
+			<img src="./img/UserBox.png">
+			<div class="user_icon">
+				<img src="./img/Setting.png">
+			</div>
+			<div>
+				<p class="user_id">User4</p>
+			</div>
+			<div class="score_box">
+				<img src="./img/ScoreBox.png">
+				<p class="score_text">Score</p>
+			</div>
 		</div>
-		<div>
-			<p class="user_id">User2</p>
-		</div>
-		<div class="score_box">
-			<img src="./img/ScoreBox.png">
-			<p class="score_text">Score</p>
-		</div>
-	</div>
-	<div id="userBox3">
-		<img src="./img/UserBox.png">
-		<div class="user_icon">
-			<img src="./img/Setting.png">
-		</div>
-		<div>
-			<p class="user_id">User3</p>
-		</div>
-		<div class="score_box">
-			<img src="./img/ScoreBox.png">
-			<p class="score_text">Score</p>
-		</div>
-	</div>
-	<div id="userBox4">
-		<img src="./img/UserBox.png">
-		<div class="user_icon">
-			<img src="./img/Setting.png">
-		</div>
-		<div>
-			<p class="user_id">User4</p>
-		</div>
-		<div class="score_box">
-			<img src="./img/ScoreBox.png">
-			<p class="score_text">Score</p>
-		</div>
-	</div>
 
-</div>
-<div>
-	<div id="next_turn"><img src="./img/NextTurn.png"></div>
-	<div id="show_up"><img src="./img/ShowUp.png"></div>
-</div>
-
-<div>
-	<div id="tiles_left" class="tiles_left">
-		<img src="./img/tileLeft_empty.png">
-		<p class="text">TILES LEFT : 63</p>
 	</div>
-	<div id="hint_empty" class="hint_empty">
-		<img src="./img/Hint_empty.png">
-		<p class="text">HINT : 3</p>
+	<div>
+		<div id="next_turn"><img src="./img/NextTurn.png"></div>
+		<div id="show_up"><img src="./img/ShowUp.png"></div>
 	</div>
 
- <div id="dictionary"><img src="./img/Dictionary.png"></div>
+	<div>
+		<div id="tiles_left" class="tiles_left">
+			<img src="./img/tileLeft_empty.png">
+			<p class="text">TILES LEFT : 63</p>
+		</div>
+		<div id="hint_empty" class="hint_empty">
+			<img src="./img/Hint_empty.png">
+			<p class="text">HINT : 3</p>
+		</div>
 
- <!-- The Modal -->
- <div id="myModal" class="modal">
+		<div id="dictionary"><img src="./img/Dictionary.png"></div>
 
-   <!-- Modal content -->
-   <div class="modal-content">
-     <span class="close">&times;</span>
-     <h2>Dictionary</h2>
-		 <input id="search-word" type="text" placeholder="Search your word..">
-		<button id="search">?</button>
-		<p id="check_valid"></p>
-		<span>
-		</span>
-   </div>
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
 
- </div>
+			<!-- Modal content -->
+			<div class="modal-content">
+				<span class="close">&times;</span>
+				<h2>Dictionary</h2>
+				<input id="search-word" type="text" placeholder="Search your word..">
+				<button id="search">?</button>
+				<p id="check_valid"></p>
+				<span>
+				</span>
+			</div>
+
+		</div>
 
 
 
-	<div id="LW"><img src="./img/2LW.png"></div>
-</div>
+		<div id="LW"><img src="./img/2LW.png"></div>
+	</div>
 
-<div id="tilerack">
-<table id="tileStorage" cellspacing="1" clear:both; >
-<tr>
-	<td id="tileStorage0" class="tileStore" style="background:url(./img/Tile.png)">
-	</td>
-	<td id="tileStorage1" class="tileStore"><img src="./img/Tile.png">
-	</td>
-	<td id="tileStorage2" class="tileStore"><img src="./img/Tile.png">
-	</td>
-	<td id="tileStorage3" class="tileStore"><img src="./img/Tile.png">
-	</td>
-	<td id="tileStorage4" class="tileStore"><img src="./img/Tile.png">
-	</td>
-	<td id="tileStorage5" class="tileStore"><img src="./img/Tile.png">
-	</td>
-	<td id="tileStorage6" class="tileStore"><img src="./img/Tile.png">
-	</td>
-</tr>
-</table>
+	<div id="tilerack">
+		<table id="tileStorage" cellspacing="1" clear:both; >
+			<tr>
+				<td id="tileStorage0" class="tileStore" style="background:url(./img/Tile.png)">
+				</td>
+				<td id="tileStorage1" class="tileStore"><img src="./img/Tile.png">
+				</td>
+				<td id="tileStorage2" class="tileStore"><img src="./img/Tile.png">
+				</td>
+				<td id="tileStorage3" class="tileStore"><img src="./img/Tile.png">
+				</td>
+				<td id="tileStorage4" class="tileStore"><img src="./img/Tile.png">
+				</td>
+				<td id="tileStorage5" class="tileStore"><img src="./img/Tile.png">
+				</td>
+				<td id="tileStorage6" class="tileStore"><img src="./img/Tile.png">
+				</td>
+			</tr>
+		</table>
 
-</div>
+	</div>
 
-<div>
-	<div id="exchange"><img src="./img/exchange.png"></div>
-	<div id="pass"><img src="./img/Pass.png"></div>
-	<div id="shuffle"><img src="./img/Shuffle.png"></div>
-</div>
+	<div>
+		<div id="exchange"><img src="./img/exchange.png"></div>
+		<div id="pass"><img src="./img/Pass.png"></div>
+		<div id="shuffle"><img src="./img/Shuffle.png"></div>
+	</div>
 </div>
 
 <div class="center_screen">
-<table id="board">
+	<table id="board">
 		<tr>
 			<td id="c1r1" class="tripleWord"><a class="empty" href="#" onclick="placeTile('c1r1'); return false;"><img src="./img/3W.png" class="image"></a></td>
 			<td id="c2r1"><a class="empty" href="#" onclick="placeTile('c2r1'); return false;"><img src="./img/BoardTile.png" class="image"></a></td>
@@ -403,14 +550,14 @@
 <script src="./scripts/en_wordlist.js"></script>
 <script>
 	document.getElementById("search").addEventListener("click", function(){
-			var word = document.getElementById("search-word").value;
-			if (g_wordmap[word] == 1){
-				document.getElementById("check_valid").innerHTML= "<p>Is a valid word</p>";
-			}
-			else{
-				document.getElementById("check_valid").innerHTML = "<p>Is not a valid word</p>";
-			}
-		});
+		var word = document.getElementById("search-word").value;
+		if (g_wordmap[word] == 1){
+			document.getElementById("check_valid").innerHTML= "<p>Is a valid word</p>";
+		}
+		else{
+			document.getElementById("check_valid").innerHTML = "<p>Is not a valid word</p>";
+		}
+	});
 </script>
 
 <script type="text/javascript">
@@ -418,8 +565,26 @@
 
 
 
-drawTileStorage();
+	drawTileStorage();
 
+	// Get the modal
+	var modal2 = document.getElementById('myModal2');
+
+// Get the button that opens the modal
+var btn2 = document.getElementById("setting");
+
+// Get the <span> element that closes the modal
+var span2 = document.getElementsByClassName("close2")[0];
+
+// When the user clicks the button, open the modal 
+btn2.onclick = function() {
+	modal2.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span2.onclick = function() {
+	modal2.style.display = "none";
+}
 
 
 // Get the modal
@@ -433,19 +598,22 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
-    modal.style.display = "block";
+	modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-    modal.style.display = "none";
+	modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+	if (event.target == modal) {
+		modal.style.display = "none";
+	}
+	if (event.target == modal2) {
+		modal2.style.display = "none";
+	}
 }
 
 
