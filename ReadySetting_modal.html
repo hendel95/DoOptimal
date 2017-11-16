@@ -105,11 +105,12 @@
 </div>
 	<div class="modal" id="myModal">
 
-		<!-- <div class="modal-dialog modal-sm"> -->
-			<div class="modal-dialog modal-center" role="document">
-				<div class="modal-content">
+	<!-- <div class="modal-dialog modal-sm"> -->
+		<div class="modal-dialog modal-center" role="document">
+		<div class="modal-content">
 					<span class="close">&times;</span>
 
+					<!--버튼 설정 -->
 					<script language="javascript">
 						var img1 = new Array("img/2people.png","img/P2.png");
 
@@ -242,8 +243,8 @@
 									<b>
 										<div style="text-align:center"><strong><font size="5">PLAYER</font></strong><br/>
 										<img name="button_player2" src='img/2people.png' align="left" onclick="chgP2()">
-										<img name="button_player3" src='img/3people.png' align="left" onclick="chgP3()">
-										<img name="button_player4" src='img/4people.png' align="left" onclick="chgP4()">
+										<img name="button_player3" src='img/3people.png' align="middle" onclick="chgP3()">
+										<img name="button_player4" src='img/4people.png' align="right" onclick="chgP4()">
 									</b>
 								</td>
 							</tr>
@@ -251,9 +252,9 @@
 								<td>
 									<b>
 										<div style="text-align:center"><strong><font size="5">LEVEL</font></strong><br/>
-										<img name="button_level1" src="img/level1.png" align="left" onClick="chgL1();">
-										<img name="button_level2" src="img/level2.png" align="left" onClick="chgL2();">
-										<img name="button_level3" src="img/level3.png" align="left" onClick="chgL3();">
+										<img name="button_level1" src="img/level1.png" align="left" onClick="chgL1();">   
+										<img name="button_level2" src="img/level2.png" align="middle" onClick="chgL2();">
+										<img name="button_level3" src="img/level3.png" align="right" onClick="chgL3();"> 
 									</b>
 								</td>
 							</tr>
@@ -265,21 +266,28 @@
 									</b>
 								</td>
 							</tr>
+							<tr>
+								<td>
+									<b>
+<!---->
+									<form id="player-form" name="email-form" data-name="Email Form" method="get" class="form">
 
+									player 1 <input type="text" class="inputname w-input" maxlength="256" name="player1" data-name="player1" placeholder="Enter player1 name" id="player1"/>   
+									player 2 <input type="text" class="inputname w-input" maxlength="256" name="player2" data-name="player2" placeholder="Enter player2 name" id="player2"/><br/><br/>
+									player 3 <input type="text" class="inputname w-input" maxlength="256" name="player3" data-name="player3" placeholder="Enter player3 name" id="player3"/>
+									player 4 <input type="text" class="inputname w-input" maxlength="256" name="player4" data-name="player4" placeholder="Enter player4 name" id="player4"/>
+									
+									</b>
+								</td>
+							</tr>
 
 						</table>
-
-
-
+						</div></div></div>
+						
+						
 					</div>
 
-
-				</div>
-			</div>
-
 		</div>
-
-	</div>
 
 	<script>
 	// Get the modal
