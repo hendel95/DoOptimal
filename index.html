@@ -227,19 +227,18 @@
 	
 	<!-- showUP버튼 동작 -->
 		<script language="javascript">
-		var i;
-		i=0;
+		var checkS;
+		checkS=0;
 		function showUp(){
-			if(i==0){
-				i=1; //안보이게
-								
-			}
-			else{
-				i=0; //보이게
-								
-			}
+		if(checkS==0){
+			checkS=1;
+			document.getElementById("tilerack").style.display="none";
 		}
-
+		else{
+			checkS=0;
+			document.getElementById("tilerack").style.display="block";
+		}
+		}
 		</script>
 
 		<div id="show_up">
@@ -262,7 +261,6 @@
 		
 		<div id="dictionary"><img src="./img/Dictionary.png"></div>
 
-		<!-- The Modal -->
 		<div id="myModal" class="modal">
 
 			<!-- Modal content -->
@@ -281,6 +279,7 @@
 
 
 		<div id="LW"><img src="./img/2LW.png"></div>
+
 	</div>
 
 	<div id="tilerack">
@@ -590,6 +589,11 @@
 </div>
 
 <script src="./scripts/en_wordlist.js"></script>
+
+<script>
+
+</script>
+
 <script>
 	document.getElementById("search").addEventListener("click", function(){
 			var word = document.getElementById("search-word").value;
@@ -602,14 +606,10 @@
 		});
 </script>
 
+
 <script type="text/javascript">
 
-
-
-
 drawTileStorage();
-
-
 
 // Get the modal
 var modal = document.getElementById('myModal');
@@ -640,6 +640,7 @@ window.onclick = function(event){
 
 
 </script>
+
 
 </body>
 
