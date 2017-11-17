@@ -1,11 +1,19 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 
-<head>
-<style>
-	body{
-		background-image:url('./img/body.png');
-	}
-	.modal{
+ <head>
+ <style>
+body {
+	background-image: url('./img/body.png');
+}
+.right_screen {
+	float: right;
+	width: 10%;
+	margin-top: 20px;
+}
+.left_screen {
+	float: left;
+	width: 80%;
+}	.modal{
 		display: none; /* Hidden by default */
 		position: fixed; /* Stay in place */
 		z-index: 1; /* Sit on top */
@@ -57,7 +65,7 @@
 
 	table{
 		margin:120px;
-		margin-left:150px;
+		margin-left:170px;
 	}
 </style>
 
@@ -114,11 +122,12 @@
 					<script language="javascript">
 						var img1 = new Array("img/2people.png","img/P2.png");
 
-						var i;
+						var i, checkP;
 						i=0;
 						function chgP2(){
 							if(i==0){
 								i=1;
+								checkP=2;
 								document.button_player3.src = img2[0];
 								document.button_player4.src = img3[0];
 							}
@@ -126,6 +135,7 @@
 								i=0;
 							}
 							document.button_player2.src = img1[i];
+							CheckName(2);
 						}
 
 					</script>
@@ -133,11 +143,12 @@
 					<script language="javascript">
 						var img2 = new Array("img/3people.png","img/3P.png");
 
-						var i;
+						var i, checkP;
 						i=0;
 						function chgP3(){
 							if(i==0){
 								i=1;
+								checkP=3;
 								document.button_player2.src = img1[0];
 								document.button_player4.src = img3[0];
 								}
@@ -145,6 +156,7 @@
 								i=0;
 							}
 							document.button_player3.src = img2[i];
+							CheckName(3);
 						}
 
 					</script>
@@ -152,11 +164,12 @@
 					<script language="javascript">
 						var img3 = new Array("img/4people.png","img/4P.png");
 
-						var i;
+						var i, checkP;
 						i=0;
 						function chgP4(){
 							if(i==0){
 								i=1;
+								checkP=4;
 								document.button_player2.src = img1[0];
 								document.button_player3.src = img2[0];
 							}
@@ -164,6 +177,7 @@
 								i=0;
 							}
 							document.button_player4.src = img3[i];
+							CheckName(4);
 						}
 
 					</script>
@@ -235,7 +249,32 @@
 							document.button_bgm.src = img7[i];
 						}
 
-					</script>										
+					</script>
+					<script>
+					function CheckName(checkP) //인원수 받는 함수
+					{	//입력란 추가 위치
+						var parent=document.getElementById('user-names');
+						//입력란 복제 대상
+						var target=document.getElementById('user-name');
+						var key=1;						
+						var clone;
+						
+						//넘겨받은 수 -1만큼 반복
+						while(key++ < checkP)
+						{
+						
+						//복제 대상을 복제
+						clone=target.cloneNode(true);
+						// 복제 대상 id에 순서 값을 추가
+						clone.id+=key;
+						// <* id=user-name>안의 <* class=user-name>에 순서 값을 대입 
+						// 구형 브라우저에서 작동 불가 
+						Array.from(clone.querySelectorAll('.user-order')).map(order=>{order.innerHTML = key;});
+						parent.appendChild(clone);
+						}
+					
+					}
+					</script>
 					<div class="modal-body">
 						<table>
 							<tr>
@@ -245,6 +284,10 @@
 										<img name="button_player2" src='img/2people.png' align="left" onclick="chgP2()">
 										<img name="button_player3" src='img/3people.png' align="middle" onclick="chgP3()">
 										<img name="button_player4" src='img/4people.png' align="right" onclick="chgP4()">
+										<!-- <button onclick="CheckName(2)">2p</button>   -->
+										<!-- <button onclick="CheckName(3)">3p</button>   -->
+										<!-- <button onclick="CheckName(4)">4p</button>   -->
+										
 									</b>
 								</td>
 							</tr>
@@ -258,36 +301,71 @@
 									</b>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<b>
-										<div style="text-align:center"><strong><font size="5">BGM</font></strong><br/>
-										<img name="button_bgm" src='img/on.png' align="middle" onclick="chgM()">
-									</b>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<b>
-<!---->
-									<form id="player-form" name="email-form" data-name="Email Form" method="get" class="form">
+							<!-- < tr > -->
+	 <!-- <td> -->
+	 <!-- <b> -->
+	 <!-- <div style = "text-align:center"><strong><font size = "5">BGM</font></strong><br/> -->
+	 <!-- <img name = "button_bgm" src = 'img/on.png' align = "middle" onclick = "chgM()" >-->
+	 <!-- </b> -->
+	 <!-- </td> -->
+	 <!-- </tr> -->
+	 <!-- <tr> -->
+	 <!-- <td> -->
+	 <!-- <b> -->
+	 <!-- <div class = "left_screen" > -->
+	 <!-- <form id = "player-form" name = "email-form" data - name = "Email Form" method = "get" class = "form"> -->
+	 <!--player 1 <input type = "text" class = "inputname w-input" maxlength = "256" name = "player1" data - name = "player1" placeholder = "Enter player1 name" id = "player1" /  > -->
+	 <!--player 2 <input type = "text" class = "inputname w-input" maxlength = "256" name = "player2" data - name = "player2" placeholder = "Enter player2 name" id = "player2" /  ><br/><br/> -->
+	 <!--player 3 <input type = "text" class = "inputname w-input" maxlength = "256" name = "player3" data - name = "player3" placeholder = "Enter player3 name" id = "player3" /  > -->
+	 <!--player 4 <input type = "text" class = "inputname w-input" maxlength = "256" name = "player4" data - name = "player4" placeholder = "Enter player4 name" id = "player4" /  > -->
+	 <!-- </ div> -->
 
-									player 1 <input type="text" class="inputname w-input" maxlength="256" name="player1" data-name="player1" placeholder="Enter player1 name" id="player1"/>   
-									player 2 <input type="text" class="inputname w-input" maxlength="256" name="player2" data-name="player2" placeholder="Enter player2 name" id="player2"/><br/><br/>
-									player 3 <input type="text" class="inputname w-input" maxlength="256" name="player3" data-name="player3" placeholder="Enter player3 name" id="player3"/>
-									player 4 <input type="text" class="inputname w-input" maxlength="256" name="player4" data-name="player4" placeholder="Enter player4 name" id="player4"/>
-									
-									</b>
-								</td>
-							</tr>
+	 <!-- <div class = "right_screen"> -->
+	 <!-- <a href = "./index.html"><input type = "image" value = "go" src = "./img/go.png" width = "100"></a> -->
+	 <!-- </div> --> 
+	 <!-- </b> -->
+	 <!-- </td> -->
+	 <!-- </tr> -->
+	 <tr>
+	 <td>
+	 <b>
+	 <!-- < div class = "left_screen" > -->
+	  <form>
+	  <div id="user-names">        
+	  <div id="user-name">            
+	  <label>                
+	  player<span class="user-order">1</span>:     
+	  <input type="text" required>
+	  </label>
+	  </div>
+	  </div>
+	  <!-- <input type="submit"> -->
+	  </form>
+	 <!-- <form id = "player-form" name = "email-form" data - name = "Email Form" method = "get" class = "form"><br/> -->
+	<!-- <center>player 1 <input type = "text" class = "inputname w-input" maxlength = "256" name = "player1" data - name = "player1" placeholder = "Enter player1 name" id = "player1"/> -->
+	   <!-- player 2 <input type = "text" class = "inputname w-input" maxlength = "256" name = "player2" data - name = "player2" placeholder = "Enter player2 name" id = "player2" /></center><br/><br/> -->
+	<!-- <center>player 3 <input type = "text" class = "inputname w-input" maxlength = "256" name = "player3" data - name = "player3" placeholder = "Enter player3 name" id = "player3" /> -->
+	   <!-- player 4 <input type = "text" class = "inputname w-input" maxlength = "256" name = "player4" data - name = "player4" placeholder = "Enter player4 name" id = "player4" /></center> -->
+	 <!-- <  / div > -->
+	 </b>
+	 </td>
+	 </tr>
+	 
+	 
+	 <tr>
+	 <td>
+	 <b><br/>
+	 <center><a href = "./index.html"><input type = "image" value = "go" align = "middle" src = "./img/go.png" width = "100"></a></center>
+	 </b>
+	 </td>
+	 </tr>
 
-						</table>
-						</div></div></div>
-						
-						
-					</div>
+	 </table>
 
-		</div>
+	 </div></div></div>
+	 </div>
+
+	 </div>
 
 	<script>
 	// Get the modal
