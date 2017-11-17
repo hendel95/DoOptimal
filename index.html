@@ -168,7 +168,7 @@
 		<div id="userBox1" class="userBox1">
 			<img src="./img/UserBox.png">
 			<div class="user_icon">
-				<img src="./img/Setting.png">
+				<img src="./img/user1.png">
 			</div>
 			<div>
 				<p class="user_id">User1</p>
@@ -181,7 +181,7 @@
 		<div id="userBox2">
 			<img src="./img/UserBox.png">
 			<div class="user_icon">
-				<img src="./img/Setting.png">
+				<img src="./img/user2.png">
 			</div>
 			<div>
 				<p class="user_id">User2</p>
@@ -194,7 +194,7 @@
 		<div id="userBox3">
 			<img src="./img/UserBox.png">
 			<div class="user_icon">
-				<img src="./img/Setting.png">
+				<img src="./img/user3.png">
 			</div>
 			<div>
 				<p class="user_id">User3</p>
@@ -207,7 +207,7 @@
 		<div id="userBox4">
 			<img src="./img/UserBox.png">
 			<div class="user_icon">
-				<img src="./img/Setting.png">
+				<img src="./img/user4.png">
 			</div>
 			<div>
 				<p class="user_id">User4</p>
@@ -219,10 +219,34 @@
 		</div>
 
 	</div>
-	<div>
-		<div id="next_turn"><img src="./img/NextTurn.png"></div>
-		<div id="show_up"><img src="./img/ShowUp.png"></div>
-	</div>
+	<!-- <div> -->
+		<div id="next_turn">
+			<img src="./img/NextTurn.png">
+		</div>
+	
+	
+	<!-- showUP버튼 동작 -->
+		<script language="javascript">
+		var i;
+		i=0;
+		function showUp(){
+			if(i==0){
+				i=1; //안보이게
+								
+			}
+			else{
+				i=0; //보이게
+								
+			}
+		}
+
+		</script>
+
+		<div id="show_up">
+			<img name="show_Up" src='./img/ShowUp.png' onclick="showUp()">
+		</div>
+		
+	<!-- </div> -->
 
 	<div>
 		<div id="tiles_left" class="tiles_left">
@@ -234,6 +258,8 @@
 			<p class="text">HINT : 3</p>
 		</div>
 
+		
+		
 		<div id="dictionary"><img src="./img/Dictionary.png"></div>
 
 		<!-- The Modal -->
@@ -605,8 +631,8 @@ span.onclick = function() {
 }
 
 // When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
+window.onclick = function(event){
+    if (event.target == modal){
         modal.style.display = "none";
     }
 }
