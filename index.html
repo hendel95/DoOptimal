@@ -260,21 +260,37 @@
 	<div id="tilerack">
 		<table id="tileStorage" cellspacing="1" clear:both; >
 			<tr>
-				<td id="tileStorage0" class="tileStore" style="background:url(./img/Tile.png)">
-				</td>
-				<td id="tileStorage1" class="tileStore"><img src="./img/Tile.png">
-				</td>
-				<td id="tileStorage2" class="tileStore"><img src="./img/Tile.png">
-				</td>
-				<td id="tileStorage3" class="tileStore"><img src="./img/Tile.png">
-				</td>
-				<td id="tileStorage4" class="tileStore"><img src="./img/Tile.png">
-				</td>
-				<td id="tileStorage5" class="tileStore"><img src="./img/Tile.png">
-				</td>
-				<td id="tileStorage6" class="tileStore"><img src="./img/Tile.png">
-				</td>
-			</tr>
+				<!-- <td id="tileStorage0" class="tileStore" style="background:url(./img/Tile.png)"> -->
+				<!-- </td> -->
+				<!-- <td id="tileStorage1" class="tileStore"><img src="./img/Tile.png"> -->
+				<!-- </td> -->
+				<!-- <td id="tileStorage2" class="tileStore"><img src="./img/Tile.png"> -->
+				<!-- </td> -->
+				<!-- <td id="tileStorage3" class="tileStore"><img src="./img/Tile.png"> -->
+				<!-- </td> -->
+				<!-- <td id="tileStorage4" class="tileStore"><img src="./img/Tile.png"> -->
+				<!-- </td> -->
+				<!-- <td id="tileStorage5" class="tileStore"><img src="./img/Tile.png"> -->
+				<!-- </td> -->
+				<!-- <td id="tileStorage6" class="tileStore"><img src="./img/Tile.png"> -->
+				<!-- </td> -->
+
+	<td id="tileStorage0" class="tileStore" style="background:url(./img/tile2.png) no-repeat" width="50" height="60">
+	</td>
+	<td id="tileStorage1" class="tileStore" style="background:url(./img/Tile2.png) no-repeat" width="50" height="60">
+	</td>
+	<td id="tileStorage2" class="tileStore" style="background:url(./img/Tile2.png) no-repeat" width="50" height="60">
+	</td>
+	<td id="tileStorage3" class="tileStore" style="background:url(./img/Tile2.png) no-repeat" width="50" height="60">
+	</td>
+	<td id="tileStorage4" class="tileStore" style="background:url(./img/Tile2.png) no-repeat" width="50" height="60">
+	</td>
+	<td id="tileStorage5" class="tileStore" style="background:url(./img/Tile2.png) no-repeat" width="50" height="60">
+	</td>
+	<td id="tileStorage6" class="tileStore" style="background:url(./img/Tile2.png) no-repeat" width="50" height="60">
+	</td>	
+
+				</tr>
 		</table>
 
 	</div>
@@ -550,14 +566,14 @@
 <script src="./scripts/en_wordlist.js"></script>
 <script>
 	document.getElementById("search").addEventListener("click", function(){
-		var word = document.getElementById("search-word").value;
-		if (g_wordmap[word] == 1){
-			document.getElementById("check_valid").innerHTML= "<p>Is a valid word</p>";
-		}
-		else{
-			document.getElementById("check_valid").innerHTML = "<p>Is not a valid word</p>";
-		}
-	});
+			var word = document.getElementById("search-word").value;
+			if (g_wordmap[word] == 1){
+				document.getElementById("check_valid").innerHTML= "<p>Is a valid word</p>";
+			}
+			else{
+				document.getElementById("check_valid").innerHTML = "<p>Is not a valid word</p>";
+			}
+		});
 </script>
 
 <script type="text/javascript">
@@ -565,26 +581,8 @@
 
 
 
-	drawTileStorage();
+drawTileStorage();
 
-	// Get the modal
-	var modal2 = document.getElementById('myModal2');
-
-// Get the button that opens the modal
-var btn2 = document.getElementById("setting");
-
-// Get the <span> element that closes the modal
-var span2 = document.getElementsByClassName("close2")[0];
-
-// When the user clicks the button, open the modal 
-btn2.onclick = function() {
-	modal2.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span2.onclick = function() {
-	modal2.style.display = "none";
-}
 
 
 // Get the modal
@@ -598,22 +596,19 @@ var span = document.getElementsByClassName("close")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
-	modal.style.display = "block";
+    modal.style.display = "block";
 }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-	modal.style.display = "none";
+    modal.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-	if (event.target == modal) {
-		modal.style.display = "none";
-	}
-	if (event.target == modal2) {
-		modal2.style.display = "none";
-	}
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
 
 
