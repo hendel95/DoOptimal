@@ -258,7 +258,9 @@
 		
 		
 		<div id="dictionary"><img src="./img/Dictionary.png"></div>
-
+		
+		
+	<!-- dictionary버튼 동작 -->
 		<div id="myModal" class="modal">
 
 			<!-- Modal content -->
@@ -281,9 +283,10 @@
 		<!-- The Modal of 2LW-->
 		<div id="ModalOf2LW" class="modal">
 			<div class="modal-content">
-				<span class="close">&times;</span>
+				<span class="close2">&times;</span>
 				<h2>2-LETTER WORDS</h2>
-
+				Here is a full list of 2-letter words in the Official SCRABBLE Players Dictionary. You can play any of these words.<br/>
+				<img src="./img/2LW_modal.png" width="500">
 
 			</div>
 
@@ -630,7 +633,7 @@ var btnLW = document.getElementById("LW");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-var spanLW = document.getElementsByClassName("close")[0];
+var spanLW = document.getElementsByClassName("close2")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
