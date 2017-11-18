@@ -10,6 +10,8 @@ rackArray.push(tmp); // 또는 그냥 젤 위에서 다 때려 박으면 됨
 var placedArray = new Array();
 //var rackArray = new Array("", "", "", "", "", "", "");
 
+var swaps = 0;	// Number of consecutive tile swaps
+
 var tileScore = new Array();	// Array of scores for letters
 tileScore["A"] = 1;
 tileScore["B"] = 3;
@@ -361,5 +363,81 @@ function arrayRemoveItem(itemID, theArray)
 		theArray.length -= 1;
 	}
 
+	return true;
+}
+
+function drawBoard()
+{
+
+	for (row = 1; row <= 15; row++)
+	{
+		for (column = 1; column <= 15; column++)
+		{
+			var theLocation = encodePos(column, row);
+
+			if (placedArray[theLocation])
+			{
+				var theCell = document.getElementById(theLocation);
+				theCell.innerHTML = '<span class="tile">' + tileHtml(placedArray[theLocation]) + '</span>';
+			}
+		}
+	}
+	
+	return true;
+}
+
+function pass()
+{
+	var swapped = 0;
+	
+	if (tilesRemaining < 7)
+	{
+		alert("You may not swap tiles when there are fewer than 7 remaining in the bag.");
+		
+		return false;
+	}
+	if (swaps > 1)
+	{
+		alert("You may not swap tiles more than twice without playing any words.");
+		
+		return false;
+	}
+	for (var i = 0; i < rackArray[0].length; i++)
+	{
+		if (getTilePosition(i))
+		{
+			emptyCell(getTilePosition(i));
+
+			swapped++;
+			
+			tileBank[tileBank.length] = getTileLabel(i);
+			rackArray[0][i] = "";
+		}
+	}
+	
+	if (swapped == 0)
+	{
+		alert('To swap tiles, place them anywhere on the board then click "swap".');
+		
+		return false;
+	}
+	
+	swaps++;
+	
+	for (var i = 0; i < rackArray[0].length && swapped > 0 && tilesRemaining > 0; i++)
+	{
+		if (rackArray[0][i] == "" && tilesRemaining > 0)
+		{
+			var randomTile = Math.floor((Math.random() % 1) * (tileBank.length - swapped));
+			rackArray[0][i] = tileBank[randomTile] + ",";
+			arrayRemoveItem(randomTile, tileBank);
+
+			tilesRemaining = tileBank.length;
+			--swapped;
+		}
+	}
+	 drawBoard();
+	 drawTileStorage();
+	
 	return true;
 }
