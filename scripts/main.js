@@ -10,7 +10,6 @@ rackArray.push(tmp); // 또는 그냥 젤 위에서 다 때려 박으면 됨
 var placedArray = new Array();
 //var rackArray = new Array("", "", "", "", "", "", "");
 
-var swaps = 0;	// Number of consecutive tile swaps
 
 var tileScore = new Array();	// Array of scores for letters
 tileScore["A"] = 1;
@@ -135,6 +134,12 @@ var wordTail = "";	// Tail of the word that is currently being scanned
 var wordMin = "";	// Location of the first letter of a word
 var wordMax = "";	// Location of the last letter of a word
 var wordList = new Array();	// Array of words placed on the board
+
+var touching = false;	// Whether the scanned word touches existing tiles on the board
+var score = 0;	// Player's total score
+// var bestplay = getBestPlay();
+// var highscore = getHighScore();
+var swaps = 0;	// Number of consecutive tile swaps
 
 initTileStorage();	// Randomly pick player's first tiles
 
@@ -436,8 +441,665 @@ function pass()
 			--swapped;
 		}
 	}
-	 drawBoard();
-	 drawTileStorage();
+	drawBoard();
+	drawTileStorage();
+	
+	return true;
+}
+
+function checkPlaced()
+{
+	for (i = 0; i < rackArray[0].length; i++)
+	{
+		if (getTilePosition(i))
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+function checkRow()
+{
+	var min = 16;
+	var max = 0;
+	var theRow = 0;
+	
+	for (i = 0; i < rackArray[0].length; i++)
+	{
+		if (getTilePosition(i) != "")
+		{
+			if (theRow)
+			{
+				if (getTilePositionRow(i) != theRow) return false;
+			}
+			else
+			{
+				theRow = getTilePositionRow(i);
+			}
+
+			var tmp = getTilePositionColumn(i);
+			if (tmp < min) min = tmp;
+			if (tmp > max) max = tmp;
+		}
+	}
+
+	if (theRow == 0) return false;
+
+	for (i = min; i <= max; i++)
+	{
+		if (!placedArray[encodePos(i, theRow)])
+		{
+			for (j = 0; j < rackArray[0].length; j++)
+			{
+				if (getTilePositionColumn(j) == i)
+				{
+					break;
+				}
+				else if (j == rackArray[0].length - 1)
+				{
+					return false;
+				}
+			}
+		}
+	}
+
+	return true;
+}
+
+function checkColumn()
+{
+	var min = 16;
+	var max = 0;
+	var theColumn = 0;
+	var i;
+	
+	for (i = 0; i < rackArray[0].length; i++)
+	{
+		if (getTilePosition(i) != "")
+		{
+			if (theColumn)
+			{
+				if (getTilePositionColumn(i) != theColumn) return false;
+			}
+			else
+			{
+				theColumn = getTilePositionColumn(i);
+			}
+
+			var tmp = getTilePositionRow(i);
+			if (tmp < min) min = tmp;
+			if (tmp > max) max = tmp;
+		}
+	}
+
+	if (theColumn == 0) return false;
+	
+	for (i = min; i <= max; i++)
+	{
+		if (!placedArray[encodePos(theColumn, i)])
+		{
+			for (j = 0; j < rackArray[0].length; j++)
+			{
+				if (getTilePositionRow(j) == i)
+				{
+					break;
+				}
+				else if (j == rackArray[0].length - 1)
+				{
+					return false;
+				}
+			}
+		}
+	}
+
+	return true;
+}
+
+function gameToString() {
+	var str = score + "/" + swaps + "/" + rackArray[0].join(".") + "/" + tileBank.join("") + "/";
+	for (var row = 1; row <= 15; ++row) {
+		for (var col = 1; col <= 15; ++col) {
+			var myPos = encodePos(col, row);
+			if (placedArray[myPos]) {
+				str += placedArray[myPos];
+			} else if (multiplierArray[myPos]) {
+				str += multiplierArray[myPos];
+			}
+			str += ".";
+		}
+	}
+	return str;
+}
+
+function gameFromString(str) {
+	var a = str.split("/");
+	score = parseInt(a[0]);
+	swaps = parseInt(a[1]);
+	for (i = 0; i < rackArray.length; i++)
+	{
+		if (getTilePosition(i) != "")
+		{
+			emptyCell(getTilePosition(i));
+		}
+	}
+	rackArray = a[2].split(".");
+	tileBank = a[3].split("");
+	a = a[4].split(".");
+	var i = 0;
+	for (var row = 1; row <= 15; ++row) {
+		for (var col = 1; col <= 15; ++col) {
+			var myPos = encodePos(col, row);
+			if (a[i].length == 1) {
+				multiplierArray[myPos] = "";
+				placedArray[myPos] = a[i];
+			} else {
+				multiplierArray[myPos] = a[i]; // May be empty, or "2W", etc
+				if (placedArray[myPos]) {
+					emptyCell(myPos);
+					placedArray[myPos] = "";
+				}
+			}
+			++i;
+		}
+	}
+	tilesRemaining = tileBank.length;
+	selectedTile = -1;
+	drawTileStorage();
+	drawBoard();
+}
+
+
+
+
+
+function finalise()
+{
+	var undoSavedNew = gameToString();
+	var tilesPlayed = 0;
+	touching = false;
+	wordList.length = 0;
+	var usedMultipliers = new Array();	// Temporary array of bonus squares used in words
+
+	if (!placedArray["c8r8"])
+	{
+		for (var i = 0; i < rackArray[0].length; i++)
+		{
+			if (getTilePosition(i) == "c8r8")
+			{
+				break;
+			}
+			else
+			{
+				if (i == rackArray[0].length - 1)
+				{
+					alert("When starting, one of your tiles must be placed on the centre square.");
+					
+					return false;
+				}
+			}
+		}
+	}
+	
+	if (!checkPlaced())
+	{
+		alert("You haven't placed any tiles.");
+		
+		return false;
+	}
+	
+	if (!checkRow() && !checkColumn())
+	{
+		alert("Tiles must be placed in a continuous horizontal or vertical line.");
+		
+		return false;
+	}
+	
+	if (!checkWords())
+	{
+		// Reset blanks.
+		for (var i = 0; i < rackArray[0].length; i++)
+		{
+			rackArray[i] = rackArray[i].replace(/[a-z],/, " ,");
+		}
+		return false;
+	}
+	
+	for (var i = 0; i < rackArray[0].length; i++)	// Move used tiles from rackArray to placedArray
+	{
+		if (getTilePosition(i))
+		{
+			placedArray[getTilePosition(i)] = getTileLabel(i);
+			
+			rackArray[i] = "";
+			tilesPlayed++;
+		}
+	}
+
+	for (var i = 0; i < wordList.length; i++)	// Remove duplicates from wordList
+	{
+		for (var j = 0; j < wordList.length; j++)
+		{
+			if (wordList[i] == wordList[j] && i != j)
+			{
+				arrayRemoveItem(j, wordList);
+				
+				i = -1;
+			}
+		}
+	}
+
+	var allScores = "";
+	var totalScore = 0;
+	for (var i = 0; i < wordList.length; i++)	// Score each word
+	{
+		var fromTile = wordList[i].replace(/,.*/, "");
+		var fromTileColumn = fromHex[fromTile.replace(/c(.*)r.*/, "$1")];
+		var fromTileRow = fromHex[fromTile.replace(/c.*r/, "")];
+		
+		var toTile = wordList[i].replace(/^.*,/, "");
+		var toTileColumn = fromHex[toTile.replace(/c(.*)r.*/, "$1")];
+		var toTileRow = fromHex[toTile.replace(/c.*r/, "")];
+		
+		// var displayScore = "";
+		var displayWord = "";
+		// var subScore = 0;
+		var wordMultiplier = 1;
+
+		if (fromTileColumn == toTileColumn)	// If word is vertically aligned
+		{
+			for (var j = fromTileRow; j <= toTileRow; j++)
+			{
+				currTile = encodePos(fromTileColumn, j);
+				displayWord += placedArray[currTile];
+				// displayScore += "[";
+				
+				// if (multiplierArray[currTile] == "2L")
+				// {
+				// 	subScore += tileScore[placedArray[currTile]] * 2;
+				// 	displayScore += "+" + tileScore[placedArray[currTile]] + " x 2L";
+
+				// 	usedMultipliers[usedMultipliers.length] = currTile;
+				// }
+				// else if (multiplierArray[currTile] == "3L")
+				// {
+				// 	subScore += tileScore[placedArray[currTile]] * 3;
+				// 	displayScore += "+" + tileScore[placedArray[currTile]] + " x 3L";
+
+				// 	usedMultipliers[usedMultipliers.length] = currTile;
+				// }
+				// else
+				// {
+				// 	subScore += tileScore[placedArray[currTile]];
+				// 	displayScore += "+" + tileScore[placedArray[currTile]];
+
+				// 	if (multiplierArray[currTile] == "2W")
+				// 	{
+				// 		wordMultiplier *= 2;
+
+				// 		usedMultipliers[usedMultipliers.length] = currTile;
+				// 	}
+				// 	else if (multiplierArray[currTile] == "3W")
+				// 	{
+				// 		wordMultiplier *= 3;
+
+				// 		usedMultipliers[usedMultipliers.length] = currTile;
+				// 	}
+				// }
+				
+				// displayScore += "]   ";
+			}
+		}
+		else
+		{
+			for (var j = fromTileColumn; j <= toTileColumn; j++)
+			{
+				currTile = encodePos(j, fromTileRow);
+				displayWord += placedArray[currTile];
+				// displayScore += "[";
+				// var mult = multiplierArray[currTile];
+				
+				// if (mult && mult.charAt(1) == "L")
+				// {
+				// 	subScore += tileScore[placedArray[currTile]] * parseInt(mult.charAt(0));
+				// 	displayScore += "+" + tileScore[placedArray[currTile]] + " x " + mult;
+
+				// 	usedMultipliers[usedMultipliers.length] = currTile;
+				// }
+				// else
+				// {
+				// 	subScore += tileScore[placedArray[currTile]];
+				// 	displayScore += "+" + tileScore[placedArray[currTile]];
+
+				// 	if (mult && mult.charAt(1) == "W")
+				// 	{
+				// 		wordMultiplier *= parseInt(mult.charAt(0));
+
+				// 		usedMultipliers[usedMultipliers.length] = currTile;
+				// 	}
+				// }
+				
+				// displayScore += "]   ";
+			}
+		}
+	}
+
+		// if (wordMultiplier > 1)
+		// {
+		// 	subScore *= wordMultiplier;
+		// 	displayScore = "(   " + displayScore + ")   x   " + wordMultiplier + "   ";
+		// }
+
+	// 	displayScore += "=   " + subScore;
+	// 	if (subScore == 1) {
+	// 		displayScore += " point";
+	// 	} else {
+	// 		displayScore += " points";
+	// 	}
+	// 	displayScore = "Word score \"" + displayWord + "\":  " + displayScore;
+	// 	totalScore += subScore;
+
+	// 	allScores += displayScore + "\n";
+// }
+
+	// Bonus points for using all 7 tiles
+	// if (tilesPlayed == 7)
+	// {
+	// 	totalScore += 50;
+
+	// 	allScores += "You get a 50 point BONUS for using all 7 of your tiles!\n";
+	// }
+	// if (allScores.match("\n.*\n")) {
+	// 	allScores += "Total score for this turn: " + totalScore;
+	// 	if (totalScore == 1) {
+	// 		allScores += " point\n";
+	// 	} else {
+	// 		allScores += " points\n";
+	// 	}
+	// }
+	// if (totalScore > bestplay) {
+	// 	if (bestplay > 0) allScores += "This was your highest scoring turn ever!";
+	// 	setBestPlay(totalScore);
+	// 	bestplay = totalScore;
+	// }
+
+	// alert(allScores);
+
+	// score += totalScore;
+	
+	// for (var i = 0; i < usedMultipliers.length; i++)	// Remove bonuses from used bonus tiles
+	// {
+	// 	multiplierArray[usedMultipliers[i]] = "";
+	// }
+
+	swaps = 0;
+	undoSaved = undoSavedNew;
+
+	if (tilesRemaining > 0)
+	{
+		initTileStorage();
+		drawTileStorage();
+		drawBoard();
+	}
+	else
+	{
+		for (var i = 0; i < rackArray[0].length; i++)
+		{
+			if (rackArray[i] == "")
+			{
+				if (i == rackArray[0].length - 1)
+				{
+					// if (highscore > 0 && score > highscore) {
+					// 	alert("CONGRATULATIONS! You beat your highscore by finishing with a score of " + score + " points.");
+					// } else {
+					// 	alert("CONGRATULATIONS! You finished with a score of " + score + " points.");
+					// }
+					// if (score > highscore) {
+					// 	setHighScore(score);
+					// 	highscore = score;
+					// }
+				}
+			}
+			else
+			{
+				break;
+			}
+		}
+		
+		drawTileStorage();
+		drawBoard();
+		
+	}
+	
+	return true;
+
+}
+
+function getTilePositionRow(tileID)
+{
+	var thePosition = getTilePosition(tileID);
+	
+	return fromHex[thePosition.replace(/c.*r(.*)/, "$1")];
+}
+
+function getTilePositionColumn(tileID)
+{
+	var thePosition = getTilePosition(tileID);
+	
+	return fromHex[thePosition.replace(/c(.*)r.*/, "$1")];
+}
+
+function getAdjacent(column, row, direction)
+{
+	var theLabel = "";
+	var theColumn = column;
+	var theRow = row;
+	var theDirection = direction;
+	
+	if (theDirection == "above")
+	{
+		wordMin = encodePos(column, row);
+		theRow--;
+	}
+	else if (theDirection == "below")
+	{
+		wordMax = encodePos(column, row);
+		theRow++;
+	}
+	else if (theDirection == "left")
+	{
+		wordMin = encodePos(column, row);
+		theColumn--;
+	}
+	else if (theDirection == "right")
+	{
+		wordMax = encodePos(column, row);
+		theColumn++;
+	}
+	
+	var currLocation = encodePos(theColumn, theRow);
+	
+	if (placedArray[currLocation])
+	{
+		touching = true;
+		
+		theLabel = placedArray[currLocation];
+	}
+	else
+	{
+		for (var i = 0; i < rackArray[0].length; i++)
+		{
+			if (getTilePosition(i) == currLocation)
+			{
+				theLabel = getTileLabel(i);
+			}
+		}
+	}
+	
+	if (theLabel)
+	{
+		if (theDirection == "above" || theDirection == "left")
+		{
+			wordHead = theLabel + wordHead;
+		}
+		else
+		{
+			wordTail += theLabel;
+		}
+
+		getAdjacent(theColumn, theRow, theDirection);
+		
+		return true;
+	}
+
+	return false;
+}
+
+function checkDictionary(theWord)
+{
+	theWord = theWord.toLowerCase();
+	if (theWord.length == 2) return (g_wstr.indexOf(theWord) != -1);
+	first3 = theWord.replace(/^(...).*/, "$1");
+	if (typeof(g_wordmap[first3]) == "undefined") return false;
+	var theEntry = g_wordmap[first3];
+	if (!theEntry.match(/,$/)) {
+		// We've not looked at this entry before - uncompress it, etc.
+		theEntry = theEntry.replace(/W/g, "le");
+		theEntry = theEntry.replace(/K/g, "al");
+		theEntry = theEntry.replace(/F/g, "man");
+		theEntry = theEntry.replace(/U/g, "ous");
+		theEntry = theEntry.replace(/M/g, "ment");
+		theEntry = theEntry.replace(/B/g, "able");
+		theEntry = theEntry.replace(/C/g, "ic");
+		theEntry = theEntry.replace(/X/g, "on");
+		theEntry = theEntry.replace(/Q/g, "ng");
+		theEntry = theEntry.replace(/R/g, "ier");
+		theEntry = theEntry.replace(/S/g, "st");
+		theEntry = theEntry.replace(/Y/g, "ly");
+		theEntry = theEntry.replace(/J/g, "ally");
+		theEntry = theEntry.replace(/E/g, "es");
+		theEntry = theEntry.replace(/L/g, "less");
+		theEntry = theEntry.replace(/Z/g, "ies");
+		theEntry = theEntry.replace(/P/g, "tic");
+		theEntry = theEntry.replace(/I/g, "iti");
+		theEntry = theEntry.replace(/V/g, "tion");
+		theEntry = theEntry.replace(/H/g, "zation");
+		theEntry = theEntry.replace(/A/g, "abiliti");
+		theEntry = theEntry.replace(/O/g, "ologi");
+		theEntry = theEntry.replace(/T/g, "est");
+		theEntry = theEntry.replace(/D/g, "ed");
+		theEntry = theEntry.replace(/N/g, "ness");
+		theEntry = theEntry.replace(/G/g, "ing");
+		theEntry = "," + theEntry + ",";
+		// May have prefixes on prefixes, so need to repeat the replace.
+		var more = true;
+		while (more) {
+			var theLength = theEntry.length;
+			theEntry = theEntry.replace(re, "$1$1");
+			theEntry = theEntry.replace(re0, "$1$2$1");
+			theEntry = theEntry.replace(re1, "$1$2$1");
+			theEntry = theEntry.replace(re2, "$1$2$1");
+			theEntry = theEntry.replace(re3, "$1$2$1");
+			theEntry = theEntry.replace(re4, "$1$2$1");
+			theEntry = theEntry.replace(re5, "$1$2$1");
+			theEntry = theEntry.replace(re6, "$1$2$1");
+			theEntry = theEntry.replace(re7, "$1$2$1");
+			theEntry = theEntry.replace(re8, "$1$2$1");
+			theEntry = theEntry.replace(re9, "$1$2$1");
+			more = (theLength != theEntry.length);
+		}
+		if (theEntry.match(/[0-@+]/)) {
+			alert("decompression oops!");
+		}
+		g_wordmap[first3] = theEntry;
+	}
+	rest = theWord.replace(/^...?/, "");
+	return (g_wordmap[first3].indexOf("," + rest + ",") != -1);
+}
+
+
+
+function checkWords()
+{
+	var blanks = new Array;
+	for (var i = 0; i < rackArray[0].length; i++)
+	{
+		var thePos = getTilePosition(i);
+		if (thePos && getTileLabel(i) == ' ')
+		{
+			blanks[blanks.length] = thePos + "," + i;
+		}
+	}
+	if (blanks.length) {
+		var theLabels;
+		if (blanks.length == 1) {
+			theLabels = prompt("What letter is the blank?");
+		} else {
+			blanks.sort(); // Expect blanks in left-right or top-bottom order
+			theLabels = prompt("What letters are the blanks (in order from left to right or top to bottom)?");
+		}
+		if (!theLabels || theLabels.length != blanks.length) return false;
+		for (var i = 0; i < blanks.length; i++) {
+			var ch = theLabels.charAt(i).toLowerCase();
+			if (ch < 'a' || ch > 'z') return false;
+			var j = blanks[i];
+			j = j.charAt(j.length - 1);
+			rackArray[j] = rackArray[j].replace(/.*,/, ch + ",");
+		}
+	}
+	for (var i = 0; i < rackArray[0].length; i++)
+	{
+		var thePosition = getTilePosition(i);
+		
+		if (thePosition)
+		{
+			var theRow = getTilePositionRow(i);
+			var theColumn = getTilePositionColumn(i);
+			var theLabel = getTileLabel(i);
+			
+			wordHead = "";
+			wordTail = "";
+			
+			getAdjacent(theColumn, theRow, "left");
+			getAdjacent(theColumn, theRow, "right");
+			
+			if (wordHead != "" || wordTail != "")
+			{
+				if (!checkDictionary(wordHead + theLabel + wordTail))
+				{
+					alert("\"" + wordHead + theLabel + wordTail + "\" is not in the dictionary.");
+					return false;
+				}
+				
+				wordList[wordList.length] = wordMin + "," + wordMax;
+			}
+
+			wordHead = "";
+			wordTail = "";
+			
+			getAdjacent(theColumn, theRow, "above");
+			getAdjacent(theColumn, theRow, "below");
+
+			if (wordHead != "" || wordTail != "")
+			{
+				if (!checkDictionary(wordHead + theLabel + wordTail))
+				{
+					alert("\"" + wordHead + theLabel + wordTail + "\" is not in the dictionary.");
+					return false;
+				}
+				
+				wordList[wordList.length] = wordMin + "," + wordMax;
+			}
+		}
+	}
+	
+	if (placedArray["c8r8"] && !touching)
+	{
+		alert("At least one of your placed tiles must touch an existing tile.");
+
+		return false;
+	}
 	
 	return true;
 }
