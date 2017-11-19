@@ -661,7 +661,7 @@ function finalise()
 		// Reset blanks.
 		for (var i = 0; i < rackArray[0].length; i++)
 		{
-			rackArray[i] = rackArray[i].replace(/[a-z],/, " ,");
+			rackArray[0][i] = rackArray[0][i].replace(/[a-z],/, " ,");
 		}
 		return false;
 	}
@@ -672,7 +672,7 @@ function finalise()
 		{
 			placedArray[getTilePosition(i)] = getTileLabel(i);
 			
-			rackArray[i] = "";
+			rackArray[0][i] = "";
 			tilesPlayed++;
 		}
 	}
