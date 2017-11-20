@@ -578,7 +578,19 @@ a.on
     text-decoration: none;
     cursor: pointer;
 }
+.closeLW {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
 
+.closeLW:hover,
+.closeLW:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
 
 /*Dictionary*/
 
