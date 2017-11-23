@@ -5,6 +5,7 @@ var img1 = new Array("img/2people.png", "img/P2.png");
 var i, checkP = 0;
 i = 0;
 
+
 //player 버튼 설정
 function chgP2() {
 	if (i == 0) {
@@ -17,6 +18,7 @@ function chgP2() {
 		i = 0;
 		checkP=0;
 	}
+	document.form1.reset();
 	document.button_player2.src = img1[i];
 	document.getElementById("player1").style.display = "block";
 	document.getElementById("player2").style.display = "block";
@@ -37,12 +39,12 @@ function chgP3() {
 		i = 0;
 		checkP=0;
 	}
+	document.form1.reset();
 	document.button_player3.src = img2[i];
 	document.getElementById("player1").style.display = "block";
 	document.getElementById("player2").style.display = "block";
 	document.getElementById("player3").style.display = "block";
 	document.getElementById("player4").style.display = "none";
-
 }
 var img3 = new Array("img/4people.png", "img/4P.png");
 
@@ -58,6 +60,7 @@ function chgP4() {
 		i = 0;
 		checkP=0;
 	}
+	document.form1.reset();
 	document.button_player4.src = img3[i];
 	document.getElementById("player1").style.display = "block";
 	document.getElementById("player2").style.display = "block";

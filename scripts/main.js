@@ -1,6 +1,6 @@
 
-
 //사용자 Rack
+
 
 var rackArray = new Array();
 tmp = new Array("", "", "", "", "", "", "");	// Array of tiles player can place
@@ -138,13 +138,33 @@ var wordMax = "";	// Location of the last letter of a word
 var wordList = new Array();	// Array of words placed on the board
 
 var touching = false;	// Whether the scanned word touches existing tiles on the board
-var score = 0;	// Player's total score
+var score = new Array();	// Player's total score
+score[1]=0;
+score[2]=0;
+score[3]=0;
+score[4]=0;
+
 var bestplay = getBestPlay();
 var highscore = getHighScore();
 var swaps = 0;	// Number of consecutive tile swaps
 
 initTileStorage();	// Randomly pick player's first tiles
+// PlayerShow();
 
+// function PlayerShow(){
+		// document.getElementById("userBox1").style.display="block";
+		// document.getElementById("userBox2").style.display="block";
+		// document.getElementById("userBox3").style.display="block";
+		// document.getElementById("userBox4").style.display="block";
+
+	// if(playerNum()==2){
+		// document.getElementById("userBox3").style.display="none";
+		// document.getElementById("userBox4").style.display="none";		
+	// }
+	// else if(playerNum()==3){
+		// document.getElementById("userBox4").style.display="none";	
+	// }
+// }
 /*
 function initTileStorage(){
 	for(var i = 0 ; i < 4 ; i++ ){
@@ -165,6 +185,7 @@ function initTileStorage(){
 */
 var checkS;
 checkS=0;
+
 function showUp(){
 	if(checkS==0){
 		checkS=1;
@@ -177,15 +198,17 @@ function showUp(){
 }
 
 
-function PlayerShow(){
-	if(playerNum()==2){
-		document.getElementById("userBox3").style.display="none";
-		document.getElementById("userBox4").style.display="none";		
-	}
-	else if(playerNum()==3){
-		document.getElementById("userBox4").style.display="none";	
-	}
+var turn=1;
+
+
+function turnChange(){
+	var totalPlayer=playerNum();
+	if(turn<totalPlayer)
+		turn++;
+	else if(turn==totalPlayer)
+		turn=1;
 }
+
 
 
 function initTileStorage()
@@ -338,8 +361,20 @@ function drawTileStorage()
 
 
 	var theStats = document.getElementById("stats");
-	var stats = score;
+	var stats = score[1];
 	theStats.innerHTML = stats;
+
+	var theStats2 = document.getElementById("stats2");
+	var stats2 = score[2];
+	theStats2.innerHTML = stats2;
+
+	var theStats3 = document.getElementById("stats3");
+	var stats3 = score[3];
+	theStats3.innerHTML = stats3;
+
+	var theStats4 = document.getElementById("stats4");
+	var stats4 = score[4];
+	theStats4.innerHTML = stats4;
 
 	//var stats = "Tiles remaining: " + tilesRemaining + " | Current score: " + score;
 	//if (highscore > 0) stats += " | High score: " + highscore;
@@ -587,7 +622,7 @@ function checkColumn()
 }
 
 function gameToString() {
-	var str = score + "/" + swaps + "/" + rackArray[0].join(".") + "/" + tileBank.join("") + "/";
+	var str = score[turn] + "/" + swaps + "/" + rackArray[0].join(".") + "/" + tileBank.join("") + "/";
 	for (var row = 1; row <= 15; ++row) {
 		for (var col = 1; col <= 15; ++col) {
 			var myPos = encodePos(col, row);
@@ -604,7 +639,7 @@ function gameToString() {
 
 function gameFromString(str) {
 	var a = str.split("/");
-	score = parseInt(a[0]);
+	score[turn] = parseInt(a[0]);
 	swaps = parseInt(a[1]);
 	for (i = 0; i < rackArray.length; i++)
 	{
@@ -719,8 +754,19 @@ function finalise()
 		}
 	}
 
-	var allScores = "";
-	var totalScore = 0;
+	var allScores = new Array();
+	allScores[1]="";
+	allScores[2]="";
+	allScores[3]="";
+	allScores[4]="";
+	
+	
+	var totalScore = new Array();
+	totalScore[1]=0;
+	totalScore[2]=0;
+	totalScore[3]=0;
+	totalScore[4]=0;
+
 	for (var i = 0; i < wordList.length; i++)	// Score each word
 	{
 		var fromTile = wordList[i].replace(/,.*/, "");
@@ -827,35 +873,37 @@ function finalise()
 			displayScore += " points";
 		}
 		displayScore = "Word score \"" + displayWord + "\":  " + displayScore;
-		totalScore += subScore;
 
-		allScores += displayScore + "\n";
+		totalScore[turn] += subScore;
 
+		
 
+		allScores[turn] += displayScore + "\n";
+		
 	// Bonus points for using all 7 tiles
 	if (tilesPlayed == 7)
 	{
-		totalScore += 50;
+		totalScore[turn] += 50;
 
-		allScores += "You get a 50 point BONUS for using all 7 of your tiles!\n";
+		allScores[turn] += "You get a 50 point BONUS for using all 7 of your tiles!\n";
 	}
-	if (allScores.match("\n.*\n")) {
-		allScores += "Total score for this turn: " + totalScore;
-		if (totalScore == 1) {
-			allScores += " point\n";
+	if (allScores[turn].match("\n.*\n")) {
+		allScores[turn] += "Total score for this turn: " + totalScore[turn];
+		if (totalScore[turn] == 1) {
+			allScores[turn] += " point\n";
 		} else {
-			allScores += " points\n";
+			allScores[turn] += " points\n";
 		}
 	}
-	if (totalScore > bestplay) {
-		if (bestplay > 0) allScores += "This was your highest scoring turn ever!";
-		setBestPlay(totalScore);
-		bestplay = totalScore;
+	if (totalScore[turn] > bestplay) {
+		if (bestplay > 0) allScores[turn] += "This was your highest scoring turn ever!";
+		setBestPlay(totalScore[turn]);
+		bestplay = totalScore[turn];
 	}
 
-	alert(allScores);
+	alert(allScores[turn]);
 
-	score += totalScore;
+	score[turn] += totalScore[turn];
 	
 	for (var i = 0; i < usedMultipliers.length; i++)	// Remove bonuses from used bonus tiles
 	{
@@ -879,14 +927,14 @@ function finalise()
 			{
 				if (i == rackArray[0].length - 1)
 				{
-					if (highscore > 0 && score > highscore) {
+					if (highscore > 0 && score[turn] > highscore) {
 						alert("CONGRATULATIONS! You beat your highscore by finishing with a score of " + score + " points.");
 					} else {
-						alert("CONGRATULATIONS! You finished with a score of " + score + " points.");
+						alert("CONGRATULATIONS! You finished with a score of " + score[turn] + " points.");
 					}
-					if (score > highscore) {
-						setHighScore(score);
-						highscore = score;
+					if (score[turn] > highscore) {
+						setHighScore(score[turn]);
+						highscore = score[turn];
 					}
 				}
 			}
@@ -900,7 +948,7 @@ function finalise()
 		drawBoard();
 		
 	}
-	
+	turnChange();
 	return true;
 
 }
@@ -1196,7 +1244,7 @@ var player4N=getQuerystring("player4");
 function playerNum(){
 	if(player3N==""&&player4N=="")
 		return 2;
-	if(player4N=="")
+	else if(player4N=="")
 		return 3;	
 	else{
 		return 4;

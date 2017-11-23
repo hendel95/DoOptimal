@@ -114,6 +114,7 @@
 
 					</script>
 
+
 					<div class="modal2-body">
 						<table id="modal2-body">
 							<tr>
@@ -175,13 +176,14 @@
 				<img src="./img/user1.png">
 			</div>
 			<div>
-				<p class="user_id"><script type="text/javascript"> document.write(player1N); document.write(checkP); </script></p>
+				<p class="user_id"><script type="text/javascript"> document.write(player1N); </script></p>
 			</div>
 			<div class="score_box">		
 				<!-- <p class="score_text"><div id="stats"style="background:url(./img/ScoreBox.png) no-repeat"></div></p> -->
 				<p class="score_text"><div id="stats"></div></p>
 			</div>
 		</div>
+
 		<div id="userBox2">
 			<img src="./img/UserBox.png">
 			<div class="user_icon">
@@ -191,10 +193,11 @@
 				<p class="user_id"><script type="text/javascript"> document.write(player2N); </script></p>
 			</div>
 			<div class="score_box">
-				<img src="./img/ScoreBox.png">
-				<p class="score_text">Score</p>
+				<!-- <img src="./img/ScoreBox.png"> -->
+				<p class="score_text"><div id="stats2"></div></p>
 			</div>
 		</div>
+		
 		<div id="userBox3">
 			<img src="./img/UserBox.png">
 			<div class="user_icon">
@@ -204,10 +207,11 @@
 				<p class="user_id"><script type="text/javascript"> document.write(player3N); </script></p>
 			</div>
 			<div class="score_box">
-				<img src="./img/ScoreBox.png">
-				<p class="score_text">Score</p>
+				<!-- <img src="./img/ScoreBox.png"> -->
+				<p class="score_text"><div id="stats3"></div></p>
 			</div>
 		</div>
+		
 		<div id="userBox4">
 			<img src="./img/UserBox.png">
 			<div class="user_icon">
@@ -217,14 +221,33 @@
 				<p class="user_id"><script type="text/javascript"> document.write(player4N); </script></p>
 			</div>
 			<div class="score_box">
-				<img src="./img/ScoreBox.png">
-				<p class="score_text">Score</p>
+				<!-- <img src="./img/ScoreBox.png"> -->
+				<p class="score_text"><div id="stats4"></div></p>
 			</div>
 		</div>
 
 	</div>
 	<!-- <div> -->
-	
+
+<script language="javascript">
+		
+function PlayerShow(){
+		document.getElementById("userBox1").style.display="block";
+		document.getElementById("userBox2").style.display="block";
+		document.getElementById("userBox3").style.display="block";
+		document.getElementById("userBox4").style.display="block";
+
+	if(playerNum()==2){
+		document.getElementById("userBox3").style.visibility="hidden";
+		document.getElementById("userBox4").style.visibility="hidden";		
+	}
+	else if(playerNum()==3){
+		document.getElementById("userBox4").style.visibility="hidden";	
+	}
+}
+
+PlayerShow();
+</script>
 	<!-- showUP버튼 동작 -->
 		<div id="show_up">
 		<input id="show_Up" type="image" src="./img/ShowUp.png" onclick="showUp()" width="80"> 
