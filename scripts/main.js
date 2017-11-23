@@ -3,11 +3,10 @@
 
 
 var rackArray = new Array();
-tmp = new Array("", "", "", "", "", "", "");	// Array of tiles player can place
-rackArray.push(tmp);
-rackArray.push(tmp);
-rackArray.push(tmp);
-rackArray.push(tmp); // 또는 그냥 젤 위에서 다 때려 박으면 됨
+rackArray[0] = new Array("", "", "", "", "", "", "");
+rackArray[1] = new Array("", "", "", "", "", "", "");
+rackArray[2] = new Array("", "", "", "", "", "", "");
+rackArray[3] = new Array("", "", "", "", "", "", "");
 
 var placedArray = new Array();
 //var rackArray = new Array("", "", "", "", "", "", "");
@@ -139,10 +138,10 @@ var wordList = new Array();	// Array of words placed on the board
 
 var touching = false;	// Whether the scanned word touches existing tiles on the board
 var score = new Array();	// Player's total score
+score[0]=0;
 score[1]=0;
 score[2]=0;
 score[3]=0;
-score[4]=0;
 
 var bestplay = getBestPlay();
 var highscore = getHighScore();
@@ -198,39 +197,45 @@ function showUp(){
 }
 
 
-var turn=1;
-
+var turn=0;
 
 function turnChange(){
-	var totalPlayer=playerNum();
+	var totalPlayer=playerNum()-1;
 	if(turn<totalPlayer)
 		turn++;
 	else if(turn==totalPlayer)
-		turn=1;
-}
+		turn=0;
 
+}
 
 
 function initTileStorage()
 {
 	var tiles = 0;
-	for (var i = 0; i < rackArray[0].length && tiles < 7 && tilesRemaining > 0; i++)
+	for (var j=0 ; j < playerNum() ; j++)
 	{
-		if (rackArray[0][i] != "") ++tiles;
-	}
-
-	for (var i = 0; i < rackArray[0].length && tiles < 7 && tilesRemaining > 0; i++)
-	{
-		if (rackArray[0][i] == "")
+		tiles = 0;
+		for (var i = 0; i < rackArray[j].length && tiles < 7 && tilesRemaining > 0 ; i++)
 		{
-			var randomTile = randomInt(tileBank.length);
-			rackArray[0][i] = tileBank[randomTile] + ",";
-			arrayRemoveItem(randomTile, tileBank);
+			if (rackArray[j][i] != "") ++tiles;
 
-			tilesRemaining = tileBank.length;
-			++tiles;
+		}
+
+		for (var i = 0; i < rackArray[j].length && tiles < 7 && tilesRemaining > 0; i++)
+		{
+			if (rackArray[j][i] == "")
+			{
+				var randomTile = randomInt(tileBank.length);
+				rackArray[j][i] = tileBank[randomTile] + ",";
+				arrayRemoveItem(randomTile, tileBank);
+
+				tilesRemaining = tileBank.length;
+
+				++tiles;
+			}
 		}
 	}
+	
 	return true;
 }
 
@@ -238,19 +243,17 @@ function initTileStorage()
 
 function randomInt(N){
 	return (N * (Math.random() % 1)) | 0;
-
-
 }
 
 
 function getTileLabel(tileID)
 {
-	return rackArray[0][tileID].replace(/,.*/, ""); //임시로 [0]
+	return rackArray[turn][tileID].replace(/,.*/, ""); //임시로 [0]
 }
 
 function getTilePosition(tileID)
 {
-	return rackArray[0][tileID].replace(/.*,/, ""); //임시로 [0]
+	return rackArray[turn][tileID].replace(/.*,/, ""); //임시로 [0]
 }
 
 function selectTile(tileID)
@@ -301,7 +304,7 @@ function placeTile(boardCell)
 			emptyCell(tilePosition);
 		}
 
-		rackArray[0][selectedTile] = tileLabel + "," + boardCell;
+		rackArray[turn][selectedTile] = tileLabel + "," + boardCell;
 
 		var theCell = document.getElementById(boardCell);
 
@@ -330,7 +333,7 @@ function tileHtml(tileLabel)
 
 function drawTileStorage()
 {
-	for (i = 0; i < rackArray[0].length; i++) // 1명이 플레이할때
+	for (i = 0; i < rackArray[turn].length; i++) 
 	{
 		var theStore = document.getElementById("tileStorage" + i);
 		var tileLabel = getTileLabel(i);
@@ -361,19 +364,19 @@ function drawTileStorage()
 
 
 	var theStats = document.getElementById("stats");
-	var stats = score[1];
+	var stats = score[0];
 	theStats.innerHTML = stats;
 
 	var theStats2 = document.getElementById("stats2");
-	var stats2 = score[2];
+	var stats2 = score[1];
 	theStats2.innerHTML = stats2;
 
 	var theStats3 = document.getElementById("stats3");
-	var stats3 = score[3];
+	var stats3 = score[2];
 	theStats3.innerHTML = stats3;
 
 	var theStats4 = document.getElementById("stats4");
-	var stats4 = score[4];
+	var stats4 = score[3];
 	theStats4.innerHTML = stats4;
 
 	//var stats = "Tiles remaining: " + tilesRemaining + " | Current score: " + score;
@@ -393,7 +396,7 @@ function returnTile(rackPos)
 
 		if (rackPos == -1) {
 			rackPos = selectedTile;
-			for (var i = 0; i < rackArray[0].length; ++i)
+			for (var i = 0; i < rackArray[turn].length; ++i)
 			{
 				if (getTilePosition(i) != "") {
 					rackPos = i;
@@ -405,9 +408,9 @@ function returnTile(rackPos)
 		if (tilePosition) emptyCell(tilePosition);
 
 		if (rackPos != selectedTile) {
-			rackArray[0][selectedTile] = rackArray[0][rackPos];
+			rackArray[turn][selectedTile] = rackArray[turn][rackPos];
 		}
-		rackArray[0][rackPos] = tileLabel + ",";
+		rackArray[turn][rackPos] = tileLabel + ",";
 
 		drawTileStorage();
 
@@ -471,7 +474,7 @@ function pass()
 		
 		return false;
 	}
-	for (var i = 0; i < rackArray[0].length; i++)
+	for (var i = 0; i < rackArray[turn].length; i++)
 	{
 		if (getTilePosition(i))
 		{
@@ -480,7 +483,7 @@ function pass()
 			swapped++;
 			
 			tileBank[tileBank.length] = getTileLabel(i);
-			rackArray[0][i] = "";
+			rackArray[turn][i] = "";
 		}
 	}
 	
@@ -493,12 +496,12 @@ function pass()
 	
 	swaps++;
 	
-	for (var i = 0; i < rackArray[0].length && swapped > 0 && tilesRemaining > 0; i++)
+	for (var i = 0; i < rackArray[turn].length && swapped > 0 && tilesRemaining > 0; i++)
 	{
-		if (rackArray[0][i] == "" && tilesRemaining > 0)
+		if (rackArray[turn][i] == "" && tilesRemaining > 0)
 		{
 			var randomTile = Math.floor((Math.random() % 1) * (tileBank.length - swapped));
-			rackArray[0][i] = tileBank[randomTile] + ",";
+			rackArray[turn][i] = tileBank[randomTile] + ",";
 			arrayRemoveItem(randomTile, tileBank);
 
 			tilesRemaining = tileBank.length;
@@ -513,7 +516,7 @@ function pass()
 
 function checkPlaced()
 {
-	for (i = 0; i < rackArray[0].length; i++)
+	for (i = 0; i < rackArray[turn].length; i++)
 	{
 		if (getTilePosition(i))
 		{
@@ -530,7 +533,7 @@ function checkRow()
 	var max = 0;
 	var theRow = 0;
 	
-	for (i = 0; i < rackArray[0].length; i++)
+	for (i = 0; i < rackArray[turn].length; i++)
 	{
 		if (getTilePosition(i) != "")
 		{
@@ -555,13 +558,13 @@ function checkRow()
 	{
 		if (!placedArray[encodePos(i, theRow)])
 		{
-			for (j = 0; j < rackArray[0].length; j++)
+			for (j = 0; j < rackArray[turn].length; j++)
 			{
 				if (getTilePositionColumn(j) == i)
 				{
 					break;
 				}
-				else if (j == rackArray[0].length - 1)
+				else if (j == rackArray[turn].length - 1)
 				{
 					return false;
 				}
@@ -579,7 +582,7 @@ function checkColumn()
 	var theColumn = 0;
 	var i;
 	
-	for (i = 0; i < rackArray[0].length; i++)
+	for (i = 0; i < rackArray[turn].length; i++)
 	{
 		if (getTilePosition(i) != "")
 		{
@@ -604,13 +607,13 @@ function checkColumn()
 	{
 		if (!placedArray[encodePos(theColumn, i)])
 		{
-			for (j = 0; j < rackArray[0].length; j++)
+			for (j = 0; j < rackArray[turn].length; j++)
 			{
 				if (getTilePositionRow(j) == i)
 				{
 					break;
 				}
-				else if (j == rackArray[0].length - 1)
+				else if (j == rackArray[turn].length - 1)
 				{
 					return false;
 				}
@@ -622,7 +625,7 @@ function checkColumn()
 }
 
 function gameToString() {
-	var str = score[turn] + "/" + swaps + "/" + rackArray[0].join(".") + "/" + tileBank.join("") + "/";
+	var str = score[turn] + "/" + swaps + "/" + rackArray[turn].join(".") + "/" + tileBank.join("") + "/";
 	for (var row = 1; row <= 15; ++row) {
 		for (var col = 1; col <= 15; ++col) {
 			var myPos = encodePos(col, row);
@@ -641,14 +644,14 @@ function gameFromString(str) {
 	var a = str.split("/");
 	score[turn] = parseInt(a[0]);
 	swaps = parseInt(a[1]);
-	for (i = 0; i < rackArray.length; i++)
+	for (i = 0; i < rackArray[turn].length; i++)
 	{
 		if (getTilePosition(i) != "")
 		{
 			emptyCell(getTilePosition(i));
 		}
 	}
-	rackArray = a[2].split(".");
+	rackArray[turn] = a[2].split(".");
 	tileBank = a[3].split("");
 	a = a[4].split(".");
 	var i = 0;
@@ -688,7 +691,7 @@ function finalise()
 
 	if (!placedArray["c8r8"])
 	{
-		for (var i = 0; i < rackArray[0].length; i++)
+		for (var i = 0; i < rackArray[turn].length; i++)
 		{
 			if (getTilePosition(i) == "c8r8")
 			{
@@ -696,7 +699,7 @@ function finalise()
 			}
 			else
 			{
-				if (i == rackArray[0].length - 1)
+				if (i == rackArray[turn].length - 1)
 				{
 					alert("When starting, one of your tiles must be placed on the centre square.");
 					
@@ -723,20 +726,20 @@ function finalise()
 	if (!checkWords())
 	{
 		// Reset blanks.
-		for (var i = 0; i < rackArray[0].length; i++)
+		for (var i = 0; i < rackArray[turn].length; i++)
 		{
-			rackArray[0][i] = rackArray[0][i].replace(/[a-z],/, " ,");
+			rackArray[turn][i] = rackArray[turn][i].replace(/[a-z],/, " ,");
 		}
 		return false;
 	}
 	
-	for (var i = 0; i < rackArray[0].length; i++)	// Move used tiles from rackArray to placedArray
+	for (var i = 0; i < rackArray[turn].length; i++)	// Move used tiles from rackArray to placedArray
 	{
 		if (getTilePosition(i))
 		{
 			placedArray[getTilePosition(i)] = getTileLabel(i);
 			
-			rackArray[0][i] = "";
+			rackArray[turn][i] = "";
 			tilesPlayed++;
 		}
 	}
@@ -755,17 +758,17 @@ function finalise()
 	}
 
 	var allScores = new Array();
+	allScores[0]="";
 	allScores[1]="";
 	allScores[2]="";
 	allScores[3]="";
-	allScores[4]="";
 	
 	
 	var totalScore = new Array();
+	totalScore[0]=0;
 	totalScore[1]=0;
 	totalScore[2]=0;
 	totalScore[3]=0;
-	totalScore[4]=0;
 
 	for (var i = 0; i < wordList.length; i++)	// Score each word
 	{
@@ -921,11 +924,11 @@ function finalise()
 	}
 	else
 	{
-		for (var i = 0; i < rackArray[0].length; i++)
+		for (var i = 0; i < rackArray[turn].length; i++)
 		{
-			if (rackArray[i] == "")
+			if (rackArray[turn][i] == "")
 			{
-				if (i == rackArray[0].length - 1)
+				if (i == rackArray[turn].length - 1)
 				{
 					if (highscore > 0 && score[turn] > highscore) {
 						alert("CONGRATULATIONS! You beat your highscore by finishing with a score of " + score + " points.");
@@ -949,8 +952,8 @@ function finalise()
 		
 	}
 	turnChange();
+	drawTileStorage();
 	return true;
-
 }
 
 function getTilePositionRow(tileID)
@@ -1005,7 +1008,7 @@ function getAdjacent(column, row, direction)
 	}
 	else
 	{
-		for (var i = 0; i < rackArray[0].length; i++)
+		for (var i = 0; i < rackArray[turn].length; i++)
 		{
 			if (getTilePosition(i) == currLocation)
 			{
@@ -1054,7 +1057,7 @@ function checkDictionary(theWord)
 function checkWords()
 {
 	var blanks = new Array;
-	for (var i = 0; i < rackArray[0].length; i++)
+	for (var i = 0; i < rackArray[turn].length; i++)
 	{
 		var thePos = getTilePosition(i);
 		if (thePos && getTileLabel(i) == ' ')
@@ -1076,10 +1079,10 @@ function checkWords()
 			if (ch < 'a' || ch > 'z') return false;
 			var j = blanks[i];
 			j = j.charAt(j.length - 1);
-			rackArray[j] = rackArray[j].replace(/.*,/, ch + ",");
+			rackArray[turn][j] = rackArray[turn][j].replace(/.*,/, ch + ",");
 		}
 	}
-	for (var i = 0; i < rackArray[0].length; i++)
+	for (var i = 0; i < rackArray[turn].length; i++)
 	{
 		var thePosition = getTilePosition(i);
 		
@@ -1160,13 +1163,13 @@ function shuffle()
 
 	for(i=0; i<7; i++)
 	{
-		copied[i] = rackArray[0][coindex[i]];
+		copied[i] = rackArray[turn][coindex[i]];
 
 	}
 
 	for(i=0; i<7; i++)
 	{
-		rackArray[0][i] = copied[i];
+		rackArray[turn][i] = copied[i];
 	}
 
 
