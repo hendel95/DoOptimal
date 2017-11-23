@@ -860,26 +860,26 @@ function finalise()
 		}
 	}
 
-		if (wordMultiplier > 1)
-		{
-			subScore *= wordMultiplier;
-			displayScore = "(   " + displayScore + ")   x   " + wordMultiplier + "   ";
-		}
+	if (wordMultiplier > 1)
+	{
+		subScore *= wordMultiplier;
+		displayScore = "(   " + displayScore + ")   x   " + wordMultiplier + "   ";
+	}
 
-		displayScore += "=   " + subScore;
-		if (subScore == 1) {
-			displayScore += " point";
-		} else {
-			displayScore += " points";
-		}
-		displayScore = "Word score \"" + displayWord + "\":  " + displayScore;
+	displayScore += "=   " + subScore;
+	if (subScore == 1) {
+		displayScore += " point";
+	} else {
+		displayScore += " points";
+	}
+	displayScore = "Word score \"" + displayWord + "\":  " + displayScore;
 
-		totalScore[turn] += subScore;
+	totalScore[turn] += subScore;
 
-		
+	
 
-		allScores[turn] += displayScore + "\n";
-		
+	allScores[turn] += displayScore + "\n";
+	
 	// Bonus points for using all 7 tiles
 	if (tilesPlayed == 7)
 	{
@@ -1036,81 +1036,17 @@ function getAdjacent(column, row, direction)
 function checkDictionary(theWord)
 {
 	theWord = theWord.toLowerCase();
-	// if (theWord.length == 2){
-	// 	var i=0;
-	// 	for(var j=0; j<105; j++){
-	// 		if(theword == g_wstr[i]){
-	// 			return true;
-	// 		}
 
-	// 	}
-	// }
-	// else
 	{
-			if (g_wordmap[theWord] == 1){
-				return true;
-			}
-			else{
-				return false;
-			}
+		if (g_wordmap[theWord] == 1){
+			return true;
+		}
+		else{
+			return false;
+		}
 
 	}
-	// first3 = theWord.replace(/^(...).*/, "$1");
-	// if (typeof(g_wordmap[first3]) == "undefined") return false;
-	// var theEntry = g_wordmap[first3];
-	// if (!theEntry.match(/,$/)) {
-	// 	// We've not looked at this entry before - uncompress it, etc.
-	// 	theEntry = theEntry.replace(/W/g, "le");
-	// 	theEntry = theEntry.replace(/K/g, "al");
-	// 	theEntry = theEntry.replace(/F/g, "man");
-	// 	theEntry = theEntry.replace(/U/g, "ous");
-	// 	theEntry = theEntry.replace(/M/g, "ment");
-	// 	theEntry = theEntry.replace(/B/g, "able");
-	// 	theEntry = theEntry.replace(/C/g, "ic");
-	// 	theEntry = theEntry.replace(/X/g, "on");
-	// 	theEntry = theEntry.replace(/Q/g, "ng");
-	// 	theEntry = theEntry.replace(/R/g, "ier");
-	// 	theEntry = theEntry.replace(/S/g, "st");
-	// 	theEntry = theEntry.replace(/Y/g, "ly");
-	// 	theEntry = theEntry.replace(/J/g, "ally");
-	// 	theEntry = theEntry.replace(/E/g, "es");
-	// 	theEntry = theEntry.replace(/L/g, "less");
-	// 	theEntry = theEntry.replace(/Z/g, "ies");
-	// 	theEntry = theEntry.replace(/P/g, "tic");
-	// 	theEntry = theEntry.replace(/I/g, "iti");
-	// 	theEntry = theEntry.replace(/V/g, "tion");
-	// 	theEntry = theEntry.replace(/H/g, "zation");
-	// 	theEntry = theEntry.replace(/A/g, "abiliti");
-	// 	theEntry = theEntry.replace(/O/g, "ologi");
-	// 	theEntry = theEntry.replace(/T/g, "est");
-	// 	theEntry = theEntry.replace(/D/g, "ed");
-	// 	theEntry = theEntry.replace(/N/g, "ness");
-	// 	theEntry = theEntry.replace(/G/g, "ing");
-	// 	theEntry = "," + theEntry + ",";
-	// 	// May have prefixes on prefixes, so need to repeat the replace.
-	// 	var more = true;
-	// 	while (more) {
-	// 		var theLength = theEntry.length;
-	// 		theEntry = theEntry.replace(re, "$1$1");
-	// 		theEntry = theEntry.replace(re0, "$1$2$1");
-	// 		theEntry = theEntry.replace(re1, "$1$2$1");
-	// 		theEntry = theEntry.replace(re2, "$1$2$1");
-	// 		theEntry = theEntry.replace(re3, "$1$2$1");
-	// 		theEntry = theEntry.replace(re4, "$1$2$1");
-	// 		theEntry = theEntry.replace(re5, "$1$2$1");
-	// 		theEntry = theEntry.replace(re6, "$1$2$1");
-	// 		theEntry = theEntry.replace(re7, "$1$2$1");
-	// 		theEntry = theEntry.replace(re8, "$1$2$1");
-	// 		theEntry = theEntry.replace(re9, "$1$2$1");
-	// 		more = (theLength != theEntry.length);
-	// 	}
-	// 	if (theEntry.match(/[0-@+]/)) {
-	// 		alert("decompression oops!");
-	// 	}
-	// 	g_wordmap[first3] = theEntry;
-	// }
-	// rest = theWord.replace(/^...?/, "");
-	// return (g_wordmap[first3].indexOf("," + rest + ",") != -1);
+	
 }
 
 
@@ -1199,6 +1135,44 @@ function checkWords()
 	return true;
 }
 
+function shuffle()
+{
+	var copied = ["","","","","","",""];
+	var coindex = ["-1","-1","-1","-1","-1","-1","-1"];
+	var i=0;
+	var j=0;
+
+
+	for(i=0; i<7; i++)
+	{
+		coindex[i] = randomInt(7);
+
+		for(j=0; j<i; j++){
+			if(coindex[i] == coindex[j])
+			{
+				i--;
+				break;
+			}
+		}
+
+	}
+
+
+	for(i=0; i<7; i++)
+	{
+		copied[i] = rackArray[0][coindex[i]];
+
+	}
+
+	for(i=0; i<7; i++)
+	{
+		rackArray[0][i] = copied[i];
+	}
+
+
+	return drawTileStorage();
+}
+
 function getBestPlay() {
 	return getCookie("sscrable_bestplay");
 }
@@ -1206,7 +1180,7 @@ function getBestPlay() {
 function getCookie(cookieName) {
 	var theCookie = document.cookie;
 	if (theCookie.match(new RegExp("(^|; )"+cookieName+"=([^;]*)")))
-		return RegExp.$2;
+	return RegExp.$2;
 	return 0;
 }
 
@@ -1229,9 +1203,9 @@ function getQuerystring(paramName){
 		var _keyValuePair = _tempArray[i].split('='); // '=' 을 기준으로 분리하기 
 		if(_keyValuePair[0] == paramName){ // _keyValuePair[0] : 파라미터 명 
 		// _keyValuePair[1] : 파라미터 값 
-			return _keyValuePair[1]; 
-		} 
+		return _keyValuePair[1]; 
 	} 
+} 
 } 
 
 var player1N=getQuerystring("player1");
@@ -1239,8 +1213,8 @@ var player2N=getQuerystring("player2");
 var player3N=getQuerystring("player3");
 var player4N=getQuerystring("player4");
 
-								
-								
+
+
 function playerNum(){
 	if(player3N==""&&player4N=="")
 		return 2;
