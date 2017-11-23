@@ -148,27 +148,27 @@ function checkAlert()
 		alert("Enter player's names");
 		if(form.player1.value=="")
 			form.player1.focus();
-		if(form.player2.value=="")
+		else if(form.player2.value=="")
 			form.player2.focus();			
 	}	
 	else if(checkP==3&&(form.player1.value==""||form.player2.value==""||form.player3.value=="")){
 		alert("Enter player's names");
 		if(form.player1.value=="")
 			form.player1.focus();
-		if(form.player2.value=="")
+		else if(form.player2.value=="")
 			form.player2.focus();
-		if(form.player3.value=="")
+		else if(form.player3.value=="")
 			form.playe3.focus();		
 	}	
 	else if(checkP==4&&(form.player1.value==""||form.player2.value==""||form.player3.value==""||form.player4.value=="")){
 		alert("Enter player's names");
 		if(form.player1.value=="")
 			form.player1.focus();
-		if(form.player2.value=="")
+		else if(form.player2.value=="")
 			form.player2.focus();
-		if(form.player3.value=="")
+		else if(form.player3.value=="")
 			form.playe3.focus();
-		if(form.player4.value=="")
+		else if(form.player4.value=="")
 			form.player4.focus();			
 	}	
 	else{

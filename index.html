@@ -62,11 +62,12 @@
 
 
 </style>
-
 <title>Main Board</title>
 <link rel="stylesheet" type="text/css" href="./css/index.css">
 
 <script type="text/javascript" src="./scripts/main.js"></script>
+<!-- <script type="text/javascript" src="./scripts/ReadySetting.js"></script> -->
+
 </head>
 
 
@@ -174,11 +175,11 @@
 				<img src="./img/user1.png">
 			</div>
 			<div>
-				<p class="user_id">User1</p>
+				<p class="user_id"><script type="text/javascript"> document.write(player1N); document.write(checkP); </script></p>
 			</div>
-			<div class="score_box">
-				<img src="./img/ScoreBox.png">
-				<p class="score_text">Score</p>
+			<div class="score_box">		
+				<!-- <p class="score_text"><div id="stats"style="background:url(./img/ScoreBox.png) no-repeat"></div></p> -->
+				<p class="score_text"><div id="stats"></div></p>
 			</div>
 		</div>
 		<div id="userBox2">
@@ -187,7 +188,7 @@
 				<img src="./img/user2.png">
 			</div>
 			<div>
-				<p class="user_id">User2</p>
+				<p class="user_id"><script type="text/javascript"> document.write(player2N); </script></p>
 			</div>
 			<div class="score_box">
 				<img src="./img/ScoreBox.png">
@@ -200,7 +201,7 @@
 				<img src="./img/user3.png">
 			</div>
 			<div>
-				<p class="user_id">User3</p>
+				<p class="user_id"><script type="text/javascript"> document.write(player3N); </script></p>
 			</div>
 			<div class="score_box">
 				<img src="./img/ScoreBox.png">
@@ -213,7 +214,7 @@
 				<img src="./img/user4.png">
 			</div>
 			<div>
-				<p class="user_id">User4</p>
+				<p class="user_id"><script type="text/javascript"> document.write(player4N); </script></p>
 			</div>
 			<div class="score_box">
 				<img src="./img/ScoreBox.png">
@@ -228,23 +229,10 @@
 		<div id="show_up">
 		<input id="show_Up" type="image" src="./img/ShowUp.png" onclick="showUp()" width="80"> 
 		</div>
-		<script language="javascript">
-		var checkS;
-		checkS=0;
-		function showUp(){
-		if(checkS==0){
-			checkS=1;
-			document.getElementById("tilerack").style.display="none";
-		}
-		else{
-			checkS=0;
-			document.getElementById("tilerack").style.display="block";
-		}
-		}
-		</script>
+
 
 		<div id="next_turn">
-		<img src="./img/NextTurn.png" onclick="finalise();">
+		<input id="next_Turn" type="image" src="./img/NextTurn.png" onclick="finalise();" width="80">
 		</div>		
 		
 	

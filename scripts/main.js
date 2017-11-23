@@ -1,3 +1,5 @@
+
+
 //사용자 Rack
 
 var rackArray = new Array();
@@ -161,6 +163,30 @@ function initTileStorage(){
 	return true;
 }
 */
+var checkS;
+checkS=0;
+function showUp(){
+	if(checkS==0){
+		checkS=1;
+		document.getElementById("tilerack").style.display="none";
+	}
+	else{
+		checkS=0;
+		document.getElementById("tilerack").style.display="block";
+	}
+}
+
+
+function PlayerShow(){
+	if(playerNum()==2){
+		document.getElementById("userBox3").style.display="none";
+		document.getElementById("userBox4").style.display="none";		
+	}
+	else if(playerNum()==3){
+		document.getElementById("userBox4").style.display="none";	
+	}
+}
+
 
 function initTileStorage()
 {
@@ -310,7 +336,10 @@ function drawTileStorage()
 		}
 	}
 
+
 	var theStats = document.getElementById("stats");
+	var stats = score;
+	theStats.innerHTML = stats;
 
 	//var stats = "Tiles remaining: " + tilesRemaining + " | Current score: " + score;
 	//if (highscore > 0) stats += " | High score: " + highscore;
@@ -1139,4 +1168,37 @@ function getHighScore() {
 
 function setBestPlay(value) {
 	document.cookie = "sscrable_bestplay=" + value + ";expires=Tue, 19-Jan-2038 03:14:07 GMT";
+}
+
+
+
+//USER NAME 받아오기
+
+function getQuerystring(paramName){
+	var _tempUrl = window.location.search.substring(1); //url에서 처음부터 '?'까지 삭제 
+	var _tempArray = _tempUrl.split('&'); // '&'을 기준으로 분리하기 
+	for(var i = 0; _tempArray.length; i++) {
+		var _keyValuePair = _tempArray[i].split('='); // '=' 을 기준으로 분리하기 
+		if(_keyValuePair[0] == paramName){ // _keyValuePair[0] : 파라미터 명 
+		// _keyValuePair[1] : 파라미터 값 
+			return _keyValuePair[1]; 
+		} 
+	} 
+} 
+
+var player1N=getQuerystring("player1");
+var player2N=getQuerystring("player2");
+var player3N=getQuerystring("player3");
+var player4N=getQuerystring("player4");
+
+								
+								
+function playerNum(){
+	if(player3N==""&&player4N=="")
+		return 2;
+	if(player4N=="")
+		return 3;	
+	else{
+		return 4;
+	}
 }
