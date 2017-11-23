@@ -458,7 +458,7 @@ function drawBoard()
 	return true;
 }
 
-function pass()
+function exchange()
 {
 	var swapped = 0;
 	
@@ -952,7 +952,7 @@ function finalise()
 		
 	}
 	turnChange();
-	drawTileStorage();
+
 	return true;
 }
 
