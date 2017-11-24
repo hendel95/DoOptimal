@@ -203,8 +203,6 @@ function hideRack(){
 		document.getElementById("tilerack").style.display="none";
 }
 
-
-
 var turn=0;
 
 function turnChange(){
@@ -890,7 +888,7 @@ function finalise()
 				displayScore += "]   ";
 			}
 		}
-	}
+	
 
 	if (wordMultiplier > 1)
 	{
@@ -911,6 +909,7 @@ function finalise()
 
 
 	allScores[turn] += displayScore + "\n";
+	}
 
 	// Bonus points for using all 7 tiles
 	if (tilesPlayed == 7)
