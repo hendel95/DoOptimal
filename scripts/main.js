@@ -1,6 +1,6 @@
 
 //사용자 Rack
-
+//dfdfdf
 
 var rackArray = new Array();
 rackArray[0] = new Array("", "", "", "", "", "", "");
@@ -223,6 +223,7 @@ function turnChange(){
 	showWhoTurn();
 }
 
+//myturn 추가 이후로 인터페이스 이상해짐 특히 3번 유저가 turn일때 너무 밀림
 function showWhoTurn(){
 	var whosTurn = 'turnbox' + turn;
 	var turnbox = document.getElementById(whosTurn);
