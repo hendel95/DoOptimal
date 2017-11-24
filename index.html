@@ -176,6 +176,11 @@
 				<!-- <p class="score_text"><div id="stats"style="background:url(./img/ScoreBox.png) no-repeat"></div></p> -->
 				<p class="score_text"><div id="stats"></div></p>
 			</div>
+			<div id="turnbox0">
+				<div class="turn_box1">
+					<img src="./img/myturn.png">
+				</div>
+			</div>
 		</div>
 
 		<div id="userBox2">
@@ -189,6 +194,8 @@
 			<div class="score_box">
 				<!-- <img src="./img/ScoreBox.png"> -->
 				<p class="score_text"><div id="stats2"></div></p>
+			</div>
+			<div id="turnbox1">
 			</div>
 		</div>
 
@@ -204,6 +211,8 @@
 				<!-- <img src="./img/ScoreBox.png"> -->
 				<p class="score_text"><div id="stats3"></div></p>
 			</div>
+			<div id="turnbox2">
+			</div>
 		</div>
 
 		<div id="userBox4">
@@ -217,6 +226,8 @@
 			<div class="score_box">
 				<!-- <img src="./img/ScoreBox.png"> -->
 				<p class="score_text"><div id="stats4"></div></p>
+			</div>
+			<div id="turnbox3">
 			</div>
 		</div>
 
@@ -234,6 +245,7 @@ function PlayerShow(){
 	if(playerNum()==2){
 		document.getElementById("userBox3").style.visibility="hidden";
 		document.getElementById("userBox4").style.visibility="hidden";
+
 	}
 	else if(playerNum()==3){
 		document.getElementById("userBox4").style.visibility="hidden";
@@ -270,7 +282,7 @@ PlayerShow();
 		<!-- <div id="dictionary"><img src="./img/Dictionary.png"></div> -->
 
 
-	<!-- dictionary버튼 동작 -->
+	<!-- dictionary踰꾪듉 �룞�옉 -->
 		<div id="myModal" class="modal">
 
 			<!-- Modal content -->
@@ -287,7 +299,7 @@ PlayerShow();
 		</div>
 
 
-		<!-- 2LW버튼 동작 -->
+		<!-- 2LW踰꾪듉 �룞�옉 -->
 		<input id="LW" type="image" src="./img/2LW.png" >
 
 		<!-- The Modal of 2LW-->

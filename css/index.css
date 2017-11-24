@@ -697,3 +697,11 @@ input[id="search-word"]{
 	margin-top: -30px;
 	margin-left:0px;
 }
+
+
+.turn_box{
+	position: relative;
+	margin-top: -10px;
+	margin-left:90px;
+	width: 50%;
+}

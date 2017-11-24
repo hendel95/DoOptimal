@@ -209,11 +209,26 @@ var turn=0;
 
 function turnChange(){
 	var totalPlayer=playerNum()-1;
+	// remove original turn's turnbox
+	var whosTurn = 'turnbox' + turn;
+	var turnbox = document.getElementById(whosTurn);
+	
+	turnbox.innerHTML = '';
+	//
 	if(turn<totalPlayer)
 		turn++;
 	else if(turn==totalPlayer)
 		turn=0;
 
+	showWhoTurn();
+}
+
+function showWhoTurn(){
+	var whosTurn = 'turnbox' + turn;
+	var turnbox = document.getElementById(whosTurn);
+	var turnbox_text = '<div class="turn_box"><img src="./img/myturn.png"></div>'
+
+	turnbox.innerHTML = turnbox_text;
 }
 
 
