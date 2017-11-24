@@ -32,27 +32,22 @@ img{
 .left_screen{
 	float: left;
 	width: 38%;
-	margin: 10px 20px 10px 20px;
+	margin: 10px 0 10px 40px;
 	background-size: 100%;
 }
 
 
 .center_screen{
 	float: left;
-	width: 37%;
-	margin-left: 10px;
+	width: 50%;
+
+
 }
 
 .empty:hover .image {
 	opacity: 0.3;
 }
 
-
-.right_screen{
-	float: left;
-	width: 15%;
-	margin-top: 30px;
-}
 
 
 
@@ -95,7 +90,7 @@ img{
 	float: left;
 	width: 45%;
 	margin-left: 30px;
-	margin-bottom: 20px
+	margin-bottom: 20px;
 }
 #userBox2{
 	float: left;
@@ -107,25 +102,26 @@ img{
 	float: left;
 	width: 45%;
 	margin-left: 30px;
-	margin-bottom: 25px;
+	margin-top: 25px;
+
 }
 #userBox4{
 	float: left;
 	width: 45%;
 	margin-left: 10px;
-	margin-bottom: 25px;
+	margin-top: 25px;
 }
 
 #show_up{
 	float: left;
 	width: 17%;
-	margin: 0 0 0 50px;
+	margin: 25px 0 0 50px;
 	margin-bottom: 5px;
 }
 
 #tiles_left{
 	float: left;
-	margin: 0 5px;
+	margin-top: 20px;
 	width: 45%;
 }
 
@@ -133,6 +129,7 @@ img{
 	float: right;
 	margin-right: 47px;
 	width: 17%;
+	margin-top: 25px;
 }
 
 
@@ -154,9 +151,9 @@ img{
 	margin-left: 5px;
 }
 
-
 #board td .placed
 {
+
 	border-top-color: #FF6666;
 	border-right-color: #990000;
 	border-bottom-color: #990000;
@@ -175,10 +172,12 @@ img{
 	color: #FFFFFF;
 }
 
+.bottom_left{
+	margin-top: 40px;
+}
 
 .tile
 {
-	background-image: url(./img/Tile.png);
 	background-position: center;
 	background-size: cover;
 	width: 1.5em;
@@ -201,10 +200,12 @@ img{
  width:220px;
  }
 
+
 #tileStorage
 {
 	width: 100%;
 	text-align: center;
+
 }
 
 #tileStorage input
@@ -253,8 +254,8 @@ a.on
 
 #board
 {
-	margin-left: auto;
-	margin-right: auto;
+	margin-left: 20px;
+	margin-right: 0;
 	border: none;
 
 }
@@ -282,8 +283,8 @@ a.on
 .image{
 	height: 30px;
 	width: 30px;
-	margin-bottom: -4px;
 }
+
 /*
 #board td .empty
 {

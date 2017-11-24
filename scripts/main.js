@@ -159,10 +159,10 @@ initTileStorage();	// Randomly pick player's first tiles
 
 	// if(playerNum()==2){
 		// document.getElementById("userBox3").style.display="none";
-		// document.getElementById("userBox4").style.display="none";		
+		// document.getElementById("userBox4").style.display="none";
 	// }
 	// else if(playerNum()==3){
-		// document.getElementById("userBox4").style.display="none";	
+		// document.getElementById("userBox4").style.display="none";
 	// }
 // }
 /*
@@ -285,6 +285,9 @@ function emptyCell(theLocation) {
 	else {
 		theCell.innerHTML = '<a class="empty" href="#" onclick="placeTile(\'' + theLocation + '\')\; return false\;"><img src="./img/' + multiplyLabel +  '.png" class="image">';
 	}
+<!--	if(theLocation== "c8r8")
+	theCell.innerHTML = '<a class="star" href="#" onclick="placeTile(\'' + theLocation + '\')\; return false\;"><img src="./img/' + 'star' +  '.png" class="image">';
+-->
 
 }
 
@@ -451,24 +454,24 @@ function drawBoard()
 			}
 		}
 	}
-	
+
 	return true;
 }
 
 function pass()
 {
 	var swapped = 0;
-	
+
 	if (tilesRemaining < 7)
 	{
 		alert("You may not swap tiles when there are fewer than 7 remaining in the bag.");
-		
+
 		return false;
 	}
 	if (swaps > 1)
 	{
 		alert("You may not swap tiles more than twice without playing any words.");
-		
+
 		return false;
 	}
 	for (var i = 0; i < rackArray[0].length; i++)
@@ -478,21 +481,21 @@ function pass()
 			emptyCell(getTilePosition(i));
 
 			swapped++;
-			
+
 			tileBank[tileBank.length] = getTileLabel(i);
 			rackArray[0][i] = "";
 		}
 	}
-	
+
 	if (swapped == 0)
 	{
 		alert('To swap tiles, place them anywhere on the board then click "swap".');
-		
+
 		return false;
 	}
-	
+
 	swaps++;
-	
+
 	for (var i = 0; i < rackArray[0].length && swapped > 0 && tilesRemaining > 0; i++)
 	{
 		if (rackArray[0][i] == "" && tilesRemaining > 0)
@@ -507,7 +510,7 @@ function pass()
 	}
 	drawBoard();
 	drawTileStorage();
-	
+
 	return true;
 }
 
@@ -529,7 +532,7 @@ function checkRow()
 	var min = 16;
 	var max = 0;
 	var theRow = 0;
-	
+
 	for (i = 0; i < rackArray[0].length; i++)
 	{
 		if (getTilePosition(i) != "")
@@ -578,7 +581,7 @@ function checkColumn()
 	var max = 0;
 	var theColumn = 0;
 	var i;
-	
+
 	for (i = 0; i < rackArray[0].length; i++)
 	{
 		if (getTilePosition(i) != "")
@@ -599,7 +602,7 @@ function checkColumn()
 	}
 
 	if (theColumn == 0) return false;
-	
+
 	for (i = min; i <= max; i++)
 	{
 		if (!placedArray[encodePos(theColumn, i)])
@@ -699,27 +702,27 @@ function finalise()
 				if (i == rackArray[0].length - 1)
 				{
 					alert("When starting, one of your tiles must be placed on the centre square.");
-					
+
 					return false;
 				}
 			}
 		}
 	}
-	
+
 	if (!checkPlaced())
 	{
 		alert("You haven't placed any tiles.");
-		
+
 		return false;
 	}
-	
+
 	if (!checkRow() && !checkColumn())
 	{
 		alert("Tiles must be placed in a continuous horizontal or vertical line.");
-		
+
 		return false;
 	}
-	
+
 	if (!checkWords())
 	{
 		// Reset blanks.
@@ -729,13 +732,13 @@ function finalise()
 		}
 		return false;
 	}
-	
+
 	for (var i = 0; i < rackArray[0].length; i++)	// Move used tiles from rackArray to placedArray
 	{
 		if (getTilePosition(i))
 		{
 			placedArray[getTilePosition(i)] = getTileLabel(i);
-			
+
 			rackArray[0][i] = "";
 			tilesPlayed++;
 		}
@@ -748,7 +751,7 @@ function finalise()
 			if (wordList[i] == wordList[j] && i != j)
 			{
 				arrayRemoveItem(j, wordList);
-				
+
 				i = -1;
 			}
 		}
@@ -759,8 +762,8 @@ function finalise()
 	allScores[2]="";
 	allScores[3]="";
 	allScores[4]="";
-	
-	
+
+
 	var totalScore = new Array();
 	totalScore[1]=0;
 	totalScore[2]=0;
@@ -772,11 +775,11 @@ function finalise()
 		var fromTile = wordList[i].replace(/,.*/, "");
 		var fromTileColumn = fromHex[fromTile.replace(/c(.*)r.*/, "$1")];
 		var fromTileRow = fromHex[fromTile.replace(/c.*r/, "")];
-		
+
 		var toTile = wordList[i].replace(/^.*,/, "");
 		var toTileColumn = fromHex[toTile.replace(/c(.*)r.*/, "$1")];
 		var toTileRow = fromHex[toTile.replace(/c.*r/, "")];
-		
+
 		var displayScore = "";
 		var displayWord = "";
 		var subScore = 0;
@@ -789,7 +792,7 @@ function finalise()
 				currTile = encodePos(fromTileColumn, j);
 				displayWord += placedArray[currTile];
 				displayScore += "[";
-				
+
 				if (multiplierArray[currTile] == "2L")
 				{
 					subScore += tileScore[placedArray[currTile]] * 2;
@@ -822,7 +825,7 @@ function finalise()
 						usedMultipliers[usedMultipliers.length] = currTile;
 					}
 				}
-				
+
 				displayScore += "]   ";
 			}
 		}
@@ -834,7 +837,7 @@ function finalise()
 				displayWord += placedArray[currTile];
 				displayScore += "[";
 				var mult = multiplierArray[currTile];
-				
+
 				if (mult && mult.charAt(1) == "L")
 				{
 					subScore += tileScore[placedArray[currTile]] * parseInt(mult.charAt(0));
@@ -854,7 +857,7 @@ function finalise()
 						usedMultipliers[usedMultipliers.length] = currTile;
 					}
 				}
-				
+
 				displayScore += "]   ";
 			}
 		}
@@ -876,10 +879,10 @@ function finalise()
 
 	totalScore[turn] += subScore;
 
-	
+
 
 	allScores[turn] += displayScore + "\n";
-	
+
 	// Bonus points for using all 7 tiles
 	if (tilesPlayed == 7)
 	{
@@ -904,7 +907,7 @@ function finalise()
 	alert(allScores[turn]);
 
 	score[turn] += totalScore[turn];
-	
+
 	for (var i = 0; i < usedMultipliers.length; i++)	// Remove bonuses from used bonus tiles
 	{
 		multiplierArray[usedMultipliers[i]] = "";
@@ -943,10 +946,10 @@ function finalise()
 				break;
 			}
 		}
-		
+
 		drawTileStorage();
 		drawBoard();
-		
+
 	}
 	turnChange();
 	return true;
@@ -956,14 +959,14 @@ function finalise()
 function getTilePositionRow(tileID)
 {
 	var thePosition = getTilePosition(tileID);
-	
+
 	return fromHex[thePosition.replace(/c.*r(.*)/, "$1")];
 }
 
 function getTilePositionColumn(tileID)
 {
 	var thePosition = getTilePosition(tileID);
-	
+
 	return fromHex[thePosition.replace(/c(.*)r.*/, "$1")];
 }
 
@@ -973,7 +976,7 @@ function getAdjacent(column, row, direction)
 	var theColumn = column;
 	var theRow = row;
 	var theDirection = direction;
-	
+
 	if (theDirection == "above")
 	{
 		wordMin = encodePos(column, row);
@@ -994,13 +997,13 @@ function getAdjacent(column, row, direction)
 		wordMax = encodePos(column, row);
 		theColumn++;
 	}
-	
+
 	var currLocation = encodePos(theColumn, theRow);
-	
+
 	if (placedArray[currLocation])
 	{
 		touching = true;
-		
+
 		theLabel = placedArray[currLocation];
 	}
 	else
@@ -1013,7 +1016,7 @@ function getAdjacent(column, row, direction)
 			}
 		}
 	}
-	
+
 	if (theLabel)
 	{
 		if (theDirection == "above" || theDirection == "left")
@@ -1026,7 +1029,7 @@ function getAdjacent(column, row, direction)
 		}
 
 		getAdjacent(theColumn, theRow, theDirection);
-		
+
 		return true;
 	}
 
@@ -1046,7 +1049,7 @@ function checkDictionary(theWord)
 		}
 
 	}
-	
+
 }
 
 
@@ -1082,19 +1085,19 @@ function checkWords()
 	for (var i = 0; i < rackArray[0].length; i++)
 	{
 		var thePosition = getTilePosition(i);
-		
+
 		if (thePosition)
 		{
 			var theRow = getTilePositionRow(i);
 			var theColumn = getTilePositionColumn(i);
 			var theLabel = getTileLabel(i);
-			
+
 			wordHead = "";
 			wordTail = "";
-			
+
 			getAdjacent(theColumn, theRow, "left");
 			getAdjacent(theColumn, theRow, "right");
-			
+
 			if (wordHead != "" || wordTail != "")
 			{
 				if (!checkDictionary(wordHead + theLabel + wordTail))
@@ -1102,13 +1105,13 @@ function checkWords()
 					alert("\"" + wordHead + theLabel + wordTail + "\" is not in the dictionary.");
 					return false;
 				}
-				
+
 				wordList[wordList.length] = wordMin + "," + wordMax;
 			}
 
 			wordHead = "";
 			wordTail = "";
-			
+
 			getAdjacent(theColumn, theRow, "above");
 			getAdjacent(theColumn, theRow, "below");
 
@@ -1119,19 +1122,19 @@ function checkWords()
 					alert("\"" + wordHead + theLabel + wordTail + "\" is not in the dictionary.");
 					return false;
 				}
-				
+
 				wordList[wordList.length] = wordMin + "," + wordMax;
 			}
 		}
 	}
-	
+
 	if (placedArray["c8r8"] && !touching)
 	{
 		alert("At least one of your placed tiles must touch an existing tile.");
 
 		return false;
 	}
-	
+
 	return true;
 }
 
@@ -1197,16 +1200,16 @@ function setBestPlay(value) {
 //USER NAME 받아오기
 
 function getQuerystring(paramName){
-	var _tempUrl = window.location.search.substring(1); //url에서 처음부터 '?'까지 삭제 
-	var _tempArray = _tempUrl.split('&'); // '&'을 기준으로 분리하기 
+	var _tempUrl = window.location.search.substring(1); //url에서 처음부터 '?'까지 삭제
+	var _tempArray = _tempUrl.split('&'); // '&'을 기준으로 분리하기
 	for(var i = 0; _tempArray.length; i++) {
-		var _keyValuePair = _tempArray[i].split('='); // '=' 을 기준으로 분리하기 
-		if(_keyValuePair[0] == paramName){ // _keyValuePair[0] : 파라미터 명 
-		// _keyValuePair[1] : 파라미터 값 
-		return _keyValuePair[1]; 
-	} 
-} 
-} 
+		var _keyValuePair = _tempArray[i].split('='); // '=' 을 기준으로 분리하기
+		if(_keyValuePair[0] == paramName){ // _keyValuePair[0] : 파라미터 명
+		// _keyValuePair[1] : 파라미터 값
+		return _keyValuePair[1];
+	}
+}
+}
 
 var player1N=getQuerystring("player1");
 var player2N=getQuerystring("player2");
@@ -1219,7 +1222,7 @@ function playerNum(){
 	if(player3N==""&&player4N=="")
 		return 2;
 	else if(player4N=="")
-		return 3;	
+		return 3;
 	else{
 		return 4;
 	}

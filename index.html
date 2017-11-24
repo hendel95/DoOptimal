@@ -58,7 +58,7 @@
 		margin:120px;
 		margin-left:150px;
 	}
-	
+
 
 
 </style>
@@ -178,7 +178,7 @@
 			<div>
 				<p class="user_id"><script type="text/javascript"> document.write(player1N); </script></p>
 			</div>
-			<div class="score_box">		
+			<div class="score_box">
 				<!-- <p class="score_text"><div id="stats"style="background:url(./img/ScoreBox.png) no-repeat"></div></p> -->
 				<p class="score_text"><div id="stats"></div></p>
 			</div>
@@ -197,7 +197,7 @@
 				<p class="score_text"><div id="stats2"></div></p>
 			</div>
 		</div>
-		
+
 		<div id="userBox3">
 			<img src="./img/UserBox.png">
 			<div class="user_icon">
@@ -211,7 +211,7 @@
 				<p class="score_text"><div id="stats3"></div></p>
 			</div>
 		</div>
-		
+
 		<div id="userBox4">
 			<img src="./img/UserBox.png">
 			<div class="user_icon">
@@ -230,7 +230,7 @@
 	<!-- <div> -->
 
 <script language="javascript">
-		
+
 function PlayerShow(){
 		document.getElementById("userBox1").style.display="block";
 		document.getElementById("userBox2").style.display="block";
@@ -239,26 +239,28 @@ function PlayerShow(){
 
 	if(playerNum()==2){
 		document.getElementById("userBox3").style.visibility="hidden";
-		document.getElementById("userBox4").style.visibility="hidden";		
+		document.getElementById("userBox4").style.visibility="hidden";
 	}
 	else if(playerNum()==3){
-		document.getElementById("userBox4").style.visibility="hidden";	
+		document.getElementById("userBox4").style.visibility="hidden";
 	}
 }
 
 PlayerShow();
 </script>
 	<!-- showUP버튼 동작 -->
+
+	<div class="bottom_left">
 		<div id="show_up">
-		<input id="show_Up" type="image" src="./img/ShowUp.png" onclick="showUp()" width="80"> 
+		<input id="show_Up" type="image" src="./img/ShowUp.png" onclick="showUp()" width="80">
 		</div>
 
 
 		<div id="next_turn">
 		<input id="next_Turn" type="image" src="./img/NextTurn.png" onclick="finalise();" width="80">
-		</div>		
-		
-	
+		</div>
+
+
 		<div>
 		<div id="tiles_left" class="tiles_left">
 			<img src="./img/tileLeft_empty.png">
@@ -269,11 +271,11 @@ PlayerShow();
 			<p class="text">HINT : 3</p>
 		</div>
 
-		
-		
+
+
 		<div id="dictionary"><img src="./img/Dictionary.png"></div>
-		
-		
+
+
 	<!-- dictionary버튼 동작 -->
 		<div id="myModal" class="modal">
 
@@ -290,10 +292,10 @@ PlayerShow();
 
 		</div>
 
-		
+
 		<!-- 2LW버튼 동작 -->
-		<input id="LW" type="image" src="./img/2LW.png"> 
-		
+		<input id="LW" type="image" src="./img/2LW.png">
+
 		<!-- The Modal of 2LW-->
 		<div id="ModalOf2LW" class="modal">
 			<div class="modal-content">
@@ -305,28 +307,13 @@ PlayerShow();
 			</div>
 
 		</div>
-		
+
 	</div>
 
-	<div id="tilerack">
-		<table id="tileStorage" cellspacing="1" clear:both; >
-			<tr>
-				<!-- <td id="tileStorage0" class="tileStore" style="background:url(./img/Tile.png)"> -->
-				<!-- </td> -->
-				<!-- <td id="tileStorage1" class="tileStore"><img src="./img/Tile.png"> -->
-				<!-- </td> -->
-				<!-- <td id="tileStorage2" class="tileStore"><img src="./img/Tile.png"> -->
-				<!-- </td> -->
-				<!-- <td id="tileStorage3" class="tileStore"><img src="./img/Tile.png"> -->
-				<!-- </td> -->
-				<!-- <td id="tileStorage4" class="tileStore"><img src="./img/Tile.png"> -->
-				<!-- </td> -->
-				<!-- <td id="tileStorage5" class="tileStore"><img src="./img/Tile.png"> -->
-				<!-- </td> -->
-				<!-- <td id="tileStorage6" class="tileStore"><img src="./img/Tile.png"> -->
-				<!-- </td> -->
-
-	<td id="tileStorage0" class="tileStore" style="background:url(./img/tile2.png) no-repeat" width="50" height="60">
+	<!--<div id="tilerack">-->
+<table id="tileStorage" border="0" cellspacing="0" cellpadding="0"  >
+<tr>
+	<td id="tileStorage0" class="tileStore" style="background:url(./img/tile2.png) no-repeat" width="50" height="60" margin=0>
 	</td>
 	<td id="tileStorage1" class="tileStore" style="background:url(./img/Tile2.png) no-repeat" width="50" height="60">
 	</td>
@@ -339,13 +326,14 @@ PlayerShow();
 	<td id="tileStorage5" class="tileStore" style="background:url(./img/Tile2.png) no-repeat" width="50" height="60">
 	</td>
 	<td id="tileStorage6" class="tileStore" style="background:url(./img/Tile2.png) no-repeat" width="50" height="60">
-	</td>	
-
-				</tr>
+	</td>
+</tr>
 		</table>
+<!--
+</div>-->
 
-	</div>
-	
+
+
 	<div>
 		<div id="exchange"><img src="./img/exchange.png" onclick="pass();"></div>
 		<div id="pass"><img src="./img/Pass.png"></div>
@@ -353,8 +341,11 @@ PlayerShow();
 	</div>
 </div>
 
+
+</div>
+
 <div class="center_screen">
-	<table id="board">
+	<table id="board" border="0" cellspacing="0" cellpadding="1">
 		<tr>
 			<td id="c1r1" class="tripleWord"><a class="empty" href="#" onclick="placeTile('c1r1'); return false;"><img src="./img/3W.png" class="image"></a></td>
 			<td id="c2r1"><a class="empty" href="#" onclick="placeTile('c2r1'); return false;"><img src="./img/BoardTile.png" class="image"></a></td>
@@ -641,7 +632,7 @@ drawTileStorage();
 var modal = document.getElementById('myModal');
 var modalLW = document.getElementById('ModalOf2LW');
 var modal2 = document.getElementById('myModal2');
-		
+
 // Get the button that opens the modal
 var btn = document.getElementById("dictionary");
 var btnLW = document.getElementById("LW");
