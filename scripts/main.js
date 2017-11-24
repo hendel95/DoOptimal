@@ -379,6 +379,10 @@ function drawTileStorage()
 	var stats4 = score[3];
 	theStats4.innerHTML = stats4;
 
+	var tileLeft = document.getElementById("tile_left_text");
+	var tile_left_text = "TILE LEFT : "+tilesRemaining;
+	tileLeft.innerHTML = tile_left_text;
+
 	//var stats = "Tiles remaining: " + tilesRemaining + " | Current score: " + score;
 	//if (highscore > 0) stats += " | High score: " + highscore;
 	//if (bestplay > 0) stats += " | Best play: " + bestplay;
