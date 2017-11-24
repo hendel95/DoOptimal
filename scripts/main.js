@@ -288,9 +288,9 @@ function emptyCell(theLocation) {
 	else {
 		theCell.innerHTML = '<a class="empty" href="#" onclick="placeTile(\'' + theLocation + '\')\; return false\;"><img src="./img/' + multiplyLabel +  '.png" class="image">';
 	}
-<!--	if(theLocation== "c8r8")
+	if(theLocation== "c8r8")
 	theCell.innerHTML = '<a class="star" href="#" onclick="placeTile(\'' + theLocation + '\')\; return false\;"><img src="./img/' + 'star' +  '.png" class="image">';
--->
+
 
 }
 
@@ -502,13 +502,8 @@ function exchange()
 	}
 
 	swaps++;
-<<<<<<< HEAD
 
-	for (var i = 0; i < rackArray[0].length && swapped > 0 && tilesRemaining > 0; i++)
-=======
-	
 	for (var i = 0; i < rackArray[turn].length && swapped > 0 && tilesRemaining > 0; i++)
->>>>>>> fd757bda5a645644a87ba165763198fa32cc91ed
 	{
 		if (rackArray[turn][i] == "" && tilesRemaining > 0)
 		{
@@ -544,13 +539,8 @@ function checkRow()
 	var min = 16;
 	var max = 0;
 	var theRow = 0;
-<<<<<<< HEAD
 
-	for (i = 0; i < rackArray[0].length; i++)
-=======
-	
 	for (i = 0; i < rackArray[turn].length; i++)
->>>>>>> fd757bda5a645644a87ba165763198fa32cc91ed
 	{
 		if (getTilePosition(i) != "")
 		{
@@ -598,13 +588,8 @@ function checkColumn()
 	var max = 0;
 	var theColumn = 0;
 	var i;
-<<<<<<< HEAD
-
-	for (i = 0; i < rackArray[0].length; i++)
-=======
 	
 	for (i = 0; i < rackArray[turn].length; i++)
->>>>>>> fd757bda5a645644a87ba165763198fa32cc91ed
 	{
 		if (getTilePosition(i) != "")
 		{
@@ -754,24 +739,13 @@ function finalise()
 		}
 		return false;
 	}
-<<<<<<< HEAD
-
-	for (var i = 0; i < rackArray[0].length; i++)	// Move used tiles from rackArray to placedArray
-=======
-	
 	for (var i = 0; i < rackArray[turn].length; i++)	// Move used tiles from rackArray to placedArray
->>>>>>> fd757bda5a645644a87ba165763198fa32cc91ed
 	{
 		if (getTilePosition(i))
 		{
 			placedArray[getTilePosition(i)] = getTileLabel(i);
-<<<<<<< HEAD
 
-			rackArray[0][i] = "";
-=======
-			
 			rackArray[turn][i] = "";
->>>>>>> fd757bda5a645644a87ba165763198fa32cc91ed
 			tilesPlayed++;
 		}
 	}
@@ -794,14 +768,7 @@ function finalise()
 	allScores[1]="";
 	allScores[2]="";
 	allScores[3]="";
-<<<<<<< HEAD
-	allScores[4]="";
 
-
-=======
-	
-	
->>>>>>> fd757bda5a645644a87ba165763198fa32cc91ed
 	var totalScore = new Array();
 	totalScore[0]=0;
 	totalScore[1]=0;
@@ -1266,8 +1233,6 @@ function playerNum(){
 		return 4;
 	}
 }
-<<<<<<< HEAD
-=======
 
 function pass(){
 	turnChange();
@@ -1276,4 +1241,3 @@ function pass(){
 
 
 
->>>>>>> fd757bda5a645644a87ba165763198fa32cc91ed
