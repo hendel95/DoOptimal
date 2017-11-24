@@ -73,7 +73,7 @@
 
 <body>
 
-	<div class="modal2" id="myModal2">
+<div class="modal2" id="myModal2">
 
 		<!-- 		<div class="modal-dialog modal-sm"> -->
 			<div class="modal2-dialog modal-center" role="document">
@@ -152,12 +152,6 @@
 
 				</div>
 			</div>
-
-		</div>
-
-
-
-
 
 </div>
 
@@ -248,7 +242,7 @@ function PlayerShow(){
 
 PlayerShow();
 </script>
-	<!-- showUP버튼 동작 -->
+
 
 	<div class="bottom_left">
 		<div id="show_up">
@@ -272,8 +266,8 @@ PlayerShow();
 		</div>
 
 
-
-		<div id="dictionary"><img src="./img/Dictionary.png"></div>
+		<input id="dictionary" type="image" src="./img/Dictionary.png"> 
+		<!-- <div id="dictionary"><img src="./img/Dictionary.png"></div> -->
 
 
 	<!-- dictionary버튼 동작 -->
@@ -294,7 +288,7 @@ PlayerShow();
 
 
 		<!-- 2LW버튼 동작 -->
-		<input id="LW" type="image" src="./img/2LW.png">
+		<input id="LW" type="image" src="./img/2LW.png" >
 
 		<!-- The Modal of 2LW-->
 		<div id="ModalOf2LW" class="modal">
@@ -310,7 +304,7 @@ PlayerShow();
 
 	</div>
 
-	<!--<div id="tilerack">-->
+<div id="tilerack">
 <table id="tileStorage" border="0" cellspacing="0" cellpadding="0"  >
 <tr>
 	<td id="tileStorage0" class="tileStore" style="background:url(./img/tile2.png) no-repeat" width="50" height="60" margin=0>
@@ -329,20 +323,22 @@ PlayerShow();
 	</td>
 </tr>
 		</table>
-<!--
-</div>-->
+</div>
 
 
 
 	<div>
-		<div id="exchange"><img src="./img/exchange.png" onclick="exchange();"></div>
-		<div id="pass"><img src="./img/Pass.png" onClick="pass();"></div>
-		<div id="shuffle"><img src="./img/Shuffle.png" onclick="shuffle();"></div>
+		<input id="exchange" type="image" src="./img/exchange.png" onclick="exchange();" height="42"> 
+		<input id="pass" type="image" src="./img/Pass.png" onclick="pass();" height="42"> 
+		<input id="shuffle" type="image" src="./img/Shuffle.png" onclick="shuffle();" height="42"> 
+		<!-- <div id="exchange"><img src="./img/exchange.png" onclick="exchange();"></div> -->
+		<!-- <div id="pass"><img src="./img/Pass.png" onClick="pass();"></div> -->
+		<!-- <div id="shuffle"><img src="./img/Shuffle.png" onclick="shuffle();"></div> -->
 	</div>
 </div>
 
-
 </div>
+<!-- </div> -->
 
 <div class="center_screen">
 	<table id="board" border="0" cellspacing="0" cellpadding="1">

@@ -185,16 +185,24 @@ function initTileStorage(){
 var checkS;
 checkS=0;
 
+// function showUp(){
+	// if(checkS==0){
+		// checkS=1;
+		// document.getElementById("tilerack").style.display="none";
+	// }
+	// else{
+		// checkS=0;
+		// document.getElementById("tilerack").style.display="block";
+	// }
+// }
+
 function showUp(){
-	if(checkS==0){
-		checkS=1;
-		document.getElementById("tilerack").style.display="none";
-	}
-	else{
-		checkS=0;
 		document.getElementById("tilerack").style.display="block";
-	}
 }
+function hideRack(){
+		document.getElementById("tilerack").style.display="none";
+}
+
 
 
 var turn=0;
@@ -956,6 +964,7 @@ function finalise()
 		drawBoard();
 
 	}
+	hideRack();
 	turnChange();
 	drawTileStorage();
 
