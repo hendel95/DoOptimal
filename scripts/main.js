@@ -952,6 +952,7 @@ function finalise()
 		
 	}
 	turnChange();
+	drawTileStorage();
 
 	return true;
 }
@@ -1227,3 +1228,11 @@ function playerNum(){
 		return 4;
 	}
 }
+
+function pass(){
+	turnChange();
+	drawTileStorage();
+}
+
+
+
