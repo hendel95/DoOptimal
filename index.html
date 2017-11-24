@@ -21,13 +21,24 @@
 		text-align: center;
 		padding: 0!important;
 	}
-
+	.modal3{
+		display: none; /* Hidden by default */
+		position: fixed; /* Stay in place */
+		z-index: 1; /* Sit on top */
+		padding-top: 0px; /* Location of the box */
+		left: 0;
+		top: 0;
+		width: 100%;/* Full width */
+		height: 100%; /* Full height */
+		overflow: auto; /* Enable scroll if needed */
+		text-align: center;
+		padding: 0!important;
+	}
 	.modal2-dialog.modal-center {
 		display: inline-block;
 		text-align: left;
 		vertical-align: middle;
 	}
-
 	/* Modal Content */
 	.modal2-content {
 		background-color: #fefefe;
@@ -37,7 +48,6 @@
 		width: 848px;
 		height: 734px;
 	}
-
 	/* The Close Button */
 	.close2 {
 		color: #aaaaaa;
@@ -45,15 +55,36 @@
 		font-size: 28px;
 		font-weight: bold;
 	}
-
 	.close2:hover,
 	.close2:focus {
 		color: #000;
 		text-decoration: none;
 		cursor: pointer;
 	}
-
-
+	.closeTutorial {
+		color: #aaaaaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	.closeTutorial:hover,
+	.closeTutorial:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	.closeVersion {
+		color: #aaaaaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	.closeVersion:hover,
+	.closeVersion:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+	}
 	.modal2-body{
 		margin:120px;
 		margin-left:150px;
@@ -135,13 +166,14 @@
 							</tr>
 							<tr>
 								<td>
-									<img src="img/Tutorial.png" align="center" width="500">
-
+									<!-- <img src="img/Tutorial.png" align="center" width="500"> -->
+									<input id="btnTutorialShow" type="image" align="center" src="img/Tutorial.png"  width="500" >
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<img src="img/Version.png" align="center" width="500">
+									<!-- <img src="img/Version.png" align="center" width="500"> -->
+									<input id="btnVersionShow" type="image" align="center" src="img/Version.png"  width="500" >
 								</td>
 							</tr>
 
@@ -154,6 +186,42 @@
 			</div>
 
 </div>
+
+<div class="modal3" id="tutorialModal">
+
+			<div class="modal2-dialog modal-center" role="document">
+				<div class="modal2-content">
+					<span class="closeTutorial">&times;</span>
+
+					<div class="modal2-body">
+						<table id="modal2-body">
+						
+						</table>
+					</div>
+
+
+				</div>
+			</div>
+
+</div>
+<div class="modal3" id="VersionModal">
+
+			<div class="modal2-dialog modal-center" role="document">
+				<div class="modal2-content">
+					<span class="closeVersion">&times;</span>
+
+					<div class="modal2-body">
+						<table id="modal2-body">
+						
+						</table>
+					</div>
+
+
+				</div>
+			</div>
+
+</div>
+
 
 <div class="left_screen">
 
@@ -639,16 +707,21 @@ drawTileStorage();
 var modal = document.getElementById('myModal');
 var modalLW = document.getElementById('ModalOf2LW');
 var modal2 = document.getElementById('myModal2');
-
+var modalTutorial = document.getElementById('tutorialModal');
+var modalVersion = document.getElementById('VersionModal');
 // Get the button that opens the modal
 var btn = document.getElementById("dictionary");
 var btnLW = document.getElementById("LW");
 var btn2 = document.getElementById("setting");
+var btnTutorialShow = document.getElementById("btnTutorialShow");
+var btnVersionShow = document.getElementById("btnVersionShow");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 var spanLW = document.getElementsByClassName("closeLW")[0];
 var span2 = document.getElementsByClassName("close2")[0];
+var spanTutorial = document.getElementsByClassName("closeTutorial")[0];
+var spanVersion = document.getElementsByClassName("closeVersion")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
@@ -660,6 +733,12 @@ btnLW.onclick = function() {
 btn2.onclick = function() {
     modal2.style.display = "block";
 }
+btnTutorialShow.onclick = function() {
+    modalTutorial.style.display = "block";
+}
+btnVersionShow.onclick = function() {
+    modalVersion.style.display = "block";
+}
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -670,6 +749,12 @@ spanLW.onclick = function() {
 }
 span2.onclick = function() {
     modal2.style.display = "none";
+}
+spanTutorial.onclick = function() {
+    modalTutorial.style.display = "none";
+}
+spanVersion.onclick = function() {
+    modalVersion.style.display = "none";
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -683,6 +768,12 @@ if (event.target == modalLW){
 if (event.target == modal2){
     modal2.style.display = "none";
 }
+if (event.target == modalTutorial){
+    modalTutorial.style.display = "none";
+}
+if (event.target == modalVersion){
+    modalVersion.style.display = "none";
+}
 }
 
 
@@ -690,5 +781,4 @@ if (event.target == modal2){
 
 
 </body>
-
 </html>
