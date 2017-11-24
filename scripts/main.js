@@ -1244,6 +1244,7 @@ function playerNum(){
 }
 
 function pass(){
+	hideRack();
 	turnChange();
 	drawTileStorage();
 }
