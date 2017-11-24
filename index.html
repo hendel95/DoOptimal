@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 
+<audio id="Bgm" src="./music/bgm.mp3" autoplay> </audio>
+<audio id="Fx" src="./music/fx.mp3" hidden="true"> </audio>
+
 <head>
 	<style>
 	b{
@@ -98,11 +101,31 @@
 
 <script type="text/javascript" src="./scripts/main.js"></script>
 <!-- <script type="text/javascript" src="./scripts/ReadySetting.js"></script> -->
+<script>
+	function playBgm() {
+	var bgm = document.getElementById('Bgm');
+	bgm.play();
+}
+
+
+function pauseBgm() {
+	var bgm = document.getElementById('Bgm');
+	bgm.pause();
+}
+
+function playFx () {
+	var fx = document.getElementById('Fx');
+	fx.play();
+}
+
+</script>
 
 </head>
 
 
 <body>
+
+
 
 <div class="modal2" id="myModal2">
 
@@ -113,15 +136,18 @@
 
 					<script language="javascript">
 						var img = new Array("img/on.png","img/off.png");
+						var bgm = document.getElementById('Bgm');
 
 						var i;
 						i=0;
 						function chgImg1(){
 							if(i==0){
 								i=1;
+								pauseBgm();
 							}
 							else{
 								i=0;
+								playBgm();
 							}
 							document.button_bgm.src = img[i];
 						}
@@ -136,9 +162,13 @@
 						function chgImg2(){
 							if(i==0){
 								i=1;
+								var fx = document.getElementById('Fx');
+								fx.src = "";
 							}
 							else{
 								i=0;
+								var fx = document.getElementById('Fx');
+								fx.src = "./music/fx.mp3";
 							}
 							document.button_fx.src = img[i];
 						}
@@ -325,12 +355,12 @@ PlayerShow();
 
 	<div class="bottom_left">
 		<div id="show_up">
-		<input id="show_Up" type="image" src="./img/ShowUp.png" onclick="showUp()" width="80">
+		<input id="show_Up" type="image" src="./img/ShowUp.png" onclick="playFx(); showUp();" width="80">
 		</div>
 
 
 		<div id="next_turn">
-		<input id="next_Turn" type="image" src="./img/NextTurn.png" onclick="finalise();" width="80">
+		<input id="next_Turn" type="image" src="./img/NextTurn.png" onclick="playFx(); finalise();" width="80">
 		</div>
 
 
@@ -367,7 +397,7 @@ PlayerShow();
 
 
 		<!-- 2LW踰꾪듉 �룞�옉 -->
-		<input id="LW" type="image" src="./img/2LW.png" >
+		<input id="LW" type="image" src="./img/2LW.png">
 
 		<!-- The Modal of 2LW-->
 		<div id="ModalOf2LW" class="modal">
@@ -407,9 +437,9 @@ PlayerShow();
 
 
 	<div>
-		<input id="exchange" type="image" src="./img/exchange.png" onclick="exchange();" height="42"> 
-		<input id="pass" type="image" src="./img/Pass.png" onclick="pass();" height="42"> 
-		<input id="shuffle" type="image" src="./img/Shuffle.png" onclick="shuffle();" height="42"> 
+		<input id="exchange" type="image" src="./img/exchange.png" onclick="playFx(); exchange();" height="42"> 
+		<input id="pass" type="image" src="./img/Pass.png" onclick="playFx(); pass();"  height="42"> 
+		<input id="shuffle" type="image" src="./img/Shuffle.png" onclick="playFx(); shuffle();" height="42"> 
 		<!-- <div id="exchange"><img src="./img/exchange.png" onclick="exchange();"></div> -->
 		<!-- <div id="pass"><img src="./img/Pass.png" onClick="pass();"></div> -->
 		<!-- <div id="shuffle"><img src="./img/Shuffle.png" onclick="shuffle();"></div> -->
@@ -725,12 +755,15 @@ var spanVersion = document.getElementsByClassName("closeVersion")[0];
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
+	playFx();
     modal.style.display = "block";
 }
 btnLW.onclick = function() {
+	playFx();
 	modalLW.style.display = "block";
 }
 btn2.onclick = function() {
+	playFx();
     modal2.style.display = "block";
 }
 btnTutorialShow.onclick = function() {
