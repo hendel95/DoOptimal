@@ -112,6 +112,8 @@ var wordMin = "";	// Location of the first letter of a word
 var wordMax = "";	// Location of the last letter of a word
 var wordList = new Array();	// Array of words placed on the board
 
+
+
 initTileStorage();	// Randomly pick player's first tiles
 
 /*
@@ -232,5 +234,8 @@ function drawTileStorage()
 	
 	return true;
 }
+
+
+
 
 

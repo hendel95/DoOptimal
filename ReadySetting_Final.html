@@ -1,72 +1,75 @@
  <!DOCTYPE html>
 
- <head>
- <style>
-body {
-	background-image: url('./img/body.png');
-}
-.right_screen {
-	float: right;
-	width: 10%;
-	margin-top: 20px;
-}
-.left_screen {
-	float: left;
-	width: 80%;
-}	.modal{
-		display: none; /* Hidden by default */
-		position: fixed; /* Stay in place */
-		z-index: 1; /* Sit on top */
-		padding-top: 0px; /* Location of the box */
-		left: 0;
-		top: 0;
-		width: 100%;/* Full width */
-		height: 100%; /* Full height */
-		overflow: auto; /* Enable scroll if needed */
-		background-color: rgb(0,0,0); /* Fallback color */
-		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-		text-align: center;
-		padding: 0!important;
-	}
+<audio id="Bgm" src="./music/main_bgm.mp3" autoplay> </audio>
+ <audio id="Fx" src="./music/fx.mp3" hidden="true"> </audio>
 
-	.modal-dialog.modal-center {
-		display: inline-block;
-		text-align: left;
-		vertical-align: middle;
-	}
+ 	<head>
+ 		<style>
+ 		body {
+ 			background-image: url('./img/body.png');
+ 		}
+ 		.right_screen {
+ 			float: right;
+ 			width: 10%;
+ 			margin-top: 20px;
+ 		}
+ 		.left_screen {
+ 			float: left;
+ 			width: 80%;
+ 			}	.modal{
+ 				display: none; /* Hidden by default */
+ 				position: fixed; /* Stay in place */
+ 				z-index: 1; /* Sit on top */
+ 				padding-top: 0px; /* Location of the box */
+ 				left: 0;
+ 				top: 0;
+ 				width: 100%;/* Full width */
+ 				height: 100%; /* Full height */
+ 				overflow: auto; /* Enable scroll if needed */
+ 				background-color: rgb(0,0,0); /* Fallback color */
+ 				background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+ 				text-align: center;
+ 				padding: 0!important;
+ 			}
 
-	/* Modal Content */
-	.modal-content {
-		background-color: #fefefe;
-		background:url("img/Mode.png") no-repeat;
-		background-size: 100% 100%;
+ 			.modal-dialog.modal-center {
+ 				display: inline-block;
+ 				text-align: left;
+ 				vertical-align: middle;
+ 			}
+
+ 			/* Modal Content */
+ 			.modal-content {
+ 				background-color: #fefefe;
+ 				background:url("img/Mode.png") no-repeat;
+ 				background-size: 100% 100%;
 /*		padding: 100px;
-		margin : 200px;*/
-		border: 1px solid #888;
-		width: 848px;
-		height: 734px;
-	}
+margin : 200px;*/
+border: 1px solid #888;
+width: 848px;
+height: 734px;
+}
 
-	/* The Close Button */
-	.close {
-		color: #aaaaaa;
-		float: right;
-		font-size: 28px;
-		font-weight: bold;
-	}
+/* The Close Button */
+.close {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
 
-	.close:hover,
-	.close:focus {
-		color: #000;
-		text-decoration: none;
-		cursor: pointer;
-	}
+.close:hover,
+.close:focus {
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
 
 
-	table{
-		margin:120px;
-		margin-left:170px;
-	}
+table{
+	margin:120px;
+	margin-left:170px;
+}
 
 
 </style>
@@ -74,62 +77,70 @@ body {
 <meta charset="utf-8"/>
 <title>Scrabble Game</title>
 <link rel="stylesheet" type="text/css" href="./css/ReadySetting.css">
+
 <script type="text/javascript" src="./scripts/ReadySetting.js"></script>
+<script> 
+	function playFx () {
+		var fx = document.getElementById('Fx');
+		fx.play();
+	}
+</script>
+
 </head>
 
 <body>
 
-<!-- <script language="javascript"> -->
+	<!-- <script language="javascript"> -->
 
-<!-- function initForm(){ -->
-	<!-- document.getElementById("form1").style.display = "none"; -->
-<!-- } -->
-<!-- initForm(); -->
-<!-- </script> -->
+		<!-- function initForm(){ -->
+		<!-- document.getElementById("form1").style.display = "none"; -->
+		<!-- } -->
+		<!-- initForm(); -->
+		<!-- </script> -->
 
-<div class="container">
-<div class="centered">	  
-<img src="./img/TeamLogo.png" width="115">
-</div>
-</div>
+		<div class="container">
+			<div class="centered">	  
+				<img src="./img/TeamLogo.png" width="115">
+			</div>
+		</div>
 
-<div class="container">
-<div class="centered">	  
-<img src="./img/Logo.png" width="341">
-</div>
-</div>
+		<div class="container">
+			<div class="centered">	  
+				<img src="./img/Logo.png" width="341">
+			</div>
+		</div>
 
 
-<div class="container">
-<div class="centered">	  
-<img src="./img/Ranking.png" width="190">
-</div>
-</div>
+		<div class="container">
+			<div class="centered">	  
+				<img src="./img/Ranking.png" width="190">
+			</div>
+		</div>
 
-<div class="container">
-<div class="centered">	  
-<!--ranking-->
-</div>
-</div>
+		<div class="container">
+			<div class="centered">	  
+				<!--ranking-->
+			</div>
+		</div>
 
-<div class="container">
-<div class="centered">	  
+		<div class="container">
+			<div class="centered" onclick="playFx()">	  
 
-<input id="myBtn" type="image" src="./img/GameStart.png" width="250"> 
+				<input id="myBtn" type="image" src="./img/GameStart.png" width="250"> 
 
-</div>
-</div>
-	<div class="modal" id="myModal">
+			</div>
+		</div>
+		<div class="modal" id="myModal">
 
-	<!-- modal -->
-		<div class="modal-dialog modal-center" role="document">
-		<div class="modal-content">
+			<!-- modal -->
+			<div class="modal-dialog modal-center" role="document">
+				<div class="modal-content">
 					<span class="close">&times;</span>
 
 					<!-- Clone 복제 함수 -->
 					<!-- <script> -->
-					<!-- function CheckName(checkP) //인원수 받는 함수 -->
-					<!-- {	//입력란 추가 위치 -->
+						<!-- function CheckName(checkP) //인원수 받는 함수 -->
+						<!-- {	//입력란 추가 위치 -->
 						<!-- var parent=document.getElementById('user-names'); -->
 						<!-- //입력란 복제 대상 -->
 						<!-- var target=document.getElementById('user-name'); -->
@@ -148,83 +159,83 @@ body {
 						<!-- Array.from(clone.querySelectorAll('.user-order')).map(order=>{order.innerHTML = key;}); -->
 						<!-- parent.appendChild(clone); -->
 						<!-- } -->
-					
-					<!-- } -->
-					<!-- </script> -->
-					<div class="modal-body">
-						<table>
-							<tr>
-								<td>
-									<b>
-										<div style="text-align:center"><strong><font size="5">PLAYER</font></strong><br/>
-										<img name="button_player2" src='img/2people.png' align="left" onclick="chgP2()">
-										<img name="button_player3" src='img/3people.png' align="middle" onclick="chgP3()">
-										<img name="button_player4" src='img/4people.png' align="right" onclick="chgP4()">
 
-										
-									</b>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<b>
-										<div style="text-align:center"><strong><font size="5">LEVEL</font></strong><br/>
-										<img name="button_level1" src="img/level1.png" align="left" onClick="chgL1();">   
-										<img name="button_level2" src="img/level2.png" align="middle" onClick="chgL2();">
-										<img name="button_level3" src="img/level3.png" align="right" onClick="chgL3();"> 
-									</b>
-								</td>
-							</tr>
+						<!-- } -->
+						<!-- </script> -->
+						<div class="modal-body">
+							<table>
+								<tr>
+									<td>
+										<b>
+											<div style="text-align:center"><strong><font size="5">PLAYER</font></strong><br/>
+												<img name="button_player2" src='img/2people.png' align="left" onclick="chgP2(); playFx();">
+												<img name="button_player3" src='img/3people.png' align="middle" onclick="chgP3(); playFx();">
+												<img name="button_player4" src='img/4people.png' align="right" onclick="chgP4(); playFx();">
 
-	 <tr>
-	 <td>
-	 <b>
 
-	 <!-- user name input form -->
-	  <form name="form1" action="./index.html">
-	  <div style="height: 35px;">
-	  <div style="float: left; width:50%;" id="player1">
-	  player1 <input type="text" name = "player1" data - name = "player1" placeholder = "Enter player1 name" id = "player1"> 
-	  </div>
-	  <div style="float: right; width:50%;" id="player2">
-	  player2 <input type="text" name = "player2" data - name = "player2" placeholder = "Enter player2 name" id = "player2">  
-	  </div>
-	  </div>
-	  <div style="height: 35px;">
-	  <div style="float: left; width:50%;" id="player3">
-	  player3 <input type="text" name = "player3" data - name = "player3" placeholder = "Enter player3 name" id = "player3">  
-	  </div>
-	  <div style="float: right; width:50%;" id="player4">
-	  player4 <input type="text" name = "player4" data - name = "player4" placeholder = "Enter player4 name" id = "player4"> 
-	  </div>
-	  </div>
+											</b>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											<b>
+												<div style="text-align:center"><strong><font size="5">LEVEL</font></strong><br/>
+													<img name="button_level1" src="img/level1.png" align="left" onclick="chgL1(); playFx();">   
+													<img name="button_level2" src="img/level2.png" align="middle" onclick="chgL2(); playFx();">
+													<img name="button_level3" src="img/level3.png" align="right" onclick="chgL3(); playFx();"> 
+												</b>
+											</td>
+										</tr>
 
-	  </form>
+										<tr>
+											<td>
+												<b>
 
-	 </b>
-	 </td>
-	 </tr>
-	 
-	 
-	 <tr>
-	 <td>
-	 <b><br/>
-	<!-- submit -->
-	 <!-- <center><a href = "./index.html"><input type = "image" value = "go" align = "middle" src = "./img/go.png" width = "100" onclick="checkAlert();"></a></center> -->
-	 <center><input type = "image" value = "go" align = "middle" src = "./img/go.png" width = "100" onclick="checkAlert();"></center>
-	 </b>
-	 </td>
-	 </tr>
+													<!-- user name input form -->
+													<form name="form1" action="./index.html">
+														<div style="height: 35px;">
+															<div style="float: left; width:50%;" id="player1">
+																player1 <input type="text" name = "player1" data - name = "player1" placeholder = "Enter player1 name" id = "player1"> 
+															</div>
+															<div style="float: right; width:50%;" id="player2">
+																player2 <input type="text" name = "player2" data - name = "player2" placeholder = "Enter player2 name" id = "player2">  
+															</div>
+														</div>
+														<div style="height: 35px;">
+															<div style="float: left; width:50%;" id="player3">
+																player3 <input type="text" name = "player3" data - name = "player3" placeholder = "Enter player3 name" id = "player3">  
+															</div>
+															<div style="float: right; width:50%;" id="player4">
+																player4 <input type="text" name = "player4" data - name = "player4" placeholder = "Enter player4 name" id = "player4"> 
+															</div>
+														</div>
 
-	 </table>
+													</form>
 
-	 </div></div></div>
-	 </div>
+												</b>
+											</td>
+										</tr>
 
-	 </div>
 
-	<script>
-	
+										<tr>
+											<td>
+												<b><br/>
+													<!-- submit -->
+													<!-- <center><a href = "./index.html"><input type = "image" value = "go" align = "middle" src = "./img/go.png" width = "100" onclick="checkAlert();"></a></center> -->
+													<center><input type = "image" value = "go" align = "middle" src = "./img/go.png" width = "100" onclick="playFx(); checkAlert();"></center>
+												</b>
+											</td>
+										</tr>
+
+									</table>
+
+								</div></div></div>
+							</div>
+
+						</div>
+
+						<script>
+
 // Get the modal
 var modal = document.getElementById('myModal');
 
