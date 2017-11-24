@@ -264,7 +264,7 @@ PlayerShow();
 		<div>
 		<div id="tiles_left" class="tiles_left">
 			<img src="./img/tileLeft_empty.png">
-			<p class="text">TILES LEFT : 63</p>
+			<p id="tile_left_text" class="text">TILES LEFT : 63</p>
 		</div>
 		<div id="hint_empty" class="hint_empty">
 			<img src="./img/Hint_empty.png">
@@ -335,8 +335,8 @@ PlayerShow();
 
 
 	<div>
-		<div id="exchange"><img src="./img/exchange.png" onclick="pass();"></div>
-		<div id="pass"><img src="./img/Pass.png"></div>
+		<div id="exchange"><img src="./img/exchange.png" onclick="exchange();"></div>
+		<div id="pass"><img src="./img/Pass.png" onClick="pass();"></div>
 		<div id="shuffle"><img src="./img/Shuffle.png" onclick="shuffle();"></div>
 	</div>
 </div>
