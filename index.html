@@ -8,7 +8,6 @@
 	b{
 		font-size:40px;
 	}
-
 	.modal2{
 		display: none; /* Hidden by default */
 		position: fixed; /* Stay in place */
@@ -51,7 +50,6 @@
 		width: 848px;
 		height: 734px;
 	}
-	/* The Close Button */
 	.close2 {
 		color: #aaaaaa;
 		float: right;
@@ -64,39 +62,10 @@
 		text-decoration: none;
 		cursor: pointer;
 	}
-	.closeTutorial {
-		color: #aaaaaa;
-		float: right;
-		font-size: 28px;
-		font-weight: bold;
-	}
-	.closeTutorial:hover,
-	.closeTutorial:focus {
-		color: #000;
-		text-decoration: none;
-		cursor: pointer;
-	}
-	.closeVersion {
-		color: #aaaaaa;
-		float: right;
-		font-size: 28px;
-		font-weight: bold;
-	}
-	.closeVersion:hover,
-	.closeVersion:focus {
-		color: #000;
-		text-decoration: none;
-		cursor: pointer;
-	}
-	.modal2-body{
-		margin:120px;
-		margin-left:150px;
-	}
-
-
-
 </style>
-<title>Main Board</title>
+
+<title>SCRABBLE GAME - by DoOptimal</title>
+
 <link rel="stylesheet" type="text/css" href="./css/index.css">
 
 <script type="text/javascript" src="./scripts/main.js"></script>
@@ -177,38 +146,26 @@ function playFx () {
 
 
 					<div class="modal2-body">
-						<table id="modal2-body">
-							<tr>
-								<td>
-									<b>&nbsp;&nbsp;&nbsp;
-										BGM
-										<img name="button_bgm" src='img/on.png' align="right" onclick="chgImg1()">
-									</b>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<b>&nbsp;&nbsp;&nbsp;
-										FX
-										<img name="button_fx" src="img/on.png" align="right" onClick="chgImg2();">
-									</b>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<!-- <img src="img/Tutorial.png" align="center" width="500"> -->
-									<input id="btnTutorialShow" type="image" align="center" src="img/Tutorial.png"  width="500" >
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<!-- <img src="img/Version.png" align="center" width="500"> -->
-									<input id="btnVersionShow" type="image" align="center" src="img/Version.png"  width="500" >
-								</td>
-							</tr>
+						<!-- <table id="modal2-body"> -->
+						<div class="modal_left">
+							<center><img src="./img/bgm.png"></center>
+							<center><img name="button_bgm" src='img/on.png' align="center" onclick="chgImg1()"></center>
+						</div>
 
+						<div class="modal_right">
+							<center><img src="./img/fx.png"></center>
+							<center><img name="button_fx" src="img/on.png" align="center" onClick="chgImg2();"></center>
+						</div>
+						
+						<div class="modal_center">
+							<center><img src="./img/HowTo.png"></center>
+							<center><input id="btnTutorialShow" type="image" align="center" src="img/Tutorial.png"  width="350" ></center>
+						</div>
+						
+						<div class="modal_center">
+							<center><input id="btnVersionShow" type="image" align="center" src="img/Version.png"  width="350" ></center>
+						</div>
 
-						</table>
 					</div>
 
 

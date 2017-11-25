@@ -36,6 +36,18 @@ img{
 	background-size: 100%;
 }
 
+.modal_left{
+	float: left;
+	width: 42%;
+}
+.modal_right{
+	float: right;
+	width: 58%;
+}
+.modal_center{
+	float: left;
+	width: 92%;
+}
 
 .center_screen{
 	float: left;
@@ -592,7 +604,42 @@ a.on
     text-decoration: none;
     cursor: pointer;
 }
-
+	.close2 {
+		color: #aaaaaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	.close2:hover,
+	.close2:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	.closeTutorial {
+		color: #aaaaaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	.closeTutorial:hover,
+	.closeTutorial:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+	}
+	.closeVersion {
+		color: #aaaaaa;
+		float: right;
+		font-size: 28px;
+		font-weight: bold;
+	}
+	.closeVersion:hover,
+	.closeVersion:focus {
+		color: #000;
+		text-decoration: none;
+		cursor: pointer;
+	}
 /*Dictionary*/
 
 /* Modal Header */
@@ -604,6 +651,10 @@ a.on
 
 /* Modal Body */
 .modal-body {padding: 2px 16px;}
+.modal2-body{
+	margin:120px;
+	margin-left:150px;
+}
 
 /* Modal Footer */
 .modal-footer {
