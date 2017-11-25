@@ -102,26 +102,24 @@ img{
 	float: left;
 	width: 45%;
 	margin-left: 30px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 #userBox2{
 	float: left;
 	width: 45%;
 	margin-left: 10px;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
 #userBox3{
 	float: left;
 	width: 45%;
 	margin-left: 30px;
-	margin-top: 25px;
 
 }
 #userBox4{
 	float: left;
 	width: 45%;
 	margin-left: 10px;
-	margin-top: 25px;
 }
 
 #show_up{
