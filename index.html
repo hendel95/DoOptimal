@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 
+<audio id="Bgm" src="./music/bgm.mp3" autoplay> </audio>
+<audio id="Fx" src="./music/fx.mp3" hidden="true"> </audio>
+
 <head>
 	<style>
 	b{
@@ -21,6 +24,21 @@
 		text-align: center;
 		padding: 0!important;
 	}
+	.modal3{
+ 		display: none; /* Hidden by default */
+ 		position: fixed; /* Stay in place */
+ 		z-index: 1; /* Sit on top */
+ 		padding-top: 0px; /* Location of the box */
+ 		left: 0;
+ 		top: 0;
+ 		width: 100%;/* Full width */
+ 		height: 100%; /* Full height */
+ 		overflow: auto; /* Enable scroll if needed */
+ 		background-color: rgb(0,0,0); /* Fallback color */
+ 		background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+ 		text-align: center;
+ 		padding: 0!important;
+ 	}
 
 	.modal2-dialog.modal-center {
 		display: inline-block;
@@ -38,7 +56,6 @@
 		height: 734px;
 	}
 
-	/* The Close Button */
 	.close2 {
 		color: #aaaaaa;
 		float: right;
@@ -52,21 +69,33 @@
 		text-decoration: none;
 		cursor: pointer;
 	}
-
-
-	.modal2-body{
-		margin:120px;
-		margin-left:150px;
-	}
-	
-
-
 </style>
-<title>Main Board</title>
+<title>SCRABBLE GAME - by DoOptimal</title>
+
 <link rel="stylesheet" type="text/css" href="./css/index.css">
 
 <script type="text/javascript" src="./scripts/main.js"></script>
 <!-- <script type="text/javascript" src="./scripts/ReadySetting.js"></script> -->
+
+<script>
+ 	function playBgm() {
+ 	var bgm = document.getElementById('Bgm');
+	bgm.play();
+}
+ 
+ 
+function pauseBgm() {
+	var bgm = document.getElementById('Bgm');
+	bgm.pause();
+}
+
+function playFx () {
+	var fx = document.getElementById('Fx');
+	fx.play();
+}
+ 
+</script>
+
 
 </head>
 
@@ -82,15 +111,18 @@
 
 					<script language="javascript">
 						var img = new Array("img/on.png","img/off.png");
+						var bgm = document.getElementById('Bgm');
 
 						var i;
 						i=0;
 						function chgImg1(){
 							if(i==0){
 								i=1;
+								pauseBgm();
 							}
 							else{
 								i=0;
+								playBgm();
 							}
 							document.button_bgm.src = img[i];
 						}
@@ -105,9 +137,13 @@
 						function chgImg2(){
 							if(i==0){
 								i=1;
+								var fx = document.getElementById('Fx');
+								fx.src = "";
 							}
 							else{
 								i=0;
+								var fx = document.getElementById('Fx');
+								fx.src = "./music/fx.mp3";
 							}
 							document.button_fx.src = img[i];
 						}
@@ -116,37 +152,63 @@
 
 
 					<div class="modal2-body">
-						<table id="modal2-body">
-							<tr>
-								<td>
-									<b>&nbsp;&nbsp;&nbsp;
-										BGM
-										<img name="button_bgm" src='img/on.png' align="right" onclick="chgImg1()">
-									</b>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<b>&nbsp;&nbsp;&nbsp;
-										FX
-										<img name="button_fx" src="img/on.png" align="right" onClick="chgImg2();">
-									</b>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/Tutorial.png" align="center" width="500">
+						<!-- <table id="modal2-body"> -->
+ 						<div class="modal_left">
+ 							<center><img src="./img/bgm.png"></center>
+							<center><img name="button_bgm" src='img/on.png' align="center" onclick="chgImg1()"></center>
+ 						</div>
+ 
+						<div class="modal_right">
+ 							<center><img src="./img/fx.png"></center>
+ 							<center><img name="button_fx" src="img/on.png" align="center" onClick="chgImg2();"></center>
+ 						</div>
+ 						
+ 						<div class="modal_center">
+ 							<center><img src="./img/HowTo.png"></center>
+ 							<center><input id="btnTutorialShow" type="image" align="center" src="img/Tutorial.png"  width="350" ></center>
+ 						</div>
+ 						
+ 						<div class="modal_center">
+ 							<center><input id="btnVersionShow" type="image" align="center" src="img/Version.png"  width="350" ></center>
+ 						</div>
 
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<img src="img/Version.png" align="center" width="500">
-								</td>
-							</tr>
+ 					</div>
+ 
+ 
+ 				</div>
+ 			</div>
+ 
+ </div>
+ 
+ <div class="modal3" id="tutorialModal">
 
 
-						</table>
+
+ 			<div class="modal2-dialog modal-center" role="document">
+ 				<div class="modal2-content">
+ 					<span class="closeTutorial">&times;</span>
+  
+ 					<div class="modal2-body">
+ 						<div id="Tutorialmodal-body0">
+ 						<center><img src="./img/Tutorial.png"></center>
+ 						<br/>
+ 						<center>
+						<input id="next" type="image" align="center" src="./img/Tutorial.png" onclick="chagePageNext();"></center>
+ 						
+ 						</div>
+ 						<div id="Tutorialmodal-body1">
+						<center><img src="./img/Tutorial.png"></center>
+ 						<br/>
+ 						<center>
+ 						<input id="back" type="image" align="center" src="./img/Tutorial.png" onclick="chagePageBack();">
+ 						<input id="next" type="image" align="center" src="./img/Tutorial.png" onclick="chagePageNext();"></center>
+ 						</div>
+ 						
+ 						
+
+
+
+
 					</div>
 
 
@@ -155,7 +217,21 @@
 
 		</div>
 
-
+<div class="modal3" id="VersionModal">
+ 
+ 			<div class="modal2-dialog modal-center" role="document">
+ 				<div class="modal2-content">
+ 					<span class="closeVersion">&times;</span>
+  
+ 					<div class="modal2-body">
+ 						<table id="modal2-body">
+ 						
+ 						</table>
+ 					</div>
+  
+  
+ 				</div>
+ 			</div>
 
 
 
@@ -182,6 +258,10 @@
 				<!-- <p class="score_text"><div id="stats"style="background:url(./img/ScoreBox.png) no-repeat"></div></p> -->
 				<p class="score_text"><div id="stats"></div></p>
 			</div>
+			<div id="turnbox0">
+ 				<div class="turn_box"><img src="./img/myturn.png"></div>
+ 				
+ 			</div>
 		</div>
 
 		<div id="userBox2">
@@ -196,6 +276,8 @@
 				<!-- <img src="./img/ScoreBox.png"> -->
 				<p class="score_text"><div id="stats2"></div></p>
 			</div>
+			<div id="turnbox1">
+ 			</div>
 		</div>
 		
 		<div id="userBox3">
@@ -210,6 +292,8 @@
 				<!-- <img src="./img/ScoreBox.png"> -->
 				<p class="score_text"><div id="stats3"></div></p>
 			</div>
+			<div id="turnbox2">
+ 			</div>
 		</div>
 		
 		<div id="userBox4">
@@ -224,6 +308,8 @@
 				<!-- <img src="./img/ScoreBox.png"> -->
 				<p class="score_text"><div id="stats4"></div></p>
 			</div>
+			<div id="turnbox3">
+ 			</div>
 		</div>
 
 	</div>
@@ -246,23 +332,31 @@ function PlayerShow(){
 	}
 }
 
+function TutorialShow(){
+ 		document.getElementById("Tutorialmodal-body0").style.display="block";
+ 		document.getElementById("Tutorialmodal-body1").style.display="none";
+  
+ }
+
 PlayerShow();
+TutorialShow();
 </script>
+	<div class="bottom_left">
 	<!-- showUP버튼 동작 -->
 		<div id="show_up">
-		<input id="show_Up" type="image" src="./img/ShowUp.png" onclick="showUp()" width="80"> 
+		<input id="show_Up" type="image" src="./img/ShowUp.png" onclick="playFx();showUp();" width="80"> 
 		</div>
 
 
 		<div id="next_turn">
-		<input id="next_Turn" type="image" src="./img/NextTurn.png" onclick="finalise();" width="80">
+		<input id="next_Turn" type="image" src="./img/NextTurn.png" onclick="playFx(); finalise();" width="80">
 		</div>		
 		
 	
 		<div>
 		<div id="tiles_left" class="tiles_left">
 			<img src="./img/tileLeft_empty.png">
-			<p class="text">TILES LEFT : 63</p>
+			<p id="tile_left_text" class="text">TILES LEFT : 63</p>
 		</div>
 		<div id="hint_empty" class="hint_empty">
 			<img src="./img/Hint_empty.png">
@@ -271,7 +365,7 @@ PlayerShow();
 
 		
 		
-		<div id="dictionary"><img src="./img/Dictionary.png"></div>
+		<input id="dictionary" type="image" src="./img/Dictionary.png"> 
 		
 		
 	<!-- dictionary버튼 동작 -->
@@ -309,24 +403,10 @@ PlayerShow();
 	</div>
 
 	<div id="tilerack">
-		<table id="tileStorage" cellspacing="1" clear:both; >
+		<table id="tileStorage" border="0" cellspacing="0" cellpadding="0" >
 			<tr>
-				<!-- <td id="tileStorage0" class="tileStore" style="background:url(./img/Tile.png)"> -->
-				<!-- </td> -->
-				<!-- <td id="tileStorage1" class="tileStore"><img src="./img/Tile.png"> -->
-				<!-- </td> -->
-				<!-- <td id="tileStorage2" class="tileStore"><img src="./img/Tile.png"> -->
-				<!-- </td> -->
-				<!-- <td id="tileStorage3" class="tileStore"><img src="./img/Tile.png"> -->
-				<!-- </td> -->
-				<!-- <td id="tileStorage4" class="tileStore"><img src="./img/Tile.png"> -->
-				<!-- </td> -->
-				<!-- <td id="tileStorage5" class="tileStore"><img src="./img/Tile.png"> -->
-				<!-- </td> -->
-				<!-- <td id="tileStorage6" class="tileStore"><img src="./img/Tile.png"> -->
-				<!-- </td> -->
 
-	<td id="tileStorage0" class="tileStore" style="background:url(./img/tile2.png) no-repeat" width="50" height="60">
+	<td id="tileStorage0" class="tileStore" style="background:url(./img/tile2.png) no-repeat" width="50" height="60" margin=0>
 	</td>
 	<td id="tileStorage1" class="tileStore" style="background:url(./img/Tile2.png) no-repeat" width="50" height="60">
 	</td>
@@ -347,14 +427,18 @@ PlayerShow();
 	</div>
 	
 	<div>
-		<div id="exchange"><img src="./img/exchange.png" onclick="pass();"></div>
-		<div id="pass"><img src="./img/Pass.png"></div>
-		<div id="shuffle"><img src="./img/Shuffle.png" onclick="shuffle();"></div>
+		<input id="exchange" type="image" src="./img/exchange.png" onclick="playFx(); exchange();" height="42"> 
+ 		<input id="pass" type="image" src="./img/Pass.png" onclick="playFx(); pass();"  height="42"> 
+ 		<input id="shuffle" type="image" src="./img/Shuffle.png" onclick="playFx(); shuffle();" height="42"> 
+ 		<!-- <div id="exchange"><img src="./img/exchange.png" onclick="exchange();"></div> -->
+ 		<!-- <div id="pass"><img src="./img/Pass.png" onClick="pass();"></div> -->
+ 		<!-- <div id="shuffle"><img src="./img/Shuffle.png" onclick="shuffle();"></div> -->
 	</div>
+</div>
 </div>
 
 <div class="center_screen">
-	<table id="board">
+	<table id="board" border="0" cellspacing="0" cellpadding="1">
 		<tr>
 			<td id="c1r1" class="tripleWord"><a class="empty" href="#" onclick="placeTile('c1r1'); return false;"><img src="./img/3W.png" class="image"></a></td>
 			<td id="c2r1"><a class="empty" href="#" onclick="placeTile('c2r1'); return false;"><img src="./img/BoardTile.png" class="image"></a></td>
@@ -642,27 +726,46 @@ drawTileStorage();
 var modal = document.getElementById('myModal');
 var modalLW = document.getElementById('ModalOf2LW');
 var modal2 = document.getElementById('myModal2');
+var modalTutorial = document.getElementById('tutorialModal');
+var modalVersion = document.getElementById('VersionModal');
 		
 // Get the button that opens the modal
 var btn = document.getElementById("dictionary");
 var btnLW = document.getElementById("LW");
 var btn2 = document.getElementById("setting");
+var btnTutorialShow = document.getElementById("btnTutorialShow");
+var btnVersionShow = document.getElementById("btnVersionShow");
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 var spanLW = document.getElementsByClassName("closeLW")[0];
 var span2 = document.getElementsByClassName("close2")[0];
+var spanTutorial = document.getElementsByClassName("closeTutorial")[0];
+var spanVersion = document.getElementsByClassName("closeVersion")[0];
+
 
 // When the user clicks on the button, open the modal
 btn.onclick = function() {
+	playFx();
     modal.style.display = "block";
 }
 btnLW.onclick = function() {
+	playFx();
 	modalLW.style.display = "block";
 }
 btn2.onclick = function() {
+	playFx();
     modal2.style.display = "block";
 }
+btnTutorialShow.onclick = function() {
+     modalTutorial.style.display = "block";
+ 	modal2.style.display = "none";
+ 
+ }
+ btnVersionShow.onclick = function() {
+     modalVersion.style.display = "block";
+ 	modal2.style.display = "none";
+ }
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -674,6 +777,15 @@ spanLW.onclick = function() {
 span2.onclick = function() {
     modal2.style.display = "none";
 }
+spanTutorial.onclick = function() {
+     modalTutorial.style.display = "none";
+ 	modal2.style.display = "block";
+ }
+ spanVersion.onclick = function() {
+     modalVersion.style.display = "none";
+ 	modal2.style.display = "block";
+ 
+ }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event){
@@ -685,6 +797,15 @@ if (event.target == modalLW){
 }
 if (event.target == modal2){
     modal2.style.display = "none";
+}
+if (event.target == modalTutorial){
+     modalTutorial.style.display = "none";
+ 	modal2.style.display = "none";
+ }
+ if (event.target == modalVersion){
+    modalVersion.style.display = "none";
+ 	modal2.style.display = "none";
+ 
 }
 }
 
