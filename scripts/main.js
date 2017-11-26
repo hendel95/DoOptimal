@@ -125,7 +125,7 @@ fromHex["F"] = 15;
 var toHex = new Array("0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F");
 
 
-var tileBank = new Array("A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I", "I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L", "M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O", "O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S", "S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W", "W", "X", "Y", "Y", "Z", " ", " ");	// The tiles which may be given to the player
+var tileBank = new Array("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I", "I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L", "M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O", "O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S", "S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W", "W", "X", "Y", "Y", "Z");	// The tiles which may be given to the player
 var tilesRemaining = tileBank.length;	// Number of tiles remaining that may be given to a player
 
 var selectedTile = -1;	// Index of tile in rackArray that has been clicked on (selected)
@@ -405,7 +405,7 @@ function drawTileStorage()
 	theStats4.innerHTML = stats4;
 
 	var tileLeft = document.getElementById("tile_left_text");
-	var tile_left_text = "TILE LEFT : "+tilesRemaining;
+	var tile_left_text = "TILES LEFT : "+tilesRemaining;
 	tileLeft.innerHTML = tile_left_text;
 
 	//var stats = "Tiles remaining: " + tilesRemaining + " | Current score: " + score;
@@ -1262,6 +1262,62 @@ function pass(){
 	hideRack();
 	turnChange();
 	drawTileStorage();
+	findHint();
+}
+
+function findHint(){
+	var characterlist = rackArray[turn];
+	characterlist.sort();
+	var hintlist = [];
+
+	var arr= findOccation();
+	
+	for(var i=0;i<arr.length;i++){
+		var obj={};
+		for(var j=0;j<arr[i].length;j++){
+			//console.log(arr[i][j]);
+			var count = obj[characterlist[arr[i][j]][0]]
+			if(isNaN(count)){
+				count=0;
+			}
+			obj[characterlist[arr[i][j]][0]] = count+1;
+		}
+		//console.log(obj);
+		var s="";
+
+		for(var j in obj){
+			s+=j.toLowerCase();
+			s+=obj[j];
+		}
+		//console.log(s);
+		//console.log(new_wordmap[s]);
+	}
+
+}
+
+function findOccation(){
+	var characterlist = rackArray[turn];
+	var len = characterlist.length;
+	var arr = [];
+
+	for(var i=0;i<len; i++){
+		for(var j=i+1;j<len;j++){
+			for(var k = j+1 ; k<len ;k++){
+				arr.push([i,j,k]);
+			}
+		}
+	}	
+	for(var i=0;i<len; i++){
+		for(var j=i+1;j<len;j++){
+			for(var k = j+1 ; k<len ;k++){
+				for(var l=k+1;l<len;l++){
+					arr.push([i,j,k, l]);
+				}
+			}
+		}
+	}
+	console.log(arr);
+	return arr;
 }
 
 
