@@ -147,6 +147,12 @@ var bestplay = getBestPlay();
 var highscore = getHighScore();
 var swaps = 0;	// Number of consecutive tile swaps
 
+var hint_left = new Array();
+hint_left[0]=3;
+hint_left[1]=3;
+hint_left[2]=3;
+hint_left[3]=3;
+
 initTileStorage();	// Randomly pick player's first tiles
 // PlayerShow();
 
@@ -982,6 +988,7 @@ function finalise()
 	hideRack();
 	turnChange();
 	drawTileStorage();
+	drawHintLeft();
 
 	return true;
 }
@@ -1262,7 +1269,7 @@ function pass(){
 	hideRack();
 	turnChange();
 	drawTileStorage();
-	findHint();
+	drawHintLeft();
 }
 
 function findHint(){
@@ -1330,5 +1337,15 @@ function findOccation(){
 	return arr;
 }
 
+function drawHintLeft(){
+	var str = "HINT : " + hint_left[turn];
+	var hint_text = document.getElementById("hint_text");
+	hint_text.innerHTML = str;
+}
+
+function decreaseHint() {
+	hint_left[turn]--;
+	drawHintLeft();
+}
 
 

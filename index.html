@@ -361,7 +361,7 @@ TutorialShow();
 
 		<div id="hint_empty" class="hint_empty">
 			<img src="./img/Hint_empty.png">
-			<p class="text">HINT : 3</p>
+			<p class="text" id="hint_text">HINT : 3</p>
 		</div>
 		<!--input id="hint_empty" class = "hint_empty" type="image" src="./img/Hint_empty.png" value= "HINT : 3"-->  
 
@@ -789,6 +789,7 @@ btnTutorialShow.onclick = function() {
  }
  btnHint.onclick = function() {
  	findHint();
+ 	decreaseHint();
  	modalHint.style.display = "block";
  }
 
