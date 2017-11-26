@@ -369,10 +369,10 @@ TutorialShow();
 		<div id="hintModal" class="modal">
 
 			<!-- Modal content -->
-			<div class="modal-content">
+			<div class="modal-content"" >
 				<span class="closeHint">&times;</span>
 				<h2>HINT</h2>
-				<p id="hint_content"></p>
+				<h4 id="hint_content" style="word-break:normal; padding-left: 10%; padding-right: 10%"></h4>
 				<span>
 				</span>
 			</div>
@@ -788,6 +788,7 @@ btnTutorialShow.onclick = function() {
  	modal2.style.display = "none";
  }
  btnHint.onclick = function() {
+ 	findHint();
  	modalHint.style.display = "block";
  }
 

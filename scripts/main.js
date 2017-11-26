@@ -1295,7 +1295,14 @@ function findHint(){
 			hintlist.push(new_wordmap[s]);
 		}
 	}
-	console.log(hintlist);
+	//console.log(hintlist);
+
+	var hint_content = document.getElementById("hint_content");
+	var hint=""
+	for(var i =0;i<hintlist.length;i++){
+		hint += hintlist[i]+"   ";
+	}
+	hint_content.innerHTML = hint;
 }
 
 function findOccation(){
