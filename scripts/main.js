@@ -1290,9 +1290,12 @@ function findHint(){
 			s+=obj[j];
 		}
 		//console.log(s);
-		//console.log(new_wordmap[s]);
+		//console.log(s, new_wordmap[s]);
+		if(typeof(new_wordmap[s])!= 'undefined'){
+			hintlist.push(new_wordmap[s]);
+		}
 	}
-
+	console.log(hintlist);
 }
 
 function findOccation(){
@@ -1316,7 +1319,7 @@ function findOccation(){
 			}
 		}
 	}
-	console.log(arr);
+	//console.log(arr);
 	return arr;
 }
 
