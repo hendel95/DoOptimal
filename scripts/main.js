@@ -213,8 +213,24 @@ function hideRack(){
 
 var turn=0;
 
+// This setting will call myTimer function every 1 sec.
 
-var timerVar = setInterval(myTimer, 1000);
+//user Timer setting
+var timerSettingUser = setInterval(myTimer, 1000);
+var timerSettingWhole = setInterval(finishGame, 1000);
+
+var wholeTimer = 3600; //set maximun 60 mins 
+
+function finishGame(){
+	wholeTimer--;
+	if(wholeTimer<0){
+		alert("game finished");
+		/*
+		Add function to finish this game
+		*/
+		clearInterval(timerSettingWhole);
+	}
+}
 
 var userTimer =100;
 
@@ -227,24 +243,6 @@ function myTimer(){
 	}
 }
 
-function turnChange(){
-	var totalPlayer=playerNum()-1;
-	// remove original turn's turnbox
-	var whosTurn = 'turnbox' + turn;
-	var turnbox = document.getElementById(whosTurn);
-	turnbox.innerHTML = '';
-	//
-	userTimer = 100;
-	showTimer();
-	
-	if(turn<totalPlayer)
-		turn++;
-	else if(turn==totalPlayer)
-		turn=0;
-
-	showWhoTurn();
-}
-
 function showTimer(){
 	var totalPlayer = playerNum() -1;
 	var whosTime = 'timer' + turn;
@@ -254,6 +252,25 @@ function showTimer(){
 		document.getElementById(whosTime).innerHTML = "Timer";
 	}
 }
+
+function turnChange(){
+	var totalPlayer=playerNum()-1;
+	// remove original turn's turnbox
+	var whosTurn = 'turnbox' + turn;
+	var turnbox = document.getElementById(whosTurn);
+	turnbox.innerHTML = '';
+	//
+	userTimer = 100;
+	showTimer();
+
+	if(turn<totalPlayer)
+		turn++;
+	else if(turn==totalPlayer)
+		turn=0;
+
+	showWhoTurn();
+}
+
 
 //myturn 추가 이후로 인터페이스 이상해짐 특히 3번 유저가 turn일때 너무 밀림
 function showWhoTurn(){

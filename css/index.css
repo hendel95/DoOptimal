@@ -122,6 +122,8 @@ img{
 	margin-left: 10px;
 }
 
+
+/*
 #show_up{
 	float: left;
 	width: 17%;
@@ -141,14 +143,11 @@ img{
 	width: 17%;
 	margin-top: 25px;
 }
-
-
 #hint_empty{
 	float: left;
 	width: 20%;
 	margin-left: 4px;
 }
-
 #dictionary{
 	float: left;
 	width: 25%;
@@ -160,6 +159,93 @@ img{
 	width: 45%;
 	margin-left: 5px;
 }
+
+*/
+
+
+/*absolute position*/
+
+
+#show_up{
+	width: 17%;
+	position: absolute;
+	top: 400px;
+	left: 10px;
+}
+
+#next_turn{
+	width: 17%;
+	top: 400px;
+	left: 400px;
+	position: absolute;
+}
+
+
+#tiles_left{
+	position: absolute;
+	width: 19%;
+	top:400px;
+	left: 190px;
+}
+#hint_empty{
+	position: absolute;
+	width: 8%;
+	top: 430px;
+	left: 190px;
+}
+
+#dictionary{
+
+	width: 10%;
+	top: 430px;
+	left: 320px;
+	position: absolute;
+}
+
+#LW{
+	width: 19%;
+	position: absolute;
+	top: 465px;
+	left: 190px;
+}
+
+#exchange{
+	position: absolute;
+	left: 90px;
+	width: 13%;
+	top: 500px;
+}
+#pass{
+	position: absolute;
+	left: 280px;
+	width: 7%;
+	top: 500px;
+}
+#shuffle{
+	position: absolute;
+	left:385px;
+	width: 13%;
+	top: 500px;
+}
+
+#tileStorage
+{
+	width: 100%;
+	text-align: center;
+
+}
+#tilerack{
+	margin-top: 335px;
+	margin-left: 25px;
+}
+
+/*absolute position*/
+
+
+
+
+
+
 
 #board td .placed
 {
@@ -211,12 +297,7 @@ img{
  }
 
 
-#tileStorage
-{
-	width: 100%;
-	text-align: center;
 
-}
 
 #tileStorage input
 {
@@ -246,6 +327,7 @@ a.on
 
 
 
+/*
 #exchange{
 	float: left;
 	width: 30%;
@@ -261,6 +343,13 @@ a.on
 	width: 30%;
 	margin-left: 20px;
 }
+#tileStorage
+{
+	width: 100%;
+	text-align: center;
+
+}
+*/
 
 #board
 {
@@ -270,14 +359,6 @@ a.on
 
 }
 
-#board td
-{
-
-}
-
-#board td .empty
-{
-}
 
 
 #board td .placed
