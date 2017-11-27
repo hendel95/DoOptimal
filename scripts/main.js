@@ -44,7 +44,7 @@ tileScore["Y"] = 4;
 tileScore["Z"] = 10;
 
 var multiplierArray = new Array(); // Array of square positions that multiply
-									// scores
+// scores
 multiplierArray["c1r1"] = "3W";
 multiplierArray["c1r8"] = "3W";
 multiplierArray["c1rF"] = "3W";
@@ -136,12 +136,12 @@ var tileBank = new Array("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A",
 		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
 		"W", "X", "Y", "Y", "Z"); // The tiles which may be given to the
-									// player
+// player
 var tilesRemaining = tileBank.length; // Number of tiles remaining that may be
-										// given to a player
+// given to a player
 
 var selectedTile = -1; // Index of tile in rackArray that has been clicked on
-						// (selected)
+// (selected)
 
 var wordHead = ""; // Head of the word that is currently being scanned
 var wordTail = ""; // Tail of the word that is currently being scanned
@@ -150,7 +150,7 @@ var wordMax = ""; // Location of the last letter of a word
 var wordList = new Array(); // Array of words placed on the board
 
 var touching = false; // Whether the scanned word touches existing tiles on
-						// the board
+// the board
 var score = new Array(); // Player's total score
 score[0] = 0;
 score[1] = 0;
@@ -714,7 +714,7 @@ function finalise() {
 	touching = false;
 	wordList.length = 0;
 	var usedMultipliers = new Array(); // Temporary array of bonus squares used
-										// in words
+	// in words
 
 	if (!placedArray["c8r8"]) {
 		for (var i = 0; i < rackArray[turn].length; i++) {
@@ -750,8 +750,8 @@ function finalise() {
 		return false;
 	}
 	for (var i = 0; i < rackArray[turn].length; i++) // Move used tiles from
-														// rackArray to
-														// placedArray
+	// rackArray to
+	// placedArray
 	{
 		if (getTilePosition(i)) {
 			placedArray[getTilePosition(i)] = getTileLabel(i);
@@ -762,7 +762,7 @@ function finalise() {
 	}
 
 	for (var i = 0; i < wordList.length; i++) // Remove duplicates from
-												// wordList
+	// wordList
 	{
 		for (var j = 0; j < wordList.length; j++) {
 			if (wordList[i] == wordList[j] && i != j) {
@@ -910,7 +910,7 @@ function finalise() {
 	score[turn] += totalScore[turn];
 
 	for (var i = 0; i < usedMultipliers.length; i++) // Remove bonuses from
-														// used bonus tiles
+	// used bonus tiles
 	{
 		multiplierArray[usedMultipliers[i]] = "";
 	}
@@ -1190,15 +1190,17 @@ function playerNum() {
 }
 
 function pass() {
-	hideRack();
-	turnChange();
-	drawTileStorage();
-	drawHintLeft();
-	var tmp = passCnt;
-	passCnt = tmp + 1;
-	if (passCnt == playerNum() * 2) {
-		confirm("game finished");
-		gameFinish();
+	if (gameStatus != 1) {
+		hideRack();
+		turnChange();
+		drawTileStorage();
+		drawHintLeft();
+		var tmp = passCnt;
+		passCnt = tmp + 1;
+		if (passCnt == playerNum() * 2) {
+			confirm("game finished");
+			gameFinish();
+		}
 	}
 }
 
@@ -1220,6 +1222,8 @@ function gameFinish() {
 		var whosTime = 'timer' + turn;
 		document.getElementById(whosTime).innerHTML = '';
 	}
+	
+	drawTileStorage();
 
 }
 
@@ -1314,3 +1318,4 @@ function decreaseHint() {
 	hint_left[turn]--;
 	drawHintLeft();
 }
+
