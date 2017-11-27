@@ -11,6 +11,9 @@ rackArray[3] = new Array("", "", "", "", "", "", "");
 var placedArray = new Array();
 //var rackArray = new Array("", "", "", "", "", "", "");
 
+var passCnt = 0; // if everyone click in succession of pass 2 times, 
+//game will be finished.
+
 
 var tileScore = new Array();	// Array of scores for letters
 tileScore["A"] = 1;
@@ -1281,6 +1284,7 @@ var player2N=getQuerystring("player2");
 var player3N=getQuerystring("player3");
 var player4N=getQuerystring("player4");
 
+var playerNameArray =  new Array(player1N, player2N, player3N, player4N);
 
 
 function playerNum(){
@@ -1298,7 +1302,54 @@ function pass(){
 	turnChange();
 	drawTileStorage();
 	drawHintLeft();
+	var tmp = passCnt;
+	passCnt = tmp + 1;
+	if(passCnt == playerNum() * 2) {
+		confirm("game finished");
+		gameFinish();
+	}
 }
+
+function gameFinish() {
+	var playernum = playerNum();
+	
+	for(var i = 0; i < playernum ; i++) {
+		addEntry(playerNameArray[i], score[i]);
+	}
+}
+
+function addEntry(entryName, entryScore) {
+	 // Parse any JSON previously stored in allEntries
+    var existingEntries = JSON.parse(localStorage.getItem("allEntries"));
+    if(existingEntries == null) existingEntries = [];
+    //var entryName = document.getElementById("entryName").value;
+    //var entryScore = document.getElementById("entryScore").value;
+    
+    /*var entry = [
+        "name": entryName,
+        "score": entryScore
+    ];
+    */
+    //var entry = {'name': entryName, 'score': entryScore};
+    //localStorage.setItem('entry', JSON.stringify(entry));
+    var testObject2 = { 'name': entryName, 'score': entryScore };
+    localStorage.setItem('testObject2', JSON.stringify(testObject2));
+    //var retrievedObject2 = localStorage.getItem('testObject2');
+    // Save allEntries back to local storage
+    existingEntries.push(testObject2);
+    localStorage.setItem("allEntries", JSON.stringify(existingEntries));
+	/*
+	 var testObject = { 'one': 1, 'two': 2, 'three': 3 };
+
+// Put the object into storage
+localStorage.setItem('testObject', JSON.stringify(testObject));
+
+// Retrieve the object from storage
+var retrievedObject = localStorage.getItem('testObject');
+
+console.log('retrievedObject: ', JSON.parse(retrievedObject));
+	 */
+};
 
 function findHint(){
 	var characterlist = rackArray[turn];
