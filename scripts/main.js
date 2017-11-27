@@ -191,6 +191,8 @@ function initTileStorage(){
 var checkS;
 checkS=0;
 
+
+
 // function showUp(){
 	// if(checkS==0){
 		// checkS=1;
@@ -211,12 +213,24 @@ function hideRack(){
 
 var turn=0;
 
+
+var intervalTimer = setIntervalTimer(timerSet, 1000);
+var d = 100;
+
+function timerSet(){
+	document.getElementById("timer1").innerHTML = d;
+	d--;
+}
+
+
+
+
 function turnChange(){
 	var totalPlayer=playerNum()-1;
 	// remove original turn's turnbox
 	var whosTurn = 'turnbox' + turn;
 	var turnbox = document.getElementById(whosTurn);
-	
+
 	turnbox.innerHTML = '';
 	//
 	if(turn<totalPlayer)
@@ -263,7 +277,7 @@ function initTileStorage()
 			}
 		}
 	}
-	
+
 	return true;
 }
 
@@ -364,7 +378,7 @@ function tileHtml(tileLabel)
 
 function drawTileStorage()
 {
-	for (i = 0; i < rackArray[turn].length; i++) 
+	for (i = 0; i < rackArray[turn].length; i++)
 	{
 		var theStore = document.getElementById("tileStorage" + i);
 		var tileLabel = getTileLabel(i);
@@ -616,7 +630,7 @@ function checkColumn()
 	var max = 0;
 	var theColumn = 0;
 	var i;
-	
+
 	for (i = 0; i < rackArray[turn].length; i++)
 	{
 		if (getTilePosition(i) != "")
@@ -894,7 +908,7 @@ function finalise()
 				displayScore += "]   ";
 			}
 		}
-	
+
 
 	if (wordMultiplier > 1)
 	{
@@ -1278,7 +1292,7 @@ function findHint(){
 	var hintlist = [];
 
 	var arr= findOccation();
-	
+
 	for(var i=0;i<arr.length;i++){
 		var obj={};
 		for(var j=0;j<arr[i].length;j++){
@@ -1323,7 +1337,7 @@ function findOccation(){
 				arr.push([i,j,k]);
 			}
 		}
-	}	
+	}
 	for(var i=0;i<len; i++){
 		for(var j=i+1;j<len;j++){
 			for(var k = j+1 ; k<len ;k++){
@@ -1347,5 +1361,3 @@ function decreaseHint() {
 	hint_left[turn]--;
 	drawHintLeft();
 }
-
-
