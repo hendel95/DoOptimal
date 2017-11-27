@@ -213,7 +213,8 @@ function hideRack(){
 
 var turn=0;
 
-var intervalTimer = window.setInterval(myTimer, 1000);
+
+var timerVar = setInterval(myTimer, 1000);
 
 var userTimer =100;
 
@@ -226,21 +227,32 @@ function myTimer(){
 	}
 }
 
-
 function turnChange(){
 	var totalPlayer=playerNum()-1;
 	// remove original turn's turnbox
 	var whosTurn = 'turnbox' + turn;
 	var turnbox = document.getElementById(whosTurn);
-
 	turnbox.innerHTML = '';
 	//
+	userTimer = 100;
+	showTimer();
+	
 	if(turn<totalPlayer)
 		turn++;
 	else if(turn==totalPlayer)
 		turn=0;
 
 	showWhoTurn();
+}
+
+function showTimer(){
+	var totalPlayer = playerNum() -1;
+	var whosTime = 'timer' + turn;
+
+	for(i = 0; i <totalPlayer; i++){
+		if(i != turn)
+		document.getElementById(whosTime).innerHTML = "Timer";
+	}
 }
 
 //myturn 추가 이후로 인터페이스 이상해짐 특히 3번 유저가 turn일때 너무 밀림

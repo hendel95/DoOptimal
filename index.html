@@ -259,7 +259,7 @@ function playFx () {
 				<p class="score_text"><div id="stats"></div></p>
 			</div>
 			<div class="timer">
-				<p id="timer0">timer</p>
+				<p id="timer0">Timer</p>
 			</div>
 			<div id="turnbox0">
  				<div class="turn_box"><img src="./img/myturn.png"></div>
@@ -298,7 +298,7 @@ function playFx () {
 				<p class="score_text"><div id="stats3"></div></p>
 			</div>
 			<div class="timer">
-				<p id="timer2">timer</p>
+				<p id="timer2">Timer</p>
 			</div>
 			<div id="turnbox2">
  			</div>
@@ -317,7 +317,7 @@ function playFx () {
 				<p class="score_text"><div id="stats4"></div></p>
 			</div>
 			<div class="timer">
-				<p id="timer3">timer</p>
+				<p id="timer3">Timer</p>
 			</div>
 			<div id="turnbox3">
  			</div>
@@ -853,18 +853,7 @@ window.onclick = function(event){
 
 
 </script>
-<script>
-var userTimer =100;
 
-function myTimer(){
-	var whosTime = 'timer' + turn;
-	document.getElementById(whosTime).innerHTML = userTimer--;
-	if(userTimer<0){
-		userTimer = 100;
-		turnChange();
-	}
-}
-</script>
 
 
 </body>
