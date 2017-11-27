@@ -1322,33 +1322,12 @@ function addEntry(entryName, entryScore) {
 	 // Parse any JSON previously stored in allEntries
     var existingEntries = JSON.parse(localStorage.getItem("allEntries"));
     if(existingEntries == null) existingEntries = [];
-    //var entryName = document.getElementById("entryName").value;
-    //var entryScore = document.getElementById("entryScore").value;
     
-    /*var entry = [
-        "name": entryName,
-        "score": entryScore
-    ];
-    */
-    //var entry = {'name': entryName, 'score': entryScore};
-    //localStorage.setItem('entry', JSON.stringify(entry));
     var testObject2 = { 'name': entryName, 'score': entryScore };
     localStorage.setItem('testObject2', JSON.stringify(testObject2));
-    //var retrievedObject2 = localStorage.getItem('testObject2');
-    // Save allEntries back to local storage
+    
     existingEntries.push(testObject2);
     localStorage.setItem("allEntries", JSON.stringify(existingEntries));
-	/*
-	 var testObject = { 'one': 1, 'two': 2, 'three': 3 };
-
-// Put the object into storage
-localStorage.setItem('testObject', JSON.stringify(testObject));
-
-// Retrieve the object from storage
-var retrievedObject = localStorage.getItem('testObject');
-
-console.log('retrievedObject: ', JSON.parse(retrievedObject));
-	 */
 };
 
 function findHint(){

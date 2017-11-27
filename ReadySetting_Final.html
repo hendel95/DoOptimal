@@ -283,19 +283,21 @@ window.onclick = function(event) {
 
 //ranking system
 
-var finallist = localStorage.getItem('allEntries');
-var re = JSON.parse(finallist);
-console.log('final: ', JSON.parse(finallist));
+var tmpArray = localStorage.getItem('allEntries');
+var rankArray = JSON.parse(tmpArray);
+console.log('final: ', JSON.parse(tmpArray));
 
-re.sort(function(a,b) {
+rankArray.sort(function(a,b) {
     return b['score']-a['score'];
 });
 
-document.getElementById('rankList').innerHTML = '1. ' + re[0]['name'] + ' ' + re[0]['score'];
+document.getElementById('rankList').innerHTML = '1. ' + rankArray[0]['name'] + ' ' + rankArray[0]['score'];
 
-for(var i=1 ; i < re.length; i++){
-	document.getElementById('rankList').innerHTML += '<br/>' + re[i]['name'] + ' ' + re[i]['score'];
+for(var i=1 ; i < rankArray.length && i < 11; i++){
+	document.getElementById('rankList').innerHTML += '<br/>' + i + '. ' + rankArray[i]['name'] + ' ' + rankArray[i]['score'];
 }
+
+//end of ranking system.
 
 </script>
 
