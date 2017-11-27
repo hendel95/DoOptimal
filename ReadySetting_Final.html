@@ -71,6 +71,11 @@ table{
 	margin-left:170px;
 }
 
+#rankList{
+	margin:120px;
+	margin-left:130px;
+}
+
 
 </style>
 
@@ -121,7 +126,7 @@ table{
 			<div class="modal-dialog modal-center" role="document">
 				<div class="modal-content">
 					<div id="rankList">
-				
+						
 					</div>
 				</div>
 			</div>
@@ -291,11 +296,17 @@ rankArray.sort(function(a,b) {
     return b['score']-a['score'];
 });
 
-document.getElementById('rankList').innerHTML = '1. ' + rankArray[0]['name'] + ' ' + rankArray[0]['score'];
+//document.getElementById('rankList').innerHTML = '1. ' + rankArray[0]['name'] + ' ' + rankArray[0]['score'];
+
+document.getElementById('rankList').innerHTML = '<div style="text-align:center"><strong><font size="5">1. ' + rankArray[0]['name'] + ' ' + rankArray[0]['score'] + '</font></strong><br/>';
+
 
 for(var i=1 ; i < rankArray.length && i < 11; i++){
-	document.getElementById('rankList').innerHTML += '<br/>' + i + '. ' + rankArray[i]['name'] + ' ' + rankArray[i]['score'];
+	document.getElementById('rankList').innerHTML += '<br/><div style="text-align:center"><strong><font size="5">' + i + '. ' + rankArray[i]['name'] + ' ' + rankArray[i]['score'] + '</font></strong><br/>';
 }
+
+//<div style="text-align:center"><strong><font size="5">PLAYER</font></strong><br/>
+
 
 //end of ranking system.
 
