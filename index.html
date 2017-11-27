@@ -82,8 +82,8 @@
  	var bgm = document.getElementById('Bgm');
 	bgm.play();
 }
- 
- 
+
+
 function pauseBgm() {
 	var bgm = document.getElementById('Bgm');
 	bgm.pause();
@@ -93,7 +93,7 @@ function playFx () {
 	var fx = document.getElementById('Fx');
 	fx.play();
 }
- 
+
 </script>
 
 
@@ -157,29 +157,29 @@ function playFx () {
  							<center><img src="./img/bgm.png"></center>
 							<center><img name="button_bgm" src='img/on.png' align="center" onclick="chgImg1()"></center>
  						</div>
- 
+
 						<div class="modal_right">
  							<center><img src="./img/fx.png"></center>
  							<center><img name="button_fx" src="img/on.png" align="center" onClick="chgImg2();"></center>
  						</div>
- 						
+
  						<div class="modal_center">
  							<center><img src="./img/HowTo.png"></center>
  							<center><input id="btnTutorialShow" type="image" align="center" src="img/Tutorial.png"  width="350" ></center>
  						</div>
- 						
+
  						<div class="modal_center">
  							<center><input id="btnVersionShow" type="image" align="center" src="img/Version.png"  width="350" ></center>
  						</div>
 
  					</div>
- 
- 
+
+
  				</div>
  			</div>
- 
+
  </div>
- 
+
  <div class="modal3" id="tutorialModal">
 
 
@@ -187,14 +187,14 @@ function playFx () {
  			<div class="modal2-dialog modal-center" role="document">
  				<div class="modal2-content">
  					<span class="closeTutorial">&times;</span>
-  
+
  					<div class="modal2-body">
  						<div id="Tutorialmodal-body0">
  						<center><img src="./img/Tutorial.png"></center>
  						<br/>
  						<center>
 						<input id="next" type="image" align="center" src="./img/Tutorial.png" onclick="chagePageNext();"></center>
- 						
+
  						</div>
  						<div id="Tutorialmodal-body1">
 						<center><img src="./img/Tutorial.png"></center>
@@ -203,8 +203,8 @@ function playFx () {
  						<input id="back" type="image" align="center" src="./img/Tutorial.png" onclick="chagePageBack();">
  						<input id="next" type="image" align="center" src="./img/Tutorial.png" onclick="chagePageNext();"></center>
  						</div>
- 						
- 						
+
+
 
 
 
@@ -218,18 +218,18 @@ function playFx () {
 		</div>
 
 <div class="modal3" id="VersionModal">
- 
+
  			<div class="modal2-dialog modal-center" role="document">
  				<div class="modal2-content">
  					<span class="closeVersion">&times;</span>
-  
+
  					<div class="modal2-body">
  						<table id="modal2-body">
- 						
+
  						</table>
  					</div>
-  
-  
+
+
  				</div>
  			</div>
 
@@ -254,13 +254,15 @@ function playFx () {
 			<div>
 				<p class="user_id"><script type="text/javascript"> document.write(player1N); </script></p>
 			</div>
-			<div class="score_box">		
+			<div class="score_box">
 				<!-- <p class="score_text"><div id="stats"style="background:url(./img/ScoreBox.png) no-repeat"></div></p> -->
 				<p class="score_text"><div id="stats"></div></p>
 			</div>
+			<div class="timer">
+				<p class="timer1">timer</p>
+			</div>
 			<div id="turnbox0">
  				<div class="turn_box"><img src="./img/myturn.png"></div>
- 				
  			</div>
 		</div>
 
@@ -276,10 +278,13 @@ function playFx () {
 				<!-- <img src="./img/ScoreBox.png"> -->
 				<p class="score_text"><div id="stats2"></div></p>
 			</div>
+			<div class="timer">
+				<p class="timer2">timer</p>
+			</div>
 			<div id="turnbox1">
  			</div>
 		</div>
-		
+
 		<div id="userBox3">
 			<img src="./img/UserBox.png">
 			<div class="user_icon">
@@ -292,10 +297,13 @@ function playFx () {
 				<!-- <img src="./img/ScoreBox.png"> -->
 				<p class="score_text"><div id="stats3"></div></p>
 			</div>
+			<div class="timer">
+				<p class="timer3">timer</p>
+			</div>
 			<div id="turnbox2">
  			</div>
 		</div>
-		
+
 		<div id="userBox4">
 			<img src="./img/UserBox.png">
 			<div class="user_icon">
@@ -308,6 +316,9 @@ function playFx () {
 				<!-- <img src="./img/ScoreBox.png"> -->
 				<p class="score_text"><div id="stats4"></div></p>
 			</div>
+			<div class="timer">
+				<p class="timer4">timer</p>
+			</div>
 			<div id="turnbox3">
  			</div>
 		</div>
@@ -316,7 +327,7 @@ function playFx () {
 	<!-- <div> -->
 
 <script language="javascript">
-		
+
 function PlayerShow(){
 		document.getElementById("userBox1").style.display="block";
 		document.getElementById("userBox2").style.display="block";
@@ -325,17 +336,17 @@ function PlayerShow(){
 
 	if(playerNum()==2){
 		document.getElementById("userBox3").style.visibility="hidden";
-		document.getElementById("userBox4").style.visibility="hidden";		
+		document.getElementById("userBox4").style.visibility="hidden";
 	}
 	else if(playerNum()==3){
-		document.getElementById("userBox4").style.visibility="hidden";	
+		document.getElementById("userBox4").style.visibility="hidden";
 	}
 }
 
 function TutorialShow(){
  		document.getElementById("Tutorialmodal-body0").style.display="block";
  		document.getElementById("Tutorialmodal-body1").style.display="none";
-  
+
  }
 
 PlayerShow();
@@ -344,15 +355,15 @@ TutorialShow();
 	<div class="bottom_left">
 	<!-- showUP버튼 동작 -->
 		<div id="show_up">
-		<input id="show_Up" type="image" src="./img/ShowUp.png" onclick="playFx();showUp();" width="80"> 
+		<input id="show_Up" type="image" src="./img/ShowUp.png" onclick="playFx();showUp();" width="80">
 		</div>
 
 
 		<div id="next_turn">
 		<input id="next_Turn" type="image" src="./img/NextTurn.png" onclick="playFx(); finalise();" width="80">
-		</div>		
-		
-	
+		</div>
+
+
 		<div>
 		<div id="tiles_left" class="tiles_left">
 			<img src="./img/tileLeft_empty.png">
@@ -363,7 +374,7 @@ TutorialShow();
 			<img src="./img/Hint_empty.png">
 			<p class="text" id="hint_text">HINT : 3</p>
 		</div>
-		<!--input id="hint_empty" class = "hint_empty" type="image" src="./img/Hint_empty.png" value= "HINT : 3"-->  
+		<!--input id="hint_empty" class = "hint_empty" type="image" src="./img/Hint_empty.png" value= "HINT : 3"-->
 
 		<!-- hint 동작 -->
 		<div id="hintModal" class="modal">
@@ -381,11 +392,11 @@ TutorialShow();
 
 
 
-		
-		
-		<input id="dictionary" type="image" src="./img/Dictionary.png"> 
-		
-		
+
+
+		<input id="dictionary" type="image" src="./img/Dictionary.png">
+
+
 		<!-- dictionary버튼 동작 -->
 		<div id="myModal" class="modal">
 
@@ -402,10 +413,10 @@ TutorialShow();
 
 		</div>
 
-		
+
 		<!-- 2LW버튼 동작 -->
-		<input id="LW" type="image" src="./img/2LW.png"> 
-		
+		<input id="LW" type="image" src="./img/2LW.png">
+
 		<!-- The Modal of 2LW-->
 		<div id="ModalOf2LW" class="modal">
 			<div class="modal-content">
@@ -417,7 +428,7 @@ TutorialShow();
 			</div>
 
 		</div>
-		
+
 	</div>
 
 	<div id="tilerack">
@@ -437,17 +448,17 @@ TutorialShow();
 	<td id="tileStorage5" class="tileStore" style="background:url(./img/Tile2.png) no-repeat" width="50" height="60">
 	</td>
 	<td id="tileStorage6" class="tileStore" style="background:url(./img/Tile2.png) no-repeat" width="50" height="60">
-	</td>	
+	</td>
 
 				</tr>
 		</table>
 
 	</div>
-	
+
 	<div>
-		<input id="exchange" type="image" src="./img/exchange.png" onclick="playFx(); exchange();" height="42"> 
- 		<input id="pass" type="image" src="./img/Pass.png" onclick="playFx(); pass();"  height="42"> 
- 		<input id="shuffle" type="image" src="./img/Shuffle.png" onclick="playFx(); shuffle();" height="42"> 
+		<input id="exchange" type="image" src="./img/exchange.png" onclick="playFx(); exchange();" height="42">
+ 		<input id="pass" type="image" src="./img/Pass.png" onclick="playFx(); pass();"  height="42">
+ 		<input id="shuffle" type="image" src="./img/Shuffle.png" onclick="playFx(); shuffle();" height="42">
  		<!-- <div id="exchange"><img src="./img/exchange.png" onclick="exchange();"></div> -->
  		<!-- <div id="pass"><img src="./img/Pass.png" onClick="pass();"></div> -->
  		<!-- <div id="shuffle"><img src="./img/Shuffle.png" onclick="shuffle();"></div> -->
@@ -747,7 +758,7 @@ var modal2 = document.getElementById('myModal2');
 var modalTutorial = document.getElementById('tutorialModal');
 var modalVersion = document.getElementById('VersionModal');
 var modalHint = document.getElementById('hintModal');
-		
+
 // Get the button that opens the modal
 var btn = document.getElementById("dictionary");
 var btnLW = document.getElementById("LW");
@@ -781,7 +792,7 @@ btn2.onclick = function() {
 btnTutorialShow.onclick = function() {
      modalTutorial.style.display = "block";
  	modal2.style.display = "none";
- 
+
  }
  btnVersionShow.onclick = function() {
      modalVersion.style.display = "block";
@@ -810,7 +821,7 @@ spanTutorial.onclick = function() {
  spanVersion.onclick = function() {
      modalVersion.style.display = "none";
  	modal2.style.display = "block";
- 
+
  }
  spanHint.onclick = function() {
  	modalHint.style.display = "none";

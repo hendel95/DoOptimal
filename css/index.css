@@ -744,7 +744,7 @@ input[id="search-word"]{
 
 .score_box{
 	position: relative;
-	margin-top: -40px;
+	margin-top: -30px;
 	margin-left:120px;
 }
 
@@ -757,7 +757,12 @@ input[id="search-word"]{
 
 .turn_box{
 	position: relative;
-	margin-top: -10px;
-	margin-left:90px;
-	width: 50%;
+	margin-top: -40px;
+	margin-left:70px;
+	width: 40%;
+}
+
+.timer{
+	position: relative;
+	margin-left: 120px;
 }
