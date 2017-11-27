@@ -1021,6 +1021,7 @@ function checkDictionary(theWord) {
 
 	{
 		if (g_wordmap[theWord] == 1) {
+			passCnt = 0;
 			return true;
 		} else {
 			return false;
