@@ -259,7 +259,7 @@ function playFx () {
 				<p class="score_text"><div id="stats"></div></p>
 			</div>
 			<div class="timer">
-				<p id="timer1">timer</p>
+				<p id="timer0">timer</p>
 			</div>
 			<div id="turnbox0">
  				<div class="turn_box"><img src="./img/myturn.png"></div>
@@ -279,7 +279,7 @@ function playFx () {
 				<p class="score_text"><div id="stats2"></div></p>
 			</div>
 			<div class="timer">
-				<p id="timer2">timer</p>
+				<p id="timer1">Timer</p>
 			</div>
 			<div id="turnbox1">
  			</div>
@@ -298,7 +298,7 @@ function playFx () {
 				<p class="score_text"><div id="stats3"></div></p>
 			</div>
 			<div class="timer">
-				<p id="timer3">timer</p>
+				<p id="timer2">timer</p>
 			</div>
 			<div id="turnbox2">
  			</div>
@@ -317,7 +317,7 @@ function playFx () {
 				<p class="score_text"><div id="stats4"></div></p>
 			</div>
 			<div class="timer">
-				<p id="timer4">timer</p>
+				<p id="timer3">timer</p>
 			</div>
 			<div id="turnbox3">
  			</div>
@@ -746,7 +746,6 @@ TutorialShow();
 		});
 </script>
 
-
 <script type="text/javascript">
 
 drawTileStorage();
@@ -851,15 +850,20 @@ window.onclick = function(event){
 	}
 }
 
-var intervalTimer = setInterval(timerSet, 1000);
 
-function timerSet(){
-	var d = new Date();
-	document.getElementById("timer1").innerHTML = d.toLocaleTimeString();
 
+</script>
+<script>
+var userTimer =100;
+
+function myTimer(){
+	var whosTime = 'timer' + turn;
+	document.getElementById(whosTime).innerHTML = userTimer--;
+	if(userTimer<0){
+		userTimer = 100;
+		turnChange();
+	}
 }
-
-
 </script>
 
 

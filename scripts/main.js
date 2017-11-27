@@ -213,16 +213,18 @@ function hideRack(){
 
 var turn=0;
 
+var intervalTimer = window.setInterval(myTimer, 1000);
 
-var intervalTimer = setIntervalTimer(timerSet, 1000);
-var d = 100;
+var userTimer =100;
 
-function timerSet(){
-	document.getElementById("timer1").innerHTML = d;
-	d--;
+function myTimer(){
+	var whosTime = 'timer' + turn;
+	document.getElementById(whosTime).innerHTML = userTimer--;
+	if(userTimer<0){
+		userTimer = 100;
+		turnChange();
+	}
 }
-
-
 
 
 function turnChange(){
