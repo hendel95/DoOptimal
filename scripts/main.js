@@ -137,6 +137,36 @@ var tileBank = new Array("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A",
 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
 		"W", "X", "Y", "Y", "Z"); // The tiles which may be given to the
 // player
+
+// var tileBank = new Array();
+// var tileBank[0] = ["A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A",
+// 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
+// 		"E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I",
+// 		"I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L",
+// 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
+// 		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
+// 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
+// 		"W", "X", "Y", "Y", "Z"];
+
+// var tileBank[1] =("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "L",
+// 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
+// 		"E", "E", "E", "E", "E", "S", "F", "F", "G", "G", "G", "H", "H", "I",
+// 		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
+// 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
+// 		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
+// 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
+// 		"W", "X", "Y", "Y", "Z");
+
+// var tileBank[2] =("A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "L",
+// 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
+// 		"E", "E", "E", "E", "M", "S", "F", "F", "G", "G", "G", "H", "H", "I",
+// 		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
+// 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
+// 		"O", "P", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
+// 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
+// 		"W", "X", "Y", "Y", "Z");
+
+
 var tilesRemaining = tileBank.length; // Number of tiles remaining that may be
 // given to a player
 
@@ -1074,6 +1104,7 @@ function checkDictionary(theWord) {
 
 	{
 		if (g_wordmap[theWord] == 1) {
+			passCnt = 0;
 			return true;
 		} else {
 			return false;
@@ -1251,7 +1282,11 @@ function pass() {
 		var tmp = passCnt;
 		passCnt = tmp + 1;
 		if (passCnt == playerNum() * 2) {
-			confirm("game finished");
+			playClap();
+			var r = confirm("game finished");
+			if(r || !r){
+					pauseClap();
+			}
 			gameFinish();
 		}
 	}
