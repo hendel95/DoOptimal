@@ -128,43 +128,50 @@ fromHex["F"] = 15;
 var toHex = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A",
 		"B", "C", "D", "E", "F");
 
-var tileBank = new Array("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A",
+var level = getQuerystring("level");
+var hintN;
+	if(level==3){hintN=1;}
+	else if(level==2){hintN=2;}
+	else if(level==1){hintN=3;}
+	
+var hint_left = new Array();
+hint_left[0] = hintN;
+hint_left[1] = hintN;
+hint_left[2] = hintN;
+hint_left[3] = hintN;
+
+var tileBank = new Array();
+if(level==1){
+	tileBank = ["A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A",
 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
 		"E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I",
 		"I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L",
 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
 		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
-		"W", "X", "Y", "Y", "Z"); // The tiles which may be given to the
-// player
+		"W", "X", "Y", "Y", "Z"];
+}
+else if(level==2){
+	tileBank =("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "L",
+		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
+		"E", "E", "E", "E", "E", "S", "F", "F", "G", "G", "G", "H", "H", "I",
+		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
+		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
+		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
+		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
+		"W", "X", "Y", "Y", "Z");
+}
+else if(level==3){
+	tileBank =("A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "L",
+		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
+		"E", "E", "E", "E", "M", "S", "F", "F", "G", "G", "G", "H", "H", "I",
+		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
+		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
+		"O", "P", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
+		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
+		"W", "X", "Y", "Y", "Z");
+}
 
-// var tileBank = new Array();
-// var tileBank[0] = ["A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A",
-// 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
-// 		"E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I",
-// 		"I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L",
-// 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
-// 		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
-// 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
-// 		"W", "X", "Y", "Y", "Z"];
-
-// var tileBank[1] =("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "L",
-// 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
-// 		"E", "E", "E", "E", "E", "S", "F", "F", "G", "G", "G", "H", "H", "I",
-// 		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
-// 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
-// 		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
-// 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
-// 		"W", "X", "Y", "Y", "Z");
-
-// var tileBank[2] =("A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "L",
-// 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
-// 		"E", "E", "E", "E", "M", "S", "F", "F", "G", "G", "G", "H", "H", "I",
-// 		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
-// 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
-// 		"O", "P", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
-// 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
-// 		"W", "X", "Y", "Y", "Z");
 
 
 var tilesRemaining = tileBank.length; // Number of tiles remaining that may be
@@ -194,17 +201,7 @@ var swaps = 0; // Number of consecutive tile swaps
 
 
 
-var level = getQuerystring("level");
-var hintN;
-	if(level==3){hintN=1;}
-	else if(level==2){hintN=2;}
-	else if(level==1){hintN=3;}
-	
-var hint_left = new Array();
-hint_left[0] = hintN;
-hint_left[1] = hintN;
-hint_left[2] = hintN;
-hint_left[3] = hintN;
+
 
 
 
@@ -290,9 +287,32 @@ function hideRack() {
 	document.getElementById("tilerack").style.display = "none";
 }
 
+<<<<<<< HEAD
+var turn=0;
+
+// This setting will call myTimer function every 1 sec.
+
+//user Timer setting
+var timerSettingUser = setInterval(myTimer, 1000);
+var timerSettingWhole = setInterval(finishGame, 1000);
+
+var wholeTimer = 3600; //set maximun 60 mins 
+
+function finishGame(){
+	wholeTimer--;
+	if(wholeTimer<0){
+		alert("game finished");
+		/*
+		Add function to finish this game
+		*/
+		clearInterval(timerSettingWhole);
+	}
+}
+=======
 var turn = 0;
 
 var timerVar = setInterval(myTimer, 1000);
+>>>>>>> 1580a3465af56988697fd222b9e320128c1d062a
 
 var userTimer = 100;
 
@@ -307,6 +327,32 @@ function myTimer() {
 	}
 }
 
+<<<<<<< HEAD
+function showTimer(){
+	var totalPlayer = playerNum() -1;
+	var whosTime = 'timer' + turn;
+
+	for(i = 0; i <totalPlayer; i++){
+		if(i != turn)
+		document.getElementById(whosTime).innerHTML = "Timer";
+	}
+}
+
+function turnChange(){
+	var totalPlayer=playerNum()-1;
+	// remove original turn's turnbox
+	var whosTurn = 'turnbox' + turn;
+	var turnbox = document.getElementById(whosTurn);
+	turnbox.innerHTML = '';
+	//
+	userTimer = 100;
+	showTimer();
+
+	if(turn<totalPlayer)
+		turn++;
+	else if(turn==totalPlayer)
+		turn=0;
+=======
 function turnChange() {
 	if (gameStatus != 1) {
 		var totalPlayer = playerNum() - 1;
@@ -322,11 +368,14 @@ function turnChange() {
 			turn++;
 		else if (turn == totalPlayer)
 			turn = 0;
+>>>>>>> 1580a3465af56988697fd222b9e320128c1d062a
 
 		showWhoTurn();
 	}
 }
 
+<<<<<<< HEAD
+=======
 function showTimer() {
 	var totalPlayer = playerNum() - 1;
 	var whosTime = 'timer' + turn;
@@ -336,6 +385,7 @@ function showTimer() {
 			document.getElementById(whosTime).innerHTML = "Timer";
 	}
 }
+>>>>>>> 1580a3465af56988697fd222b9e320128c1d062a
 
 // myturn 추가 이후로 인터페이스 이상해짐 특히 3번 유저가 turn일때 너무 밀림
 function showWhoTurn() {
