@@ -236,7 +236,7 @@ var hintN;
 	if(level==3){hintN=1;}
 	else if(level==2){hintN=2;}
 	else if(level==1){hintN=3;}
-	
+
 var hint_left = new Array();
 hint_left[0] = hintN;
 hint_left[1] = hintN;
@@ -271,7 +271,7 @@ initTileStorage(); // Randomly pick player's first tiles
  * (rackArray[i][j] == ""){ var randomTile = randomInt(tileBank.length);
  * rackArray[i][j] = tileBank[randomTile] + ","; arrayRemoveItem(randomTile,
  * tileBank);
- * 
+ *
  * tilesRemaining = tileBank.length; } tiles++; } } return true; }
  */
 var checkS;
@@ -301,7 +301,7 @@ function chagePage1(){
 function chagePage2(){
  		document.getElementById("Tutorialmodal-body0").style.display="none";
  		document.getElementById("Tutorialmodal-body1").style.display="block";
- 		document.getElementById("Tutorialmodal-body2").style.display="none";		
+ 		document.getElementById("Tutorialmodal-body2").style.display="none";
 }
 function chagePage3(){
  		document.getElementById("Tutorialmodal-body1").style.display="none";
@@ -336,20 +336,7 @@ var turn=0;
 
 //user Timer setting
 var timerSettingUser = setInterval(myTimer, 1000);
-var timerSettingWhole = setInterval(finishGame, 1000);
 
-var wholeTimer = 3600; //set maximun 60 mins 
-
-function finishGame(){
-	wholeTimer--;
-	if(wholeTimer<0){
-		alert("game finished");
-		/*
-		Add function to finish this game
-		*/
-		clearInterval(timerSettingWhole);
-	}
-}
 
 var userTimer = 100;
 
@@ -1344,6 +1331,7 @@ function pass() {
 			var r = confirm("game finished");
 			if(r || !r){
 					pauseClap();
+					 window.location.href = 'ReadySetting_Final.html';
 			}
 			gameFinish();
 		}
@@ -1368,7 +1356,7 @@ function gameFinish() {
 		var whosTime = 'timer' + turn;
 		document.getElementById(whosTime).innerHTML = '';
 	}
-	
+
 	drawTileStorage();
 
 }
@@ -1433,7 +1421,7 @@ function findHint() {
 	hint_content.innerHTML = hint;
  	modalHint.style.display = "block";
 	decreaseHint();
-	
+
 }
 
 function findOccation() {
@@ -1471,4 +1459,3 @@ function decreaseHint() {
 	hint_left[turn]--;
 	drawHintLeft();
 }
-
