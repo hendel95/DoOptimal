@@ -191,11 +191,22 @@ var bestplay = getBestPlay();
 var highscore = getHighScore();
 var swaps = 0; // Number of consecutive tile swaps
 
+
+
+
+var level = getQuerystring("level");
+var hintN;
+	if(level==3){hintN=1;}
+	else if(level==2){hintN=2;}
+	else if(level==1){hintN=3;}
+	
 var hint_left = new Array();
-hint_left[0] = 3;
-hint_left[1] = 3;
-hint_left[2] = 3;
-hint_left[3] = 3;
+hint_left[0] = hintN;
+hint_left[1] = hintN;
+hint_left[2] = hintN;
+hint_left[3] = hintN;
+
+
 
 initTileStorage(); // Randomly pick player's first tiles
 // PlayerShow();
@@ -1237,7 +1248,7 @@ function getQuerystring(paramName) {
 		}
 	}
 }
-var level = getQuerystring("level");
+
 var player1N = getQuerystring("player1");
 var player2N = getQuerystring("player2");
 var player3N = getQuerystring("player3");
@@ -1314,6 +1325,10 @@ function addEntry(entryName, entryScore) {
 };
 
 function findHint() {
+	if(hint_left[turn]<=0){
+		alert("There are no remaining hints.");
+		return 0;
+	}
 	var characterlist = rackArray[turn];
 	characterlist.sort();
 	var hintlist = [];
@@ -1351,6 +1366,9 @@ function findHint() {
 		hint += hintlist[i] + "   ";
 	}
 	hint_content.innerHTML = hint;
+ 	modalHint.style.display = "block";
+	decreaseHint();
+	
 }
 
 function findOccation() {
