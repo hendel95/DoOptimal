@@ -3,16 +3,11 @@
 
 var gameStatus = 0; // 0 is on game, 1 is end game.
 
-var player1N = getQuerystring("player1");
-var player2N = getQuerystring("player2");
-var player3N = getQuerystring("player3");
-var player4N = getQuerystring("player4");
-
 var rackArray = new Array();
-for(var j=0; j<playerNum(); j++)
-{
-	rackArray[j] = new Array("", "", "", "", "", "", "");
-}
+rackArray[0] = new Array("", "", "", "", "", "", "");
+rackArray[1] = new Array("", "", "", "", "", "", "");
+rackArray[2] = new Array("", "", "", "", "", "", "");
+rackArray[3] = new Array("", "", "", "", "", "", "");
 
 var placedArray = new Array();
 // var rackArray = new Array("", "", "", "", "", "", "");
@@ -133,33 +128,33 @@ fromHex["F"] = 15;
 var toHex = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A",
 		"B", "C", "D", "E", "F");
 
-
-
-var level = getQuerystring("level");
-var hintN;
-	if(level==3){hintN=1;}
-	else if(level==2){hintN=2;}
-	else if(level==1){hintN=3;}
-
-var hint_left = new Array();
-hint_left[0] = hintN;
-hint_left[1] = hintN;
-hint_left[2] = hintN;
-hint_left[3] = hintN;
-
-var tileBank;
-if(level==1){
-	tileBank = new Array ("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A",
+var tileBank = new Array("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A",
 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
 		"E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I",
 		"I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L",
 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
 		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
-		"W", "X", "Y", "Y", "Z");
+		"W", "X", "Y", "Y", "Z"); // The tiles which may be given to the
+var hint_left = new Array();
+hint_left[0] = hintN;
+hint_left[1] = hintN;
+hint_left[2] = hintN;
+hint_left[3] = hintN;
+
+//var tileBank = new Array();
+if(level==1){
+	tileBank = ["A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A",
+		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
+		"E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I",
+		"I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L",
+		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
+		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
+		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
+		"W", "X", "Y", "Y", "Z"];
 }
 else if(level==2){
-	tileBank = new Array ("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "L",
+	tileBank =("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "L",
 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
 		"E", "E", "E", "E", "E", "S", "F", "F", "G", "G", "G", "H", "H", "I",
 		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
@@ -169,7 +164,7 @@ else if(level==2){
 		"W", "X", "Y", "Y", "Z");
 }
 else if(level==3){
-	tileBank = new Array ("A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "L",
+	tileBank =("A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "L",
 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
 		"E", "E", "E", "E", "M", "S", "F", "F", "G", "G", "G", "H", "H", "I",
 		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
@@ -178,7 +173,35 @@ else if(level==3){
 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
 		"W", "X", "Y", "Y", "Z");
 }
+// player
 
+// var tileBank = new Array();
+// var tileBank[0] = ["A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A",
+// 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
+// 		"E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I",
+// 		"I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L",
+// 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
+// 		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
+// 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
+// 		"W", "X", "Y", "Y", "Z"];
+
+// var tileBank[1] =("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "L",
+// 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
+// 		"E", "E", "E", "E", "E", "S", "F", "F", "G", "G", "G", "H", "H", "I",
+// 		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
+// 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
+// 		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
+// 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
+// 		"W", "X", "Y", "Y", "Z");
+
+// var tileBank[2] =("A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "L",
+// 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
+// 		"E", "E", "E", "E", "M", "S", "F", "F", "G", "G", "G", "H", "H", "I",
+// 		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
+// 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
+// 		"O", "P", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
+// 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
+// 		"W", "X", "Y", "Y", "Z");
 
 
 var tilesRemaining = tileBank.length; // Number of tiles remaining that may be
@@ -208,9 +231,24 @@ var swaps = 0; // Number of consecutive tile swaps
 
 
 
+var level = getQuerystring("level");
+var hintN;
+	if(level==3){hintN=1;}
+	else if(level==2){hintN=2;}
+	else if(level==1){hintN=3;}
+
+var hint_left = new Array();
+hint_left[0] = hintN;
+hint_left[1] = hintN;
+hint_left[2] = hintN;
+hint_left[3] = hintN;
 
 
-initTileStorage(); // Randomly pick player's first tile
+
+
+
+
+initTileStorage(); // Randomly pick player's first tiles
 // PlayerShow();
 
 // function PlayerShow(){
@@ -544,8 +582,6 @@ function drawTileStorage() {
 
 	return true;
 }
-
-
 
 function returnTile(rackPos) {
 	if (selectedTile != -1) {
@@ -1267,7 +1303,10 @@ function getQuerystring(paramName) {
 	}
 }
 
-
+var player1N = getQuerystring("player1");
+var player2N = getQuerystring("player2");
+var player3N = getQuerystring("player3");
+var player4N = getQuerystring("player4");
 
 var playerNameArray = new Array(player1N, player2N, player3N, player4N);
 
@@ -1282,7 +1321,14 @@ function playerNum() {
 }
 
 function pass() {
+
 	if (gameStatus != 1) {
+
+		if(checkPlaced()){
+				alert("Remove tiles from the board");
+		}
+
+		else{
 		hideRack();
 		turnChange();
 		drawTileStorage();
@@ -1293,7 +1339,7 @@ function pass() {
 		passCnt++;
 
 		checkPassCnt();
-
+	}
 	}
 }
 
