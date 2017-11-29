@@ -1202,7 +1202,7 @@ function getQuerystring(paramName) {
 		}
 	}
 }
-
+var level = getQuerystring("level");
 var player1N = getQuerystring("player1");
 var player2N = getQuerystring("player2");
 var player3N = getQuerystring("player3");
