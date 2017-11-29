@@ -171,7 +171,7 @@ function pauseClap() {
 						<!-- <table id="modal2-body"> -->
  						<div class="modal_left">
  							<center><img src="./img/bgm.png"></center>
-							<center><img name="button_bgm" src='img/on.png' align="center" onclick="chgImg1()"></center>
+							<center><img name="button_bgm" src='img/on.png' align="center" onclick="chgImg1();"></center>
  						</div>
 
 						<div class="modal_right">
@@ -206,22 +206,46 @@ function pauseClap() {
 
  					<div class="modal2-body">
  						<div id="Tutorialmodal-body0">
- 						<center><img src="./img/Tutorial.png"></center>
+ 						<center><img src="./img/t1.png"></center>
  						<br/>
  						<center>
-						<input id="next" type="image" align="center" src="./img/Tutorial.png" onclick="chagePageNext();"></center>
+						<input id="next" type="image" align="center" src="./img/next.png" onclick="chagePage2();"></center>
 
  						</div>
  						<div id="Tutorialmodal-body1">
-						<center><img src="./img/Tutorial.png"></center>
+						<center><img src="./img/t2.png"></center>
  						<br/>
  						<center>
- 						<input id="back" type="image" align="center" src="./img/Tutorial.png" onclick="chagePageBack();">
- 						<input id="next" type="image" align="center" src="./img/Tutorial.png" onclick="chagePageNext();"></center>
+ 						<input id="back" type="image" align="center" src="./img/back.png" onclick="chagePage1();">
+ 						<input id="next" type="image" align="center" src="./img/next.png" onclick="chagePage3();"></center>
  						</div>
-
-
-
+ 						<div id="Tutorialmodal-body2">
+						<center><img src="./img/t3.png"></center>
+ 						<br/>
+ 						<center>
+ 						<input id="back" type="image" align="center" src="./img/back.png" onclick="chagePage2();">
+ 						<input id="next" type="image" align="center" src="./img/next.png" onclick="chagePage4();"></center>
+ 						</div>
+ 						<div id="Tutorialmodal-body3">
+						<center><img src="./img/t4.png"></center>
+ 						<br/>
+ 						<center>
+ 						<input id="back" type="image" align="center" src="./img/back.png" onclick="chagePage3();">
+ 						<input id="next" type="image" align="center" src="./img/next.png" onclick="chagePage5();"></center>
+ 						</div>
+ 						<div id="Tutorialmodal-body4">
+						<center><img src="./img/t5.png"></center>
+ 						<br/>
+ 						<center>
+ 						<input id="back" type="image" align="center" src="./img/back.png" onclick="chagePage4();">
+ 						<input id="next" type="image" align="center" src="./img/next.png" onclick="chagePage6();"></center>
+ 						</div>
+ 						<div id="Tutorialmodal-body5">
+						<center><img src="./img/t6.png"></center>
+ 						<br/>
+ 						<center>
+ 						<input id="back" type="image" align="center" src="./img/back.png" onclick="chagePage5();"></center>
+ 						</div>
 
 
 
@@ -241,6 +265,7 @@ function pauseClap() {
 
  					<div class="modal2-body">
  						<table id="modal2-body">
+						<center><img src="./img/versionInfo.png"></center>
 
  						</table>
  					</div>
@@ -360,9 +385,12 @@ function PlayerShow(){
 }
 
 function TutorialShow(){
+		document.getElementById("Tutorialmodal-body1").style.display="none";
+ 		document.getElementById("Tutorialmodal-body2").style.display="none";
+		document.getElementById("Tutorialmodal-body3").style.display="none";
+		document.getElementById("Tutorialmodal-body4").style.display="none";
+		document.getElementById("Tutorialmodal-body5").style.display="none";			
  		document.getElementById("Tutorialmodal-body0").style.display="block";
- 		document.getElementById("Tutorialmodal-body1").style.display="none";
-
  }
 
 PlayerShow();
@@ -388,7 +416,7 @@ TutorialShow();
 
 		<div id="hint_empty" class="hint_empty">
 			<img src="./img/Hint_empty.png">
-			<p class="text" id="hint_text">HINT : 3</p>
+			<p class="text" id="hint_text">HINT:<script type="text/javascript">document.write(hint_left[turn]); </script></p>
 		</div>
 		<!--input id="hint_empty" class = "hint_empty" type="image" src="./img/Hint_empty.png" value= "HINT : 3"-->
 
@@ -815,8 +843,8 @@ btnTutorialShow.onclick = function() {
  }
  btnHint.onclick = function() {
  	findHint();
- 	decreaseHint();
- 	modalHint.style.display = "block";
+ 	<!-- decreaseHint(); -->
+ 	<!-- modalHint.style.display = "block"; -->
  }
 
 // When the user clicks on <span> (x), close the modal

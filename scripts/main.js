@@ -128,43 +128,50 @@ fromHex["F"] = 15;
 var toHex = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A",
 		"B", "C", "D", "E", "F");
 
-var tileBank = new Array("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A",
+var level = getQuerystring("level");
+var hintN;
+	if(level==3){hintN=1;}
+	else if(level==2){hintN=2;}
+	else if(level==1){hintN=3;}
+	
+var hint_left = new Array();
+hint_left[0] = hintN;
+hint_left[1] = hintN;
+hint_left[2] = hintN;
+hint_left[3] = hintN;
+
+var tileBank = new Array();
+if(level==1){
+	tileBank = ["A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A",
 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
 		"E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I",
 		"I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L",
 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
 		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
-		"W", "X", "Y", "Y", "Z"); // The tiles which may be given to the
-// player
+		"W", "X", "Y", "Y", "Z"];
+}
+else if(level==2){
+	tileBank =("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "L",
+		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
+		"E", "E", "E", "E", "E", "S", "F", "F", "G", "G", "G", "H", "H", "I",
+		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
+		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
+		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
+		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
+		"W", "X", "Y", "Y", "Z");
+}
+else if(level==3){
+	tileBank =("A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "L",
+		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
+		"E", "E", "E", "E", "M", "S", "F", "F", "G", "G", "G", "H", "H", "I",
+		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
+		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
+		"O", "P", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
+		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
+		"W", "X", "Y", "Y", "Z");
+}
 
-// var tileBank = new Array();
-// var tileBank[0] = ["A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "A",
-// 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
-// 		"E", "E", "E", "E", "E", "E", "F", "F", "G", "G", "G", "H", "H", "I",
-// 		"I", "I", "I", "I", "I", "I", "I", "I", "J", "K", "L", "L", "L", "L",
-// 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
-// 		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
-// 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
-// 		"W", "X", "Y", "Y", "Z"];
-
-// var tileBank[1] =("A", "A", "A", "A", "A", "A", "A", "A", "A", "A", "L",
-// 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
-// 		"E", "E", "E", "E", "E", "S", "F", "F", "G", "G", "G", "H", "H", "I",
-// 		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
-// 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
-// 		"O", "O", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
-// 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
-// 		"W", "X", "Y", "Y", "Z");
-
-// var tileBank[2] =("A", "A", "A", "A", "A", "A", "A", "A", "A", "B", "L",
-// 		"B", "B", "C", "C", "D", "D", "D", "D", "E", "E", "E", "E", "E", "E",
-// 		"E", "E", "E", "E", "M", "S", "F", "F", "G", "G", "G", "H", "H", "I",
-// 		"I", "I", "I", "I", "I", "I", "I", "U", "J", "K", "L", "L", "L", "L",
-// 		"M", "M", "N", "N", "N", "N", "N", "N", "O", "O", "O", "O", "O", "O",
-// 		"O", "P", "P", "P", "Q", "R", "R", "R", "R", "R", "R", "S", "S", "S",
-// 		"S", "T", "T", "T", "T", "T", "T", "U", "U", "U", "U", "V", "V", "W",
-// 		"W", "X", "Y", "Y", "Z");
 
 
 var tilesRemaining = tileBank.length; // Number of tiles remaining that may be
@@ -191,11 +198,12 @@ var bestplay = getBestPlay();
 var highscore = getHighScore();
 var swaps = 0; // Number of consecutive tile swaps
 
-var hint_left = new Array();
-hint_left[0] = 3;
-hint_left[1] = 3;
-hint_left[2] = 3;
-hint_left[3] = 3;
+
+
+
+
+
+
 
 initTileStorage(); // Randomly pick player's first tiles
 // PlayerShow();
@@ -236,6 +244,41 @@ checkS = 0;
 // document.getElementById("tilerack").style.display="block";
 // }
 // }
+// function showWhoTurn() {
+	// var whosTurn = 'turnbox' + turn;
+	// var turnbox = document.getElementById(whosTurn);
+	// var turnbox_text = '<div class="turn_box"><img src="./img/myturn.png"></div>'
+	// turnbox.innerHTML = turnbox_text;
+// }
+
+function chagePage1(){
+ 		document.getElementById("Tutorialmodal-body0").style.display="block";
+ 		document.getElementById("Tutorialmodal-body1").style.display="none";
+}
+function chagePage2(){
+ 		document.getElementById("Tutorialmodal-body0").style.display="none";
+ 		document.getElementById("Tutorialmodal-body1").style.display="block";
+ 		document.getElementById("Tutorialmodal-body2").style.display="none";		
+}
+function chagePage3(){
+ 		document.getElementById("Tutorialmodal-body1").style.display="none";
+ 		document.getElementById("Tutorialmodal-body2").style.display="block";
+ 		document.getElementById("Tutorialmodal-body3").style.display="none";
+}
+function chagePage4(){
+ 		document.getElementById("Tutorialmodal-body2").style.display="none";
+ 		document.getElementById("Tutorialmodal-body3").style.display="block";
+		document.getElementById("Tutorialmodal-body4").style.display="none";
+}
+function chagePage5(){
+ 		document.getElementById("Tutorialmodal-body3").style.display="none";
+ 		document.getElementById("Tutorialmodal-body4").style.display="block";
+		document.getElementById("Tutorialmodal-body5").style.display="none";
+}
+function chagePage6(){
+ 		document.getElementById("Tutorialmodal-body4").style.display="none";
+ 		document.getElementById("Tutorialmodal-body5").style.display="block";
+}
 
 function showUp() {
 	document.getElementById("tilerack").style.display = "block";
@@ -1332,6 +1375,10 @@ function addEntry(entryName, entryScore) {
 };
 
 function findHint() {
+	if(hint_left[turn]<=0){
+		alert("There are no remaining hints.");
+		return 0;
+	}
 	var characterlist = rackArray[turn];
 	characterlist.sort();
 	var hintlist = [];
@@ -1369,6 +1416,9 @@ function findHint() {
 		hint += hintlist[i] + "   ";
 	}
 	hint_content.innerHTML = hint;
+ 	modalHint.style.display = "block";
+	decreaseHint();
+	
 }
 
 function findOccation() {

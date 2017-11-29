@@ -73,7 +73,6 @@ function chgP4() {
 
 var i, checkL;
 i = 0;
-checkL=0;
 
 var img4 = new Array("img/level1.png", "img/L1.png");
 function chgL1() {
@@ -133,9 +132,6 @@ function chgM() {
 	}
 	document.button_bgm.src = img7[i];
 }
-
-
-
 //Alert 설정
 function checkAlert()
 {
@@ -175,6 +171,7 @@ function checkAlert()
 			form.player4.focus();			
 	}	
 	else{
-	form.submit();
+		document.form1.level.value=checkL;
+		form.submit();
 	}
 }
