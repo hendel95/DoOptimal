@@ -236,6 +236,41 @@ checkS = 0;
 // document.getElementById("tilerack").style.display="block";
 // }
 // }
+// function showWhoTurn() {
+	// var whosTurn = 'turnbox' + turn;
+	// var turnbox = document.getElementById(whosTurn);
+	// var turnbox_text = '<div class="turn_box"><img src="./img/myturn.png"></div>'
+	// turnbox.innerHTML = turnbox_text;
+// }
+
+function chagePage1(){
+ 		document.getElementById("Tutorialmodal-body0").style.display="block";
+ 		document.getElementById("Tutorialmodal-body1").style.display="none";
+}
+function chagePage2(){
+ 		document.getElementById("Tutorialmodal-body0").style.display="none";
+ 		document.getElementById("Tutorialmodal-body1").style.display="block";
+ 		document.getElementById("Tutorialmodal-body2").style.display="none";		
+}
+function chagePage3(){
+ 		document.getElementById("Tutorialmodal-body1").style.display="none";
+ 		document.getElementById("Tutorialmodal-body2").style.display="block";
+ 		document.getElementById("Tutorialmodal-body3").style.display="none";
+}
+function chagePage4(){
+ 		document.getElementById("Tutorialmodal-body2").style.display="none";
+ 		document.getElementById("Tutorialmodal-body3").style.display="block";
+		document.getElementById("Tutorialmodal-body4").style.display="none";
+}
+function chagePage5(){
+ 		document.getElementById("Tutorialmodal-body3").style.display="none";
+ 		document.getElementById("Tutorialmodal-body4").style.display="block";
+		document.getElementById("Tutorialmodal-body5").style.display="none";
+}
+function chagePage6(){
+ 		document.getElementById("Tutorialmodal-body4").style.display="none";
+ 		document.getElementById("Tutorialmodal-body5").style.display="block";
+}
 
 function showUp() {
 	document.getElementById("tilerack").style.display = "block";
