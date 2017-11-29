@@ -1283,7 +1283,7 @@ function playerNum() {
 
 function pass() {
 	if (gameStatus != 1) {
-		if(checkPlaced){
+		if(checkPlaced()){
 			alert("Remove tiles from the board!");
 		}
 		else{
