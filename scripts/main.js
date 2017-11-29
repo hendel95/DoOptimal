@@ -1283,6 +1283,10 @@ function playerNum() {
 
 function pass() {
 	if (gameStatus != 1) {
+		if(checkPlaced){
+			alert("Remove tiles from the board!");
+		}
+		else{
 		hideRack();
 		turnChange();
 		drawTileStorage();
@@ -1293,6 +1297,7 @@ function pass() {
 		passCnt++;
 
 		checkPassCnt();
+	}
 
 	}
 }
