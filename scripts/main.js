@@ -308,6 +308,8 @@ function myTimer() {
 		document.getElementById(whosTime).innerHTML = userTimer--;
 		if (userTimer < 0) {
 			userTimer = 100;
+			passCnt++;
+			checkPassCnt();
 			turnChange();
 		}
 	}
@@ -1285,17 +1287,26 @@ function pass() {
 		turnChange();
 		drawTileStorage();
 		drawHintLeft();
-		var tmp = passCnt;
-		passCnt = tmp + 1;
-		if (passCnt == playerNum() * 2) {
-			playClap();
-			var r = confirm("game finished");
-			if(r || !r){
-					pauseClap();
-					 window.location.href = 'ReadySetting_Final.html';
-			}
-			gameFinish();
+
+	/*	var tmp = passCnt;
+		passCnt = tmp + 1;*/
+		passCnt++;
+
+		checkPassCnt();
+
+	}
+}
+
+function checkPassCnt(){
+	if (passCnt == playerNum() * 2) {
+		playClap();
+		var r = confirm("game finished");
+		if(r || !r){
+				pauseClap();
+				 window.location.href = 'ReadySetting_Final.html';
 		}
+
+		gameFinish();
 	}
 }
 
