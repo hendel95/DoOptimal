@@ -1302,7 +1302,6 @@ function checkPassCnt(){
 		playClap();
 		var r = confirm("game finished");
 		if(r || !r){
-				pauseClap();
 				 window.location.href = 'ReadySetting_Final.html';
 		}
 

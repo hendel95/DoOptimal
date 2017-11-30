@@ -96,8 +96,8 @@ function playFx () {
 }
 
 function playClap () {
-	var bgm = document.getElementById('Bgm');
-	bgm.pause();
+	// var bgm = document.getElementById('Bgm');
+	// bgm.pause();
 	var clap = document.getElementById('Clap');
 	clap.play();
 }
@@ -159,7 +159,7 @@ function pauseClap() {
 							else{
 								i=0;
 								var fx = document.getElementById('Fx');
-								fx.src = "./music/fx.mp3";
+								fx.src = "./music/fx.wav";
 							}
 							document.button_fx.src = img[i];
 						}
